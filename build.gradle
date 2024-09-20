@@ -10,10 +10,22 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Minecraft
+    implementation fileTree(dir: 'libs/', includes: ['*.jar'])
+
+    // Test
+/*    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'*/
 }
 
-test {
-    useJUnitPlatform()
+tasks.register('runClient', JavaExec) {
+    mainClass = 'Start'
+    classpath = sourceSets.test.runtimeClasspath
+    jvmArgs = ['-Djava.library.path=natives/']
+
+    workingDir = file('run/')
 }
+
+/*test {
+    useJUnitPlatform()
+}*/

@@ -1,3 +1,9 @@
+### Rhenium ###
+run
+!run/natives
+!run/assets/indexes
+!run/assets/objects
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
