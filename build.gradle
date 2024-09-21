@@ -9,15 +9,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // Minecraft
-    implementation fileTree(dir: 'libs/', includes: ['*.jar'])
-
-    // Test
-/*    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'*/
-}
-
 tasks.register('runClient', JavaExec) {
     mainClass = 'Start'
     classpath = sourceSets.test.runtimeClasspath
@@ -26,6 +17,7 @@ tasks.register('runClient', JavaExec) {
     workingDir = file('run/')
 }
 
-/*test {
-    useJUnitPlatform()
-}*/
+dependencies {
+    // Minecraft
+    implementation fileTree(dir: 'libs/', includes: ['*.jar'])
+}
