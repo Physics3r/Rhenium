@@ -234,7 +234,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
                         ReflectorForge.FMLClientHandler_trackBrokenTexture(resourcelocation2, runtimeexception.getMessage());
                         continue;
                     } catch (IOException ioexception1) {
-                        logger.error("Using missing texture, unable to load " + resourcelocation2 + ", " + ioexception1.getClass().getName());
+                        logger.error("Using missing texture, unable to load {}, {}", resourcelocation2, ioexception1.getClass().getName());
                         ReflectorForge.FMLClientHandler_trackMissingTexture(resourcelocation2);
                         continue;
                     }

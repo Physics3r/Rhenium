@@ -180,7 +180,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData {
 
             file1.renameTo(file2);
         } catch (Exception var5) {
-            logger.warn("Failed to save player data for " + player.getName());
+            logger.warn("Failed to save player data for {}", player.getName());
         }
     }
 
@@ -194,7 +194,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData {
                 nbttagcompound = CompressedStreamTools.readCompressed(new FileInputStream(file1));
             }
         } catch (Exception var4) {
-            logger.warn("Failed to load player data for " + player.getName());
+            logger.warn("Failed to load player data for {}", player.getName());
         }
 
         if (nbttagcompound != null) {

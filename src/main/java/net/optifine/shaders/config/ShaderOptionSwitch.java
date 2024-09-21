@@ -25,7 +25,7 @@ public class ShaderOptionSwitch extends ShaderOption {
     }
 
     public String getValueColor(String val) {
-        return isTrue(val) ? "\u00a7a" : "\u00a7c";
+        return isTrue(val) ? "§a" : "§c";
     }
 
     public static ShaderOption parseOption(String line, String path) {

@@ -30,7 +30,7 @@ public class ShaderOptionVariable extends ShaderOption {
 
     public String getValueColor(String val) {
         String s = val.toLowerCase();
-        return !s.equals("false") && !s.equals("off") ? "\u00a7a" : "\u00a7c";
+        return !s.equals("false") && !s.equals("off") ? "§a" : "§c";
     }
 
     public boolean matchesLine(String line) {
