@@ -430,6 +430,10 @@ public class GuiIngame extends Gui {
     }
 
     protected boolean showCrosshair() {
+        // 在第二和第三人称下隐藏鼠标准星
+        if (this.mc.gameSettings.thirdPersonView == 1 || this.mc.gameSettings.thirdPersonView == 2) {
+            return false;
+        }
         if (this.mc.gameSettings.showDebugInfo && !this.mc.thePlayer.hasReducedDebug() && !this.mc.gameSettings.reducedDebugInfo) {
             return false;
         } else if (this.mc.playerController.isSpectator()) {
