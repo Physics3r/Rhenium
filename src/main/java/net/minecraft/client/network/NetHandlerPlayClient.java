@@ -1055,7 +1055,6 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                 if (this.field_147308_k && this.gameController.thePlayer.getStatFileWriter().readStat(statbase) == 0) {
                     Achievement achievement = (Achievement) statbase;
                     this.gameController.guiAchievement.displayAchievement(achievement);
-                    this.gameController.getTwitchStream().func_152911_a(new MetadataAchievement(achievement), 0L);
 
                     if (statbase == AchievementList.openInventory) {
                         this.gameController.gameSettings.showInventoryAchievementHint = false;
@@ -1099,14 +1098,12 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         if (packetIn.eventType == S42PacketCombatEvent.Event.END_COMBAT) {
             long i = (long) (1000 * packetIn.field_179772_d / 20);
             MetadataCombat metadatacombat = new MetadataCombat(this.gameController.thePlayer, entitylivingbase);
-            this.gameController.getTwitchStream().func_176026_a(metadatacombat, 0L - i, 0L);
         } else if (packetIn.eventType == S42PacketCombatEvent.Event.ENTITY_DIED) {
             Entity entity1 = this.clientWorldController.getEntityByID(packetIn.field_179774_b);
 
             if (entity1 instanceof EntityPlayer) {
                 MetadataPlayerDeath metadataplayerdeath = new MetadataPlayerDeath((EntityPlayer) entity1, entitylivingbase);
                 metadataplayerdeath.func_152807_a(packetIn.deathMessage);
-                this.gameController.getTwitchStream().func_152911_a(metadataplayerdeath, 0L);
             }
         }
     }
