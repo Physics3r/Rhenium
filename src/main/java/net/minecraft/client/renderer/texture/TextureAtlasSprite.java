@@ -278,7 +278,7 @@ public class TextureAtlasSprite {
                 }
 
                 if (k > 0 && (bufferedimage.getWidth() != i >> k || bufferedimage.getHeight() != j >> k)) {
-                    throw new RuntimeException(String.format("Unable to load miplevel: %d, image is size: %dx%d, expected %dx%d", new Object[]{Integer.valueOf(k), Integer.valueOf(bufferedimage.getWidth()), Integer.valueOf(bufferedimage.getHeight()), Integer.valueOf(i >> k), Integer.valueOf(j >> k)}));
+                    throw new RuntimeException(String.format("Unable to load miplevel: %d, image is size: %dx%d, expected %dx%d", new Object[]{k, bufferedimage.getWidth(), bufferedimage.getHeight(), i >> k, j >> k}));
                 }
 
                 aint[k] = new int[bufferedimage.getWidth() * bufferedimage.getHeight()];
@@ -299,10 +299,9 @@ public class TextureAtlasSprite {
             this.height = this.width;
 
             if (meta.getFrameCount() > 0) {
-                Iterator iterator = meta.getFrameIndexSet().iterator();
 
-                while (iterator.hasNext()) {
-                    int i1 = ((Integer) iterator.next()).intValue();
+                for (Integer integer : meta.getFrameIndexSet()) {
+                    int i1 = integer;
 
                     if (i1 >= j1) {
                         throw new RuntimeException("invalid frameindex " + i1);
@@ -330,12 +329,9 @@ public class TextureAtlasSprite {
                 this.loadShadersSprites();
             }
 
-            for (int k1 = 0; k1 < this.framesTextureData.size(); ++k1) {
-                int[][] aint1 = this.framesTextureData.get(k1);
-
+            for (int[][] aint1 : this.framesTextureData) {
                 if (aint1 != null && !this.iconName.startsWith("minecraft:blocks/leaves_")) {
-                    for (int i2 = 0; i2 < aint1.length; ++i2) {
-                        int[] aint2 = aint1[i2];
+                    for (int[] aint2 : aint1) {
                         this.fixTransparentColor(aint2);
                     }
                 }
@@ -359,7 +355,7 @@ public class TextureAtlasSprite {
                 } catch (Throwable throwable) {
                     CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Generating mipmaps for frame");
                     CrashReportCategory crashreportcategory = crashreport.makeCategory("Frame being iterated");
-                    crashreportcategory.addCrashSection("Frame index", Integer.valueOf(i));
+                    crashreportcategory.addCrashSection("Frame index", i);
                     crashreportcategory.addCrashSectionCallable("Frame sizes", new Callable<String>() {
                         public String call() throws Exception {
                             StringBuilder stringbuilder = new StringBuilder();
@@ -482,8 +478,7 @@ public class TextureAtlasSprite {
             long k = 0L;
             long l = 0L;
 
-            for (int i1 = 0; i1 < p_fixTransparentColor_1_.length; ++i1) {
-                int j1 = p_fixTransparentColor_1_[i1];
+            for (int j1 : p_fixTransparentColor_1_) {
                 int k1 = j1 >> 24 & 255;
 
                 if (k1 >= 16) {

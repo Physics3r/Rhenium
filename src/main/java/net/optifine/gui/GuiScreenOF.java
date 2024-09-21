@@ -25,9 +25,7 @@ public class GuiScreenOF extends GuiScreen {
     }
 
     public static GuiButton getSelectedButton(int x, int y, List<GuiButton> listButtons) {
-        for (int i = 0; i < listButtons.size(); ++i) {
-            GuiButton guibutton = listButtons.get(i);
-
+        for (GuiButton guibutton : listButtons) {
             if (guibutton.visible) {
                 int j = GuiVideoSettings.getButtonWidth(guibutton);
                 int k = GuiVideoSettings.getButtonHeight(guibutton);

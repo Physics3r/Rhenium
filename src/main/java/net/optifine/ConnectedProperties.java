@@ -148,7 +148,7 @@ public class ConnectedProperties {
                                 int j = Config.parseInt(s3, -1);
 
                                 if (j >= 0 && j < this.tiles.length) {
-                                    map.put(Integer.valueOf(i), Integer.valueOf(j));
+                                    map.put(i, j);
                                 } else {
                                     Config.warn("Invalid CTM tile index: " + s3);
                                 }
@@ -168,8 +168,8 @@ public class ConnectedProperties {
                 for (int k = 0; k < aint.length; ++k) {
                     aint[k] = -1;
 
-                    if (map.containsKey(Integer.valueOf(k))) {
-                        aint[k] = map.get(Integer.valueOf(k)).intValue();
+                    if (map.containsKey(k)) {
+                        aint[k] = map.get(k);
                     }
                 }
 
@@ -229,9 +229,7 @@ public class ConnectedProperties {
             String[] astring = Config.tokenize(str, " ,");
             label32:
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s = astring[i];
-
+            for (String s : astring) {
                 if (s.contains("-")) {
                     String[] astring1 = Config.tokenize(s, "-");
 
@@ -311,8 +309,7 @@ public class ConnectedProperties {
             String[] astring = Config.tokenize(str, " ,");
             int i = 0;
 
-            for (int j = 0; j < astring.length; ++j) {
-                String s = astring[j];
+            for (String s : astring) {
                 int k = parseFace(s);
                 i |= k;
             }
@@ -856,8 +853,7 @@ public class ConnectedProperties {
         } else {
             List list = new ArrayList();
 
-            for (int i = 0; i < tileNames.length; ++i) {
-                String s = tileNames[i];
+            for (String s : tileNames) {
                 ResourceLocation resourcelocation = new ResourceLocation(s);
                 String s1 = resourcelocation.getResourceDomain();
                 String s2 = resourcelocation.getResourcePath();
@@ -923,8 +919,7 @@ public class ConnectedProperties {
         i = this.getMax(this.metadatas, i);
 
         if (this.matchBlocks != null) {
-            for (int j = 0; j < this.matchBlocks.length; ++j) {
-                MatchBlock matchblock = this.matchBlocks[j];
+            for (MatchBlock matchblock : this.matchBlocks) {
                 i = this.getMax(matchblock.getMetadatas(), i);
             }
         }
@@ -936,9 +931,7 @@ public class ConnectedProperties {
         if (mds == null) {
             return max;
         } else {
-            for (int i = 0; i < mds.length; ++i) {
-                int j = mds[i];
-
+            for (int j : mds) {
                 if (j > max) {
                     max = j;
                 }

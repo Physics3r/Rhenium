@@ -59,10 +59,9 @@ public class ShaderPackParser {
         } else {
             Map<String, ShaderOption> map = new HashMap();
             collectShaderOptions(shaderPack, "/shaders", programNames, map);
-            Iterator<Integer> iterator = listDimensions.iterator();
 
-            while (iterator.hasNext()) {
-                int i = iterator.next().intValue();
+            for (Integer listDimension : listDimensions) {
+                int i = listDimension;
                 String s = "/shaders/world" + i;
                 collectShaderOptions(shaderPack, s, programNames, map);
             }
@@ -80,9 +79,7 @@ public class ShaderPackParser {
     }
 
     private static void collectShaderOptions(IShaderPack shaderPack, String dir, String[] programNames, Map<String, ShaderOption> mapOptions) {
-        for (int i = 0; i < programNames.length; ++i) {
-            String s = programNames[i];
-
+        for (String s : programNames) {
             if (!s.equals("")) {
                 String s1 = dir + "/" + s + ".vsh";
                 String s2 = dir + "/" + s + ".fsh";
@@ -95,8 +92,7 @@ public class ShaderPackParser {
     private static void collectShaderOptions(IShaderPack sp, String path, Map<String, ShaderOption> mapOptions) {
         String[] astring = getLines(sp, path);
 
-        for (int i = 0; i < astring.length; ++i) {
-            String s = astring[i];
+        for (String s : astring) {
             ShaderOption shaderoption = getShaderOption(s, path);
 
             if (shaderoption != null && !shaderoption.getName().startsWith(ShaderMacros.getPrefixMacro()) && (!shaderoption.checkUsed() || isOptionUsed(shaderoption, astring))) {
@@ -124,9 +120,7 @@ public class ShaderPackParser {
     }
 
     private static boolean isOptionUsed(ShaderOption so, String[] lines) {
-        for (int i = 0; i < lines.length; ++i) {
-            String s = lines[i];
-
+        for (String s : lines) {
             if (so.isUsedInLine(s)) {
                 return true;
             }
@@ -292,8 +286,7 @@ public class ShaderPackParser {
         } else {
             String[] astring = Config.tokenize(s, " ");
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s1 = astring[i];
+            for (String s1 : astring) {
                 ShaderOption shaderoption = ShaderUtils.getShaderOption(s1, shaderOptions);
 
                 if (shaderoption == null) {
@@ -320,9 +313,7 @@ public class ShaderPackParser {
             String s2 = props.getProperty(s1);
             String[] astring = Config.tokenize(s2, " ");
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s3 = astring[i];
-
+            for (String s3 : astring) {
                 if (s3.startsWith(s)) {
                     String s4 = s3.substring(s.length());
                     ShaderProfile shaderprofile1 = parseProfile(s4, props, parsedProfiles, shaderOptions);
@@ -404,9 +395,7 @@ public class ShaderPackParser {
             Set<String> set = new HashSet();
             String[] astring = Config.tokenize(s, " ");
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s1 = astring[i];
-
+            for (String s1 : astring) {
                 if (s1.equals("<empty>")) {
                     list.add(null);
                 } else if (set.contains(s1)) {
@@ -545,8 +534,7 @@ public class ShaderPackParser {
             if (j >= 0 && s1.contains(ShaderMacros.getPrefixMacro())) {
                 ShaderMacro[] ashadermacro = findMacros(s1, ShaderMacros.getExtensions());
 
-                for (int i1 = 0; i1 < ashadermacro.length; ++i1) {
-                    ShaderMacro shadermacro1 = ashadermacro[i1];
+                for (ShaderMacro shadermacro1 : ashadermacro) {
                     set.add(shadermacro1);
                 }
             }
@@ -560,9 +548,7 @@ public class ShaderPackParser {
     private static ShaderMacro[] findMacros(String line, ShaderMacro[] macros) {
         List<ShaderMacro> list = new ArrayList();
 
-        for (int i = 0; i < macros.length; ++i) {
-            ShaderMacro shadermacro = macros[i];
-
+        for (ShaderMacro shadermacro : macros) {
             if (line.contains(shadermacro.getName())) {
                 list.add(shadermacro);
             }
@@ -720,7 +706,7 @@ public class ShaderPackParser {
             float f = Config.parseFloat(s1, -1.0F);
 
             if (integer != null && f >= 0.0F) {
-                return new GlAlphaState(true, integer.intValue(), f);
+                return new GlAlphaState(true, integer, f);
             }
         }
 
@@ -781,7 +767,7 @@ public class ShaderPackParser {
             Integer integer3 = mapBlendFactors.get(s3);
 
             if (integer != null && integer1 != null && integer2 != null && integer3 != null) {
-                return new GlBlendState(true, integer.intValue(), integer1.intValue(), integer2.intValue(), integer3.intValue());
+                return new GlBlendState(true, integer, integer1, integer2, integer3);
             }
         }
 
@@ -879,34 +865,34 @@ public class ShaderPackParser {
 
     private static Map<String, Integer> makeMapAlphaFuncs() {
         Map<String, Integer> map = new HashMap();
-        map.put("NEVER", new Integer(512));
-        map.put("LESS", new Integer(513));
-        map.put("EQUAL", new Integer(514));
-        map.put("LEQUAL", new Integer(515));
-        map.put("GREATER", new Integer(516));
-        map.put("NOTEQUAL", new Integer(517));
-        map.put("GEQUAL", new Integer(518));
-        map.put("ALWAYS", new Integer(519));
+        map.put("NEVER", 512);
+        map.put("LESS", 513);
+        map.put("EQUAL", 514);
+        map.put("LEQUAL", 515);
+        map.put("GREATER", 516);
+        map.put("NOTEQUAL", 517);
+        map.put("GEQUAL", 518);
+        map.put("ALWAYS", 519);
         return Collections.<String, Integer>unmodifiableMap(map);
     }
 
     private static Map<String, Integer> makeMapBlendFactors() {
         Map<String, Integer> map = new HashMap();
-        map.put("ZERO", new Integer(0));
-        map.put("ONE", new Integer(1));
-        map.put("SRC_COLOR", new Integer(768));
-        map.put("ONE_MINUS_SRC_COLOR", new Integer(769));
-        map.put("DST_COLOR", new Integer(774));
-        map.put("ONE_MINUS_DST_COLOR", new Integer(775));
-        map.put("SRC_ALPHA", new Integer(770));
-        map.put("ONE_MINUS_SRC_ALPHA", new Integer(771));
-        map.put("DST_ALPHA", new Integer(772));
-        map.put("ONE_MINUS_DST_ALPHA", new Integer(773));
-        map.put("CONSTANT_COLOR", new Integer(32769));
-        map.put("ONE_MINUS_CONSTANT_COLOR", new Integer(32770));
-        map.put("CONSTANT_ALPHA", new Integer(32771));
-        map.put("ONE_MINUS_CONSTANT_ALPHA", new Integer(32772));
-        map.put("SRC_ALPHA_SATURATE", new Integer(776));
+        map.put("ZERO", 0);
+        map.put("ONE", 1);
+        map.put("SRC_COLOR", 768);
+        map.put("ONE_MINUS_SRC_COLOR", 769);
+        map.put("DST_COLOR", 774);
+        map.put("ONE_MINUS_DST_COLOR", 775);
+        map.put("SRC_ALPHA", 770);
+        map.put("ONE_MINUS_SRC_ALPHA", 771);
+        map.put("DST_ALPHA", 772);
+        map.put("ONE_MINUS_DST_ALPHA", 773);
+        map.put("CONSTANT_COLOR", 32769);
+        map.put("ONE_MINUS_CONSTANT_COLOR", 32770);
+        map.put("CONSTANT_ALPHA", 32771);
+        map.put("ONE_MINUS_CONSTANT_ALPHA", 32772);
+        map.put("SRC_ALPHA_SATURATE", 776);
         return Collections.<String, Integer>unmodifiableMap(map);
     }
 }

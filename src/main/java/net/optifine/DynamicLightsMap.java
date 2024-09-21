@@ -11,13 +11,13 @@ public class DynamicLightsMap {
     private boolean dirty = false;
 
     public DynamicLight put(int id, DynamicLight dynamicLight) {
-        DynamicLight dynamiclight = this.map.put(Integer.valueOf(id), dynamicLight);
+        DynamicLight dynamiclight = this.map.put(id, dynamicLight);
         this.setDirty();
         return dynamiclight;
     }
 
     public DynamicLight get(int id) {
-        return this.map.get(Integer.valueOf(id));
+        return this.map.get(id);
     }
 
     public int size() {
