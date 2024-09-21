@@ -47,9 +47,9 @@ public class EntityBoat extends Entity {
     }
 
     protected void entityInit() {
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(1));
-        this.dataWatcher.addObject(19, new Float(0.0F));
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 1);
+        this.dataWatcher.addObject(19, 0.0F);
     }
 
     public AxisAlignedBB getCollisionBox(Entity entityIn) {
@@ -357,9 +357,7 @@ public class EntityBoat extends Entity {
                 List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
                 if (list != null && !list.isEmpty()) {
-                    for (int k2 = 0; k2 < list.size(); ++k2) {
-                        Entity entity = list.get(k2);
-
+                    for (Entity entity : list) {
                         if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityBoat) {
                             entity.applyEntityCollision(this);
                         }
@@ -426,7 +424,7 @@ public class EntityBoat extends Entity {
     }
 
     public void setDamageTaken(float p_70266_1_) {
-        this.dataWatcher.updateObject(19, Float.valueOf(p_70266_1_));
+        this.dataWatcher.updateObject(19, p_70266_1_);
     }
 
     public float getDamageTaken() {
@@ -434,7 +432,7 @@ public class EntityBoat extends Entity {
     }
 
     public void setTimeSinceHit(int p_70265_1_) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(p_70265_1_));
+        this.dataWatcher.updateObject(17, p_70265_1_);
     }
 
     public int getTimeSinceHit() {
@@ -442,7 +440,7 @@ public class EntityBoat extends Entity {
     }
 
     public void setForwardDirection(int p_70269_1_) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(p_70269_1_));
+        this.dataWatcher.updateObject(18, p_70269_1_);
     }
 
     public int getForwardDirection() {

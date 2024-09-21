@@ -146,12 +146,11 @@ public class CustomItemProperties {
             String[] astring = Config.tokenize(str, " ");
             label45:
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s = astring[i];
+            for (String s : astring) {
                 int j = Config.parseInt(s, -1);
 
                 if (j >= 0) {
-                    set.add(new Integer(j));
+                    set.add(j);
                 } else {
                     if (s.contains("-")) {
                         String[] astring1 = Config.tokenize(s, "-");
@@ -170,7 +169,7 @@ public class CustomItemProperties {
                                         continue label45;
                                     }
 
-                                    set.add(new Integer(k1));
+                                    set.add(k1);
                                     ++k1;
                                 }
                             }
@@ -187,7 +186,7 @@ public class CustomItemProperties {
                         if (i2 <= 0) {
                             Config.warn("Item not found: " + s);
                         } else {
-                            set.add(new Integer(i2));
+                            set.add(i2);
                         }
                     }
                 }
@@ -197,7 +196,7 @@ public class CustomItemProperties {
             int[] aint = new int[ainteger.length];
 
             for (int l1 = 0; l1 < aint.length; ++l1) {
-                aint[l1] = ainteger[l1].intValue();
+                aint[l1] = ainteger[l1];
             }
 
             return aint;
@@ -404,9 +403,7 @@ public class CustomItemProperties {
             String[] astring = Config.tokenize(str, " ");
             RangeListInt rangelistint = new RangeListInt();
 
-            for (int i = 0; i < astring.length; ++i) {
-                String s = astring[i];
-
+            for (String s : astring) {
                 if (parser != null) {
                     int j = parser.parse(s, Integer.MIN_VALUE);
 

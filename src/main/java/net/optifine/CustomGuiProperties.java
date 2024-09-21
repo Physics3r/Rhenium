@@ -116,9 +116,7 @@ public class CustomGuiProperties {
         } else {
             EnumDyeColor[] aenumdyecolor = EnumDyeColor.values();
 
-            for (int i = 0; i < aenumdyecolor.length; ++i) {
-                EnumDyeColor enumdyecolor = aenumdyecolor[i];
-
+            for (EnumDyeColor enumdyecolor : aenumdyecolor) {
                 if (enumdyecolor.getName().equals(str)) {
                     return enumdyecolor;
                 }
@@ -372,7 +370,7 @@ public class CustomGuiProperties {
     }
 
     private boolean matchesChest(boolean isLarge, boolean isTrapped, boolean isChristmas, boolean isEnder) {
-        return this.large != null && this.large.booleanValue() != isLarge ? false : (this.trapped != null && this.trapped.booleanValue() != isTrapped ? false : (this.christmas != null && this.christmas.booleanValue() != isChristmas ? false : this.ender == null || this.ender.booleanValue() == isEnder));
+        return this.large != null && this.large != isLarge ? false : (this.trapped != null && this.trapped != isTrapped ? false : (this.christmas != null && this.christmas != isChristmas ? false : this.ender == null || this.ender == isEnder));
     }
 
     private boolean matchesDispenser(BlockPos pos, IBlockAccess blockAccess) {
@@ -440,9 +438,7 @@ public class CustomGuiProperties {
 
                 boolean flag = false;
 
-                for (int k = 0; k < this.professions.length; ++k) {
-                    VillagerProfession villagerprofession = this.professions[k];
-
+                for (VillagerProfession villagerprofession : this.professions) {
                     if (villagerprofession.matches(i, j)) {
                         flag = true;
                         break;

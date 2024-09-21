@@ -10,9 +10,7 @@ public class ShaderOptionResolver implements IExpressionResolver {
     private Map<String, ExpressionShaderOptionSwitch> mapOptions = new HashMap();
 
     public ShaderOptionResolver(ShaderOption[] options) {
-        for (int i = 0; i < options.length; ++i) {
-            ShaderOption shaderoption = options[i];
-
+        for (ShaderOption shaderoption : options) {
             if (shaderoption instanceof ShaderOptionSwitch) {
                 ShaderOptionSwitch shaderoptionswitch = (ShaderOptionSwitch) shaderoption;
                 ExpressionShaderOptionSwitch expressionshaderoptionswitch = new ExpressionShaderOptionSwitch(shaderoptionswitch);

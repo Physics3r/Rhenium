@@ -32,7 +32,7 @@ public class BlockFlowerPot extends BlockContainer {
 
     public BlockFlowerPot() {
         super(Material.circuits);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(CONTENTS, BlockFlowerPot.EnumFlowerType.EMPTY).withProperty(LEGACY_DATA, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(CONTENTS, BlockFlowerPot.EnumFlowerType.EMPTY).withProperty(LEGACY_DATA, 0));
         this.setBlockBoundsForItemRender();
     }
 
@@ -238,7 +238,7 @@ public class BlockFlowerPot extends BlockContainer {
     }
 
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(LEGACY_DATA).intValue();
+        return state.getValue(LEGACY_DATA);
     }
 
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {

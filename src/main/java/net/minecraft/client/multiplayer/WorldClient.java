@@ -260,8 +260,7 @@ public class WorldClient extends World {
     public void removeAllEntities() {
         this.loadedEntityList.removeAll(this.unloadedEntityList);
 
-        for (int i = 0; i < this.unloadedEntityList.size(); ++i) {
-            Entity entity = this.unloadedEntityList.get(i);
+        for (Entity entity : this.unloadedEntityList) {
             int j = entity.chunkCoordX;
             int k = entity.chunkCoordZ;
 
@@ -270,8 +269,8 @@ public class WorldClient extends World {
             }
         }
 
-        for (int l = 0; l < this.unloadedEntityList.size(); ++l) {
-            this.onEntityRemoved(this.unloadedEntityList.get(l));
+        for (Entity entity : this.unloadedEntityList) {
+            this.onEntityRemoved(entity);
         }
 
         this.unloadedEntityList.clear();

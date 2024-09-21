@@ -253,9 +253,7 @@ public class RandomEntityRule {
 
                     boolean flag = false;
 
-                    for (int l = 0; l < this.professions.length; ++l) {
-                        VillagerProfession villagerprofession = this.professions[l];
-
+                    for (VillagerProfession villagerprofession : this.professions) {
                         if (villagerprofession.matches(j, k)) {
                             flag = true;
                             break;
@@ -294,7 +292,7 @@ public class RandomEntityRule {
                 if (entity2 instanceof EntityLiving) {
                     EntityLiving entityliving = (EntityLiving) entity2;
 
-                    if (entityliving.isChild() != this.baby.booleanValue()) {
+                    if (entityliving.isChild() != this.baby) {
                         return false;
                     }
                 }

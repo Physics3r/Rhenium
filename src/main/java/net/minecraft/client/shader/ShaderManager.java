@@ -132,7 +132,7 @@ public class ShaderManager {
             if (this.attributes != null) {
                 for (String s2 : this.attributes) {
                     int l = OpenGlHelper.glGetAttribLocation(this.program, s2);
-                    this.attribLocations.add(Integer.valueOf(l));
+                    this.attribLocations.add(l);
                 }
             }
         } catch (Exception exception3) {
@@ -192,7 +192,7 @@ public class ShaderManager {
                 } else if (object instanceof ITextureObject) {
                     j = ((ITextureObject) object).getGlTextureId();
                 } else if (object instanceof Integer) {
-                    j = ((Integer) object).intValue();
+                    j = (Integer) object;
                 }
 
                 if (j != -1) {
@@ -232,7 +232,7 @@ public class ShaderManager {
                 this.samplerNames.remove(j);
                 --j;
             } else {
-                this.shaderSamplerLocations.add(Integer.valueOf(k));
+                this.shaderSamplerLocations.add(k);
             }
 
             ++i;
@@ -245,7 +245,7 @@ public class ShaderManager {
             if (l == -1) {
                 logger.warn("Could not find uniform named {} in the specified shader program.", s1);
             } else {
-                this.shaderUniformLocations.add(Integer.valueOf(l));
+                this.shaderUniformLocations.add(l);
                 shaderuniform.setUniformLocation(l);
                 this.mappedShaderUniforms.put(s1, shaderuniform);
             }
