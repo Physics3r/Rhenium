@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -356,6 +357,7 @@ public class BlockFlowerPot extends BlockContainer {
         return EnumWorldBlockLayer.CUTOUT;
     }
 
+    @Getter
     public static enum EnumFlowerType implements IStringSerializable {
         EMPTY("empty"),
         POPPY("rose"),
@@ -390,8 +392,5 @@ public class BlockFlowerPot extends BlockContainer {
             return this.name;
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 }

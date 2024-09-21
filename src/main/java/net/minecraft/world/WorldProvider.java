@@ -1,5 +1,6 @@
 package net.minecraft.world;
 
+import lombok.Getter;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -22,7 +23,9 @@ public abstract class WorldProvider {
     protected WorldChunkManager worldChunkMgr;
     protected boolean isHellWorld;
     protected boolean hasNoSky;
+    @Getter
     protected final float[] lightBrightnessTable = new float[16];
+    @Getter
     protected int dimensionId;
     private final float[] colorsSunriseSunset = new float[4];
 
@@ -166,14 +169,6 @@ public abstract class WorldProvider {
 
     public boolean getHasNoSky() {
         return this.hasNoSky;
-    }
-
-    public float[] getLightBrightnessTable() {
-        return this.lightBrightnessTable;
-    }
-
-    public int getDimensionId() {
-        return this.dimensionId;
     }
 
     public WorldBorder getWorldBorder() {

@@ -7,9 +7,9 @@ import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.IMetadataSerializer;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 
 public class SimpleResource implements IResource {
     private final Map<String, IMetadataSection> mapMetadataSections = Maps.<String, IMetadataSection>newHashMap();
+    @Getter
     private final String resourcePackName;
     private final ResourceLocation srResourceLocation;
     private final InputStream resourceInputStream;
@@ -69,10 +70,6 @@ public class SimpleResource implements IResource {
 
             return t;
         }
-    }
-
-    public String getResourcePackName() {
-        return this.resourcePackName;
     }
 
     public boolean equals(Object p_equals_1_) {

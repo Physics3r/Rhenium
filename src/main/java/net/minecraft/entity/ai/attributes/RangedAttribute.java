@@ -1,10 +1,12 @@
 package net.minecraft.entity.ai.attributes;
 
+import lombok.Getter;
 import net.minecraft.util.MathHelper;
 
 public class RangedAttribute extends BaseAttribute {
     private final double minimumValue;
     private final double maximumValue;
+    @Getter
     private String description;
 
     public RangedAttribute(IAttribute p_i45891_1_, String unlocalizedNameIn, double defaultValue, double minimumValueIn, double maximumValueIn) {
@@ -24,10 +26,6 @@ public class RangedAttribute extends BaseAttribute {
     public RangedAttribute setDescription(String descriptionIn) {
         this.description = descriptionIn;
         return this;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public double clampValue(double p_111109_1_) {

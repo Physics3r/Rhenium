@@ -1,30 +1,23 @@
 package net.minecraft.util;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
 
 public class ChatComponentScore extends ChatComponentStyle {
+    @Getter
     private final String name;
+    @Getter
     private final String objective;
+    @Setter
     private String value = "";
 
     public ChatComponentScore(String nameIn, String objectiveIn) {
         this.name = nameIn;
         this.objective = objectiveIn;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getObjective() {
-        return this.objective;
-    }
-
-    public void setValue(String valueIn) {
-        this.value = valueIn;
     }
 
     public String getUnformattedTextForChat() {

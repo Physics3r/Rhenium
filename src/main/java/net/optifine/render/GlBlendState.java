@@ -1,6 +1,11 @@
 package net.optifine.render;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
 public class GlBlendState {
+    @Setter
     private boolean enabled;
     private int srcFactor;
     private int dstFactor;
@@ -43,10 +48,6 @@ public class GlBlendState {
         this.dstFactorAlpha = state.dstFactorAlpha;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public void setEnabled() {
         this.enabled = true;
     }
@@ -67,26 +68,6 @@ public class GlBlendState {
         this.dstFactor = dstFactor;
         this.srcFactorAlpha = srcFactorAlpha;
         this.dstFactorAlpha = dstFactorAlpha;
-    }
-
-    public boolean isEnabled() {
-        return this.enabled;
-    }
-
-    public int getSrcFactor() {
-        return this.srcFactor;
-    }
-
-    public int getDstFactor() {
-        return this.dstFactor;
-    }
-
-    public int getSrcFactorAlpha() {
-        return this.srcFactorAlpha;
-    }
-
-    public int getDstFactorAlpha() {
-        return this.dstFactorAlpha;
     }
 
     public boolean isSeparate() {

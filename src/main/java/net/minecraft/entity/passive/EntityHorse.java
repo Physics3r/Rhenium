@@ -1,6 +1,8 @@
 package net.minecraft.entity.passive;
 
 import com.google.common.base.Predicate;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -59,9 +61,14 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
     private int jumpRearingCounter;
     public int field_110278_bp;
     public int field_110279_bq;
+    @Setter
+    @Getter
     protected boolean horseJumping;
     private AnimalChest horseChest;
+    @Setter
     private boolean hasReproduced;
+    @Setter
+    @Getter
     protected int temper;
     protected float jumpPower;
     private boolean field_110294_bI;
@@ -192,16 +199,8 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         }
     }
 
-    public boolean isHorseJumping() {
-        return this.horseJumping;
-    }
-
     public void setHorseTamed(boolean tamed) {
         this.setHorseWatchableBoolean(2, tamed);
-    }
-
-    public void setHorseJumping(boolean jumping) {
-        this.horseJumping = jumping;
     }
 
     public boolean allowLeashing() {
@@ -260,20 +259,8 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         this.setHorseWatchableBoolean(8, chested);
     }
 
-    public void setHasReproduced(boolean hasReproducedIn) {
-        this.hasReproduced = hasReproducedIn;
-    }
-
     public void setHorseSaddled(boolean saddled) {
         this.setHorseWatchableBoolean(4, saddled);
-    }
-
-    public int getTemper() {
-        return this.temper;
-    }
-
-    public void setTemper(int temperIn) {
-        this.temper = temperIn;
     }
 
     public int increaseTemper(int p_110198_1_) {

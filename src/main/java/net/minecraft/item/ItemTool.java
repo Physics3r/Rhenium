@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 
 import java.util.Set;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +17,7 @@ public class ItemTool extends Item {
     private Set<Block> effectiveBlocks;
     protected float efficiencyOnProperMaterial = 4.0F;
     private float damageVsEntity;
+    @Getter
     protected Item.ToolMaterial toolMaterial;
 
     protected ItemTool(float attackDamage, Item.ToolMaterial material, Set<Block> effectiveBlocks) {
@@ -47,10 +49,6 @@ public class ItemTool extends Item {
 
     public boolean isFull3D() {
         return true;
-    }
-
-    public Item.ToolMaterial getToolMaterial() {
-        return this.toolMaterial;
     }
 
     public int getItemEnchantability() {

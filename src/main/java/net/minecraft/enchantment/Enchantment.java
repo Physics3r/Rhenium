@@ -2,6 +2,7 @@ package net.minecraft.enchantment;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -44,6 +45,7 @@ public abstract class Enchantment {
     public static final Enchantment luckOfTheSea = new EnchantmentLootBonus(61, new ResourceLocation("luck_of_the_sea"), 2, EnumEnchantmentType.FISHING_ROD);
     public static final Enchantment lure = new EnchantmentFishingSpeed(62, new ResourceLocation("lure"), 2, EnumEnchantmentType.FISHING_ROD);
     public final int effectId;
+    @Getter
     private final int weight;
     public EnumEnchantmentType type;
     protected String name;
@@ -71,10 +73,6 @@ public abstract class Enchantment {
 
     public static Set<ResourceLocation> func_181077_c() {
         return locationEnchantments.keySet();
-    }
-
-    public int getWeight() {
-        return this.weight;
     }
 
     public int getMinLevel() {

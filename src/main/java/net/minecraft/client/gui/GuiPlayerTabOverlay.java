@@ -7,6 +7,7 @@ import com.mojang.authlib.GameProfile;
 import java.util.Comparator;
 import java.util.List;
 
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -26,7 +27,9 @@ public class GuiPlayerTabOverlay extends Gui {
     private static final Ordering<NetworkPlayerInfo> field_175252_a = Ordering.from(new GuiPlayerTabOverlay.PlayerComparator());
     private final Minecraft mc;
     private final GuiIngame guiIngame;
+    @Setter
     private IChatComponent footer;
+    @Setter
     private IChatComponent header;
     private long lastTimeOpened;
     private boolean isBeingRendered;
@@ -286,14 +289,6 @@ public class GuiPlayerTabOverlay extends Gui {
             String s1 = EnumChatFormatting.YELLOW + "" + i;
             this.mc.fontRendererObj.drawStringWithShadow(s1, (float) (p_175247_5_ - this.mc.fontRendererObj.getStringWidth(s1)), (float) p_175247_2_, 16777215);
         }
-    }
-
-    public void setFooter(IChatComponent footerIn) {
-        this.footer = footerIn;
-    }
-
-    public void setHeader(IChatComponent headerIn) {
-        this.header = headerIn;
     }
 
     public void resetFooterHeader() {

@@ -2,11 +2,13 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
+@Getter
 public class S12PacketEntityVelocity implements Packet<INetHandlerPlayClient> {
     private int entityID;
     private int motionX;
@@ -71,19 +73,4 @@ public class S12PacketEntityVelocity implements Packet<INetHandlerPlayClient> {
         handler.handleEntityVelocity(this);
     }
 
-    public int getEntityID() {
-        return this.entityID;
-    }
-
-    public int getMotionX() {
-        return this.motionX;
-    }
-
-    public int getMotionY() {
-        return this.motionY;
-    }
-
-    public int getMotionZ() {
-        return this.motionZ;
-    }
 }

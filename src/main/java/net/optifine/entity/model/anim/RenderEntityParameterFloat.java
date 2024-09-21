@@ -1,5 +1,6 @@
 package net.optifine.entity.model.anim;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -28,6 +29,7 @@ public enum RenderEntityParameterFloat implements IExpressionFloat {
     REVENGE_TIME("revenge_time"),
     SWING_PROGRESS("swing_progress");
 
+    @Getter
     private String name;
     private RenderManager renderManager;
     private static final RenderEntityParameterFloat[] VALUES = values();
@@ -35,10 +37,6 @@ public enum RenderEntityParameterFloat implements IExpressionFloat {
     private RenderEntityParameterFloat(String name) {
         this.name = name;
         this.renderManager = Minecraft.getMinecraft().getRenderManager();
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public ExpressionType getExpressionType() {

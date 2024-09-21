@@ -2,15 +2,19 @@ package net.optifine.shaders.config;
 
 import java.util.Properties;
 
+import lombok.Getter;
 import net.minecraft.src.Config;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Property {
     private int defaultValue = 0;
+    @Getter
     private String propertyName = null;
     private String[] propertyValues = null;
+    @Getter
     private String userName = null;
     private String[] userValues = null;
+    @Getter
     private int value = 0;
 
     public Property(String propertyName, String[] propertyValues, String userName, String[] userValues, int defaultValue) {
@@ -73,24 +77,12 @@ public class Property {
         }
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
     public String getUserValue() {
         return this.userValues[this.value];
     }
 
     public String getPropertyValue() {
         return this.propertyValues[this.value];
-    }
-
-    public String getUserName() {
-        return this.userName;
-    }
-
-    public String getPropertyName() {
-        return this.propertyName;
     }
 
     public void resetValue() {

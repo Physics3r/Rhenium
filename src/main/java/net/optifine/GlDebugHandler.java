@@ -5,8 +5,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 import org.lwjgl.opengl.ARBDebugOutputCallback.Handler;
 
-import java.nio.IntBuffer;
-
 public class GlDebugHandler implements Handler {
     public static void createDisplayDebug() throws LWJGLException {
         boolean flag = GLContext.getCapabilities().GL_ARB_debug_output;

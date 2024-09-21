@@ -1,5 +1,6 @@
 package net.minecraft.util;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,12 +27,19 @@ public class DamageSource {
     private boolean isUnblockable;
     private boolean isDamageAllowedInCreativeMode;
     private boolean damageIsAbsolute;
+    @Getter
     private float hungerDamage = 0.3F;
+    @Getter
     private boolean fireDamage;
+    @Getter
     private boolean projectile;
+    @Getter
     private boolean difficultyScaled;
+    @Getter
     private boolean magicDamage;
+    @Getter
     private boolean explosion;
+    @Getter
     public String damageType;
 
     public static DamageSource causeMobDamage(EntityLivingBase mob) {
@@ -66,17 +74,9 @@ public class DamageSource {
         return explosionIn != null && explosionIn.getExplosivePlacedBy() != null ? (new EntityDamageSource("explosion.player", explosionIn.getExplosivePlacedBy())).setDifficultyScaled().setExplosion() : (new DamageSource("explosion")).setDifficultyScaled().setExplosion();
     }
 
-    public boolean isProjectile() {
-        return this.projectile;
-    }
-
     public DamageSource setProjectile() {
         this.projectile = true;
         return this;
-    }
-
-    public boolean isExplosion() {
-        return this.explosion;
     }
 
     public DamageSource setExplosion() {
@@ -86,10 +86,6 @@ public class DamageSource {
 
     public boolean isUnblockable() {
         return this.isUnblockable;
-    }
-
-    public float getHungerDamage() {
-        return this.hungerDamage;
     }
 
     public boolean canHarmInCreative() {
@@ -141,25 +137,9 @@ public class DamageSource {
         return entitylivingbase != null && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[]{entityLivingBaseIn.getDisplayName(), entitylivingbase.getDisplayName()}) : new ChatComponentTranslation(s, new Object[]{entityLivingBaseIn.getDisplayName()});
     }
 
-    public boolean isFireDamage() {
-        return this.fireDamage;
-    }
-
-    public String getDamageType() {
-        return this.damageType;
-    }
-
     public DamageSource setDifficultyScaled() {
         this.difficultyScaled = true;
         return this;
-    }
-
-    public boolean isDifficultyScaled() {
-        return this.difficultyScaled;
-    }
-
-    public boolean isMagicDamage() {
-        return this.magicDamage;
     }
 
     public DamageSource setMagicDamage() {

@@ -1,5 +1,7 @@
 package net.minecraft.util;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -7,10 +9,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.EnumDifficulty;
 
 public class FoodStats {
+    @Setter
+    @Getter
     private int foodLevel = 20;
+    @Setter
     private float foodSaturationLevel = 5.0F;
     private float foodExhaustionLevel;
     private int foodTimer;
+    @Getter
     private int prevFoodLevel = 20;
 
     public void addStats(int foodLevelIn, float foodSaturationModifier) {
@@ -75,14 +81,6 @@ public class FoodStats {
         p_75117_1_.setFloat("foodExhaustionLevel", this.foodExhaustionLevel);
     }
 
-    public int getFoodLevel() {
-        return this.foodLevel;
-    }
-
-    public int getPrevFoodLevel() {
-        return this.prevFoodLevel;
-    }
-
     public boolean needFood() {
         return this.foodLevel < 20;
     }
@@ -95,11 +93,4 @@ public class FoodStats {
         return this.foodSaturationLevel;
     }
 
-    public void setFoodLevel(int foodLevelIn) {
-        this.foodLevel = foodLevelIn;
-    }
-
-    public void setFoodSaturationLevel(float foodSaturationLevelIn) {
-        this.foodSaturationLevel = foodSaturationLevelIn;
-    }
 }

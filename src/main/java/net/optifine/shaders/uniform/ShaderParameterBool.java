@@ -1,5 +1,6 @@
 package net.optifine.shaders.uniform;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -23,6 +24,7 @@ public enum ShaderParameterBool implements IExpressionBool {
     IS_SPRINTING("is_sprinting"),
     IS_WET("is_wet");
 
+    @Getter
     private String name;
     private RenderManager renderManager;
     private static final ShaderParameterBool[] VALUES = values();
@@ -30,10 +32,6 @@ public enum ShaderParameterBool implements IExpressionBool {
     private ShaderParameterBool(String name) {
         this.name = name;
         this.renderManager = Minecraft.getMinecraft().getRenderManager();
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public ExpressionType getExpressionType() {

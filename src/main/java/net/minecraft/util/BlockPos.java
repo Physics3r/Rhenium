@@ -4,6 +4,7 @@ import com.google.common.collect.AbstractIterator;
 
 import java.util.Iterator;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 
 public class BlockPos extends Vec3i {
@@ -204,6 +205,7 @@ public class BlockPos extends Vec3i {
         };
     }
 
+    @Getter
     public static final class MutableBlockPos extends BlockPos {
         private int x;
         private int y;
@@ -218,18 +220,6 @@ public class BlockPos extends Vec3i {
             this.x = x_;
             this.y = y_;
             this.z = z_;
-        }
-
-        public int getX() {
-            return this.x;
-        }
-
-        public int getY() {
-            return this.y;
-        }
-
-        public int getZ() {
-            return this.z;
         }
 
         public BlockPos.MutableBlockPos set(int xIn, int yIn, int zIn) {

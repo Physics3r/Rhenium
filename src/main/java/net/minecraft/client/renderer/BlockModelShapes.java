@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockCactus;
@@ -56,20 +57,17 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 
 public class BlockModelShapes {
     private final Map<IBlockState, IBakedModel> bakedModelStore = Maps.<IBlockState, IBakedModel>newIdentityHashMap();
+    @Getter
     private final BlockStateMapper blockStateMapper = new BlockStateMapper();
+    @Getter
     private final ModelManager modelManager;
 
     public BlockModelShapes(ModelManager manager) {
         this.modelManager = manager;
         this.registerAllBlocks();
-    }
-
-    public BlockStateMapper getBlockStateMapper() {
-        return this.blockStateMapper;
     }
 
     public TextureAtlasSprite getTexture(IBlockState state) {
@@ -117,10 +115,6 @@ public class BlockModelShapes {
         }
 
         return ibakedmodel;
-    }
-
-    public ModelManager getModelManager() {
-        return this.modelManager;
     }
 
     public void reloadModels() {

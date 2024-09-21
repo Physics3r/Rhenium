@@ -1,9 +1,14 @@
 package net.minecraft.util;
 
+import lombok.Getter;
+
 public class FrameTimer {
+    @Getter
     private final long[] frames = new long[240];
+    @Getter
     private int lastIndex;
     private int counter;
+    @Getter
     private int index;
 
     public void addFrame(long runningTime) {
@@ -27,19 +32,8 @@ public class FrameTimer {
         return (int) (d0 * (double) multiplier);
     }
 
-    public int getLastIndex() {
-        return this.lastIndex;
-    }
-
-    public int getIndex() {
-        return this.index;
-    }
-
     public int parseIndex(int rawIndex) {
         return rawIndex % 240;
     }
 
-    public long[] getFrames() {
-        return this.frames;
-    }
 }

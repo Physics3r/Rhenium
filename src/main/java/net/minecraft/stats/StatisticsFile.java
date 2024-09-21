@@ -44,9 +44,9 @@ public class StatisticsFile extends StatFileWriter {
                 this.statsData.clear();
                 this.statsData.putAll(this.parseJson(FileUtils.readFileToString(this.statsFile)));
             } catch (IOException ioexception) {
-                logger.error("Couldn\'t read statistics file " + this.statsFile, ioexception);
+                logger.error("Couldn't read statistics file {}", this.statsFile, ioexception);
             } catch (JsonParseException jsonparseexception) {
-                logger.error("Couldn\'t parse statistics file " + this.statsFile, jsonparseexception);
+                logger.error("Couldn't parse statistics file {}", this.statsFile, jsonparseexception);
             }
         }
     }

@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.Getter;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,8 +37,10 @@ public enum EnumChatFormatting {
     private static final Pattern formattingCodePattern = Pattern.compile("(?i)" + String.valueOf('§') + "[0-9A-FK-OR]");
     private final String name;
     private final char formattingCode;
+    @Getter
     private final boolean fancyStyling;
     private final String controlString;
+    @Getter
     private final int colorIndex;
 
     private static String func_175745_c(String p_175745_0_) {
@@ -58,14 +61,6 @@ public enum EnumChatFormatting {
         this.fancyStyling = fancyStylingIn;
         this.colorIndex = colorIndex;
         this.controlString = "§" + formattingCodeIn;
-    }
-
-    public int getColorIndex() {
-        return this.colorIndex;
-    }
-
-    public boolean isFancyStyling() {
-        return this.fancyStyling;
     }
 
     public boolean isColor() {

@@ -1,5 +1,8 @@
 package net.optifine.expr;
 
+import lombok.Getter;
+
+@Getter
 public enum TokenType {
     IDENTIFIER("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_:."),
     NUMBER("0123456789", "0123456789."),
@@ -19,14 +22,6 @@ public enum TokenType {
     private TokenType(String charsFirst, String charsNext) {
         this.charsFirst = charsFirst;
         this.charsNext = charsNext;
-    }
-
-    public String getCharsFirst() {
-        return this.charsFirst;
-    }
-
-    public String getCharsNext() {
-        return this.charsNext;
     }
 
     public static TokenType getTypeByFirstChar(char ch) {

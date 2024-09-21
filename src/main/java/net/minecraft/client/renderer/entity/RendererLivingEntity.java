@@ -5,6 +5,8 @@ import com.google.common.collect.Lists;
 import java.nio.FloatBuffer;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
@@ -37,9 +39,12 @@ import org.lwjgl.opengl.GL11;
 public abstract class RendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
     private static final Logger logger = LogManager.getLogger();
     private static final DynamicTexture textureBrightness = new DynamicTexture(16, 16);
+    @Getter
     public ModelBase mainModel;
     protected FloatBuffer brightnessBuffer = GLAllocation.createDirectFloatBuffer(4);
+    @Getter
     protected List<LayerRenderer<T>> layerRenderers = Lists.<LayerRenderer<T>>newArrayList();
+    @Setter
     protected boolean renderOutlines = false;
     public static float NAME_TAG_RANGE = 64.0F;
     public static float NAME_TAG_RANGE_SNEAK = 32.0F;
@@ -68,10 +73,6 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
     protected <V extends EntityLivingBase, U extends LayerRenderer<V>> boolean removeLayer(U layer) {
         return this.layerRenderers.remove(layer);
-    }
-
-    public ModelBase getMainModel() {
-        return this.mainModel;
     }
 
     protected float interpolateRotation(float par1, float par2, float par3) {
@@ -603,14 +604,6 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         }
 
         return Minecraft.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
-    }
-
-    public void setRenderOutlines(boolean renderOutlinesIn) {
-        this.renderOutlines = renderOutlinesIn;
-    }
-
-    public List<LayerRenderer<T>> getLayerRenderers() {
-        return this.layerRenderers;
     }
 
     static {

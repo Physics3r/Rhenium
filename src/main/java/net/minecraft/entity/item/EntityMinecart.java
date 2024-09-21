@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.BlockRailPowered;
@@ -859,6 +860,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         }
     }
 
+    @Getter
     public static enum EnumMinecartType {
         RIDEABLE(0, "MinecartRideable"),
         CHEST(1, "MinecartChest"),
@@ -875,14 +877,6 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         private EnumMinecartType(int networkID, String name) {
             this.networkID = networkID;
             this.name = name;
-        }
-
-        public int getNetworkID() {
-            return this.networkID;
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         public static EntityMinecart.EnumMinecartType byNetworkID(int id) {

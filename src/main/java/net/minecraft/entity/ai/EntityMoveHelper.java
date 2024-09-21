@@ -1,5 +1,6 @@
 package net.minecraft.entity.ai;
 
+import lombok.Getter;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.MathHelper;
@@ -9,6 +10,7 @@ public class EntityMoveHelper {
     protected double posX;
     protected double posY;
     protected double posZ;
+    @Getter
     protected double speed;
     protected boolean update;
 
@@ -21,10 +23,6 @@ public class EntityMoveHelper {
 
     public boolean isUpdating() {
         return this.update;
-    }
-
-    public double getSpeed() {
-        return this.speed;
     }
 
     public void setMoveTo(double x, double y, double z, double speedIn) {

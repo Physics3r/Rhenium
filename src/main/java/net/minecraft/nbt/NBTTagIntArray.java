@@ -1,10 +1,13 @@
 package net.minecraft.nbt;
 
+import lombok.Getter;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
 
+@Getter
 public class NBTTagIntArray extends NBTBase {
     private int[] intArray;
 
@@ -62,7 +65,4 @@ public class NBTTagIntArray extends NBTBase {
         return super.hashCode() ^ Arrays.hashCode(this.intArray);
     }
 
-    public int[] getIntArray() {
-        return this.intArray;
-    }
 }

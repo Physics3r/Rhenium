@@ -3,6 +3,7 @@ package net.minecraft.block;
 import java.util.List;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -238,6 +239,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable {
         }
     }
 
+    @Getter
     public static enum EnumPlantType implements IStringSerializable {
         SUNFLOWER(0, "sunflower"),
         SYRINGA(1, "syringa"),
@@ -261,10 +263,6 @@ public class BlockDoublePlant extends BlockBush implements IGrowable {
             this.unlocalizedName = unlocalizedName;
         }
 
-        public int getMeta() {
-            return this.meta;
-        }
-
         public String toString() {
             return this.name;
         }
@@ -275,14 +273,6 @@ public class BlockDoublePlant extends BlockBush implements IGrowable {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

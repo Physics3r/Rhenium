@@ -1,7 +1,10 @@
 package net.minecraft.util;
 
+import lombok.Getter;
+
 public class LongHashMap<V> {
     private transient LongHashMap.Entry<V>[] hashArray = new LongHashMap.Entry[4096];
+    @Getter
     private transient int numHashElements;
     private int mask;
     private int capacity = 3072;
@@ -23,10 +26,6 @@ public class LongHashMap<V> {
 
     private static int getHashIndex(int p_76158_0_, int p_76158_1_) {
         return p_76158_0_ & p_76158_1_;
-    }
-
-    public int getNumHashElements() {
-        return this.numHashElements;
     }
 
     public V getValueByKey(long p_76164_1_) {

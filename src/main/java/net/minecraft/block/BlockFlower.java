@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
@@ -73,6 +74,7 @@ public abstract class BlockFlower extends BlockBush {
         }
     }
 
+    @Getter
     public static enum EnumFlowerType implements IStringSerializable {
         DANDELION(BlockFlower.EnumFlowerColor.YELLOW, 0, "dandelion"),
         POPPY(BlockFlower.EnumFlowerColor.RED, 0, "poppy"),
@@ -102,14 +104,6 @@ public abstract class BlockFlower extends BlockBush {
             this.unlocalizedName = unlocalizedName;
         }
 
-        public BlockFlower.EnumFlowerColor getBlockType() {
-            return this.blockType;
-        }
-
-        public int getMeta() {
-            return this.meta;
-        }
-
         public static BlockFlower.EnumFlowerType getType(BlockFlower.EnumFlowerColor blockType, int meta) {
             BlockFlower.EnumFlowerType[] ablockflower$enumflowertype = TYPES_FOR_BLOCK[blockType.ordinal()];
 
@@ -126,14 +120,6 @@ public abstract class BlockFlower extends BlockBush {
 
         public String toString() {
             return this.name;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

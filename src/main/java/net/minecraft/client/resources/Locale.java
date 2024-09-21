@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import lombok.Getter;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
@@ -19,6 +20,7 @@ public class Locale {
     private static final Splitter splitter = Splitter.on('=').limit(2);
     private static final Pattern pattern = Pattern.compile("%(\\d+\\$)?[\\d\\.]*[df]");
     Map<String, String> properties = Maps.<String, String>newHashMap();
+    @Getter
     private boolean unicode;
 
     public synchronized void loadLocaleDataFiles(IResourceManager resourceManager, List<String> languageList) {
@@ -37,10 +39,6 @@ public class Locale {
         }
 
         this.checkUnicode();
-    }
-
-    public boolean isUnicode() {
-        return this.unicode;
     }
 
     private void checkUnicode() {

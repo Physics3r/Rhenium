@@ -1,5 +1,7 @@
 package net.minecraft.client.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -8,7 +10,6 @@ import net.minecraft.client.gui.GuiEnchantment;
 import net.minecraft.client.gui.GuiHopper;
 import net.minecraft.client.gui.GuiMerchant;
 import net.minecraft.client.gui.GuiRepair;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiBeacon;
 import net.minecraft.client.gui.inventory.GuiBrewingStand;
@@ -64,6 +65,8 @@ public class EntityPlayerSP extends AbstractClientPlayer {
     private boolean serverSprintState;
     private int positionUpdateTicks;
     private boolean hasValidHealth;
+    @Setter
+    @Getter
     private String clientBrand;
     public MovementInput movementInput;
     protected Minecraft mc;
@@ -74,6 +77,7 @@ public class EntityPlayerSP extends AbstractClientPlayer {
     public float prevRenderArmYaw;
     public float prevRenderArmPitch;
     private int horseJumpPowerCounter;
+    @Getter
     private float horseJumpPower;
     public float timeInPortal;
     public float prevTimeInPortal;
@@ -265,14 +269,6 @@ public class EntityPlayerSP extends AbstractClientPlayer {
         this.sendQueue.addToSendQueue(new C0BPacketEntityAction(this, C0BPacketEntityAction.Action.OPEN_INVENTORY));
     }
 
-    public void setClientBrand(String brand) {
-        this.clientBrand = brand;
-    }
-
-    public String getClientBrand() {
-        return this.clientBrand;
-    }
-
     public StatFileWriter getStatFileWriter() {
         return this.statWriter;
     }
@@ -373,10 +369,6 @@ public class EntityPlayerSP extends AbstractClientPlayer {
 
     public boolean isRidingHorse() {
         return this.ridingEntity != null && this.ridingEntity instanceof EntityHorse && ((EntityHorse) this.ridingEntity).isHorseSaddled();
-    }
-
-    public float getHorseJumpPower() {
-        return this.horseJumpPower;
     }
 
     public void openEditSign(TileEntitySign signTile) {

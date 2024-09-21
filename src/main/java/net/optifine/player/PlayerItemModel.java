@@ -1,5 +1,7 @@
 package net.optifine.player;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
@@ -15,10 +17,16 @@ import java.awt.image.BufferedImage;
 
 public class PlayerItemModel {
     private Dimension textureSize = null;
+    @Getter
     private boolean usePlayerTexture = false;
     private PlayerItemRenderer[] modelRenderers = new PlayerItemRenderer[0];
+    @Setter
+    @Getter
     private ResourceLocation textureLocation = null;
+    @Setter
+    @Getter
     private BufferedImage textureImage = null;
+    @Getter
     private DynamicTexture texture = null;
     private ResourceLocation locationMissing = new ResourceLocation("textures/blocks/wool_colored_red.png");
     public static final int ATTACH_BODY = 0;
@@ -89,27 +97,4 @@ public class PlayerItemModel {
         }
     }
 
-    public BufferedImage getTextureImage() {
-        return this.textureImage;
-    }
-
-    public void setTextureImage(BufferedImage textureImage) {
-        this.textureImage = textureImage;
-    }
-
-    public DynamicTexture getTexture() {
-        return this.texture;
-    }
-
-    public ResourceLocation getTextureLocation() {
-        return this.textureLocation;
-    }
-
-    public void setTextureLocation(ResourceLocation textureLocation) {
-        this.textureLocation = textureLocation;
-    }
-
-    public boolean isUsePlayerTexture() {
-        return this.usePlayerTexture;
-    }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockFalling;
@@ -29,6 +30,7 @@ public class EntityFallingBlock extends Entity {
     public int fallTime;
     public boolean shouldDropItem = true;
     private boolean canSetAsBlock;
+    @Setter
     private boolean hurtEntities;
     private int fallHurtMax = 40;
     private float fallHurtAmount = 2.0F;
@@ -224,10 +226,6 @@ public class EntityFallingBlock extends Entity {
 
     public World getWorldObj() {
         return this.worldObj;
-    }
-
-    public void setHurtEntities(boolean p_145806_1_) {
-        this.hurtEntities = p_145806_1_;
     }
 
     public boolean canRenderOnFire() {

@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -22,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiNewChat;
@@ -2599,9 +2600,12 @@ public class GameSettings {
 
         private final boolean enumFloat;
         private final boolean enumBoolean;
+        @Getter
         private final String enumString;
         private final float valueStep;
         private float valueMin;
+        @Setter
+        @Getter
         private float valueMax;
 
         public static GameSettings.Options getEnumOptions(int ordinal) {
@@ -2637,18 +2641,6 @@ public class GameSettings {
 
         public int returnEnumOrdinal() {
             return this.ordinal();
-        }
-
-        public String getEnumString() {
-            return this.enumString;
-        }
-
-        public float getValueMax() {
-            return this.valueMax;
-        }
-
-        public void setValueMax(float value) {
-            this.valueMax = value;
         }
 
         public float normalizeValue(float value) {

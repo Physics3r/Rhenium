@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
@@ -33,7 +34,9 @@ public class CustomColormap implements CustomColors.IColorizer {
     private int color = -1;
     private int yVariance = 0;
     private int yOffset = 0;
+    @Getter
     private int width = 0;
+    @Getter
     private int height = 0;
     private int[] colors = null;
     private float[][] colorsRgb = null;
@@ -371,14 +374,6 @@ public class CustomColormap implements CustomColors.IColorizer {
 
     public int getLength() {
         return this.format == 2 ? 1 : this.colors.length;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return this.height;
     }
 
     private static float[][] toRgb(int[] cols) {

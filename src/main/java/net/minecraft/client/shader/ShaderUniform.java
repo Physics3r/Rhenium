@@ -3,6 +3,8 @@ package net.minecraft.client.shader;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.renderer.OpenGlHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,11 +13,13 @@ import org.lwjgl.util.vector.Matrix4f;
 
 public class ShaderUniform {
     private static final Logger logger = LogManager.getLogger();
+    @Setter
     private int uniformLocation;
     private final int uniformCount;
     private final int uniformType;
     private final IntBuffer uniformIntBuffer;
     private final FloatBuffer uniformFloatBuffer;
+    @Getter
     private final String shaderName;
     private boolean dirty;
     private final ShaderManager shaderManager;
@@ -64,14 +68,6 @@ public class ShaderUniform {
         }
 
         return i;
-    }
-
-    public void setUniformLocation(int p_148084_1_) {
-        this.uniformLocation = p_148084_1_;
-    }
-
-    public String getShaderName() {
-        return this.shaderName;
     }
 
     public void set(float p_148090_1_) {

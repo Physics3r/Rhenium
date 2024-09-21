@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -80,8 +81,11 @@ public class BlockDirt extends Block {
         PODZOL(2, "podzol", MapColor.obsidianColor);
 
         private static final BlockDirt.DirtType[] METADATA_LOOKUP = new BlockDirt.DirtType[values().length];
+        @Getter
         private final int metadata;
+        @Getter
         private final String name;
+        @Getter
         private final String unlocalizedName;
         private final MapColor field_181067_h;
 
@@ -94,14 +98,6 @@ public class BlockDirt extends Block {
             this.name = p_i46397_4_;
             this.unlocalizedName = p_i46397_5_;
             this.field_181067_h = p_i46397_6_;
-        }
-
-        public int getMetadata() {
-            return this.metadata;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         public MapColor func_181066_d() {
@@ -118,10 +114,6 @@ public class BlockDirt extends Block {
             }
 
             return METADATA_LOOKUP[metadata];
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         static {

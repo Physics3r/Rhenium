@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -15,7 +16,9 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
 public class TileEntityBanner extends TileEntity {
+    @Getter
     private int baseColor;
+    @Getter
     private NBTTagList patterns;
     private boolean field_175119_g;
     private List<TileEntityBanner.EnumBannerPattern> patternList;
@@ -76,10 +79,6 @@ public class TileEntityBanner extends TileEntity {
         return new S35PacketUpdateTileEntity(this.pos, 6, nbttagcompound);
     }
 
-    public int getBaseColor() {
-        return this.baseColor;
-    }
-
     public static int getBaseColor(ItemStack stack) {
         NBTTagCompound nbttagcompound = stack.getSubCompound("BlockEntityTag", false);
         return nbttagcompound != null && nbttagcompound.hasKey("Base") ? nbttagcompound.getInteger("Base") : stack.getMetadata();
@@ -93,10 +92,6 @@ public class TileEntityBanner extends TileEntity {
     public List<TileEntityBanner.EnumBannerPattern> getPatternList() {
         this.initializeBannerData();
         return this.patternList;
-    }
-
-    public NBTTagList getPatterns() {
-        return this.patterns;
     }
 
     public List<EnumDyeColor> getColorList() {
@@ -198,8 +193,11 @@ public class TileEntityBanner extends TileEntity {
         FLOWER("flower", "flo", new ItemStack(Blocks.red_flower, 1, BlockFlower.EnumFlowerType.OXEYE_DAISY.getMeta())),
         MOJANG("mojang", "moj", new ItemStack(Items.golden_apple, 1, 1));
 
+        @Getter
         private String patternName;
+        @Getter
         private String patternID;
+        @Getter
         private String[] craftingLayers;
         private ItemStack patternCraftingStack;
 
@@ -219,18 +217,6 @@ public class TileEntityBanner extends TileEntity {
             this.craftingLayers[0] = craftingTop;
             this.craftingLayers[1] = craftingMid;
             this.craftingLayers[2] = craftingBot;
-        }
-
-        public String getPatternName() {
-            return this.patternName;
-        }
-
-        public String getPatternID() {
-            return this.patternID;
-        }
-
-        public String[] getCraftingLayers() {
-            return this.craftingLayers;
         }
 
         public boolean hasValidCrafting() {

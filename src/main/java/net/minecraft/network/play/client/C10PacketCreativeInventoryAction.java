@@ -2,11 +2,13 @@ package net.minecraft.network.play.client;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
 
+@Getter
 public class C10PacketCreativeInventoryAction implements Packet<INetHandlerPlayServer> {
     private int slotId;
     private ItemStack stack;
@@ -33,11 +35,4 @@ public class C10PacketCreativeInventoryAction implements Packet<INetHandlerPlayS
         buf.writeItemStackToBuffer(this.stack);
     }
 
-    public int getSlotId() {
-        return this.slotId;
-    }
-
-    public ItemStack getStack() {
-        return this.stack;
-    }
 }

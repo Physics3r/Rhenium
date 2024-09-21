@@ -2,14 +2,18 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.BlockPos;
 
 public class S28PacketEffect implements Packet<INetHandlerPlayClient> {
+    @Getter
     private int soundType;
+    @Getter
     private BlockPos soundPos;
+    @Getter
     private int soundData;
     private boolean serverWide;
 
@@ -45,15 +49,4 @@ public class S28PacketEffect implements Packet<INetHandlerPlayClient> {
         return this.serverWide;
     }
 
-    public int getSoundType() {
-        return this.soundType;
-    }
-
-    public int getSoundData() {
-        return this.soundData;
-    }
-
-    public BlockPos getSoundPos() {
-        return this.soundPos;
-    }
 }

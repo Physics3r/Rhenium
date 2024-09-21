@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
@@ -17,6 +18,7 @@ public class Lagometer {
     private static Minecraft mc;
     private static GameSettings gameSettings;
     private static Profiler profiler;
+    @Getter
     public static boolean active = false;
     public static Lagometer.TimerNano timerTick = new Lagometer.TimerNano();
     public static Lagometer.TimerNano timerScheduledExecutables = new Lagometer.TimerNano();
@@ -172,10 +174,6 @@ public class Lagometer {
             tessellator.pos((float) frameEnd + 0.5F, baseHeight - (float) i + 0.5F, 0.0D).color(r, g, b, 255).endVertex();
             return i;
         }
-    }
-
-    public static boolean isActive() {
-        return active;
     }
 
     public static class TimerNano {

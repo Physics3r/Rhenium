@@ -2,11 +2,15 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
+@Setter
+@Getter
 public class S39PacketPlayerAbilities implements Packet<INetHandlerPlayClient> {
     private boolean invulnerable;
     private boolean flying;
@@ -65,51 +69,4 @@ public class S39PacketPlayerAbilities implements Packet<INetHandlerPlayClient> {
         handler.handlePlayerAbilities(this);
     }
 
-    public boolean isInvulnerable() {
-        return this.invulnerable;
-    }
-
-    public void setInvulnerable(boolean isInvulnerable) {
-        this.invulnerable = isInvulnerable;
-    }
-
-    public boolean isFlying() {
-        return this.flying;
-    }
-
-    public void setFlying(boolean isFlying) {
-        this.flying = isFlying;
-    }
-
-    public boolean isAllowFlying() {
-        return this.allowFlying;
-    }
-
-    public void setAllowFlying(boolean isAllowFlying) {
-        this.allowFlying = isAllowFlying;
-    }
-
-    public boolean isCreativeMode() {
-        return this.creativeMode;
-    }
-
-    public void setCreativeMode(boolean isCreativeMode) {
-        this.creativeMode = isCreativeMode;
-    }
-
-    public float getFlySpeed() {
-        return this.flySpeed;
-    }
-
-    public void setFlySpeed(float flySpeedIn) {
-        this.flySpeed = flySpeedIn;
-    }
-
-    public float getWalkSpeed() {
-        return this.walkSpeed;
-    }
-
-    public void setWalkSpeed(float walkSpeedIn) {
-        this.walkSpeed = walkSpeedIn;
-    }
 }

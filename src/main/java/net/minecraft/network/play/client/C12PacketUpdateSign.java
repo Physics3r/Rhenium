@@ -2,6 +2,7 @@ package net.minecraft.network.play.client;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
@@ -10,6 +11,7 @@ import net.minecraft.util.IChatComponent;
 
 public class C12PacketUpdateSign implements Packet<INetHandlerPlayServer> {
     private BlockPos pos;
+    @Getter
     private IChatComponent[] lines;
 
     public C12PacketUpdateSign() {
@@ -49,7 +51,4 @@ public class C12PacketUpdateSign implements Packet<INetHandlerPlayServer> {
         return this.pos;
     }
 
-    public IChatComponent[] getLines() {
-        return this.lines;
-    }
 }

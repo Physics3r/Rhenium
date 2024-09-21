@@ -1,5 +1,7 @@
 package net.minecraft.world.storage;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -14,39 +16,85 @@ import java.util.concurrent.Callable;
 public class WorldInfo {
     public static final EnumDifficulty DEFAULT_DIFFICULTY = EnumDifficulty.NORMAL;
     private long randomSeed;
+    @Setter
+    @Getter
     private WorldType terrainType = WorldType.DEFAULT;
+    @Getter
     private String generatorOptions = "";
+    @Setter
+    @Getter
     private int spawnX;
+    @Setter
+    @Getter
     private int spawnY;
+    @Setter
+    @Getter
     private int spawnZ;
     private long totalTime;
+    @Setter
+    @Getter
     private long worldTime;
+    @Getter
     private long lastTimePlayed;
+    @Getter
     private long sizeOnDisk;
     private NBTTagCompound playerTag;
     private int dimension;
     private String levelName;
+    @Setter
+    @Getter
     private int saveVersion;
+    @Setter
+    @Getter
     private int cleanWeatherTime;
+    @Setter
+    @Getter
     private boolean raining;
+    @Setter
+    @Getter
     private int rainTime;
+    @Setter
+    @Getter
     private boolean thundering;
+    @Setter
+    @Getter
     private int thunderTime;
     private WorldSettings.GameType theGameType;
+    @Setter
+    @Getter
     private boolean mapFeaturesEnabled;
+    @Setter
     private boolean hardcore;
+    @Setter
     private boolean allowCommands;
+    @Getter
     private boolean initialized;
+    @Setter
+    @Getter
     private EnumDifficulty difficulty;
+    @Setter
+    @Getter
     private boolean difficultyLocked;
+    @Getter
     private double borderCenterX = 0.0D;
+    @Getter
     private double borderCenterZ = 0.0D;
+    @Setter
+    @Getter
     private double borderSize = 6.0E7D;
     private long borderSizeLerpTime = 0L;
     private double borderSizeLerpTarget = 0.0D;
+    @Setter
+    @Getter
     private double borderSafeZone = 5.0D;
+    @Setter
+    @Getter
     private double borderDamagePerBlock = 0.2D;
+    @Setter
+    @Getter
     private int borderWarningDistance = 5;
+    @Setter
+    @Getter
     private int borderWarningTime = 15;
     private GameRules theGameRules = new GameRules();
 
@@ -290,52 +338,16 @@ public class WorldInfo {
         return this.randomSeed;
     }
 
-    public int getSpawnX() {
-        return this.spawnX;
-    }
-
-    public int getSpawnY() {
-        return this.spawnY;
-    }
-
-    public int getSpawnZ() {
-        return this.spawnZ;
-    }
-
     public long getWorldTotalTime() {
         return this.totalTime;
-    }
-
-    public long getWorldTime() {
-        return this.worldTime;
-    }
-
-    public long getSizeOnDisk() {
-        return this.sizeOnDisk;
     }
 
     public NBTTagCompound getPlayerNBTTagCompound() {
         return this.playerTag;
     }
 
-    public void setSpawnX(int x) {
-        this.spawnX = x;
-    }
-
-    public void setSpawnY(int y) {
-        this.spawnY = y;
-    }
-
-    public void setSpawnZ(int z) {
-        this.spawnZ = z;
-    }
-
     public void setWorldTotalTime(long time) {
         this.totalTime = time;
-    }
-
-    public void setWorldTime(long time) {
-        this.worldTime = time;
     }
 
     public void setSpawn(BlockPos spawnPoint) {
@@ -352,68 +364,8 @@ public class WorldInfo {
         this.levelName = worldName;
     }
 
-    public int getSaveVersion() {
-        return this.saveVersion;
-    }
-
-    public void setSaveVersion(int version) {
-        this.saveVersion = version;
-    }
-
-    public long getLastTimePlayed() {
-        return this.lastTimePlayed;
-    }
-
-    public int getCleanWeatherTime() {
-        return this.cleanWeatherTime;
-    }
-
-    public void setCleanWeatherTime(int cleanWeatherTimeIn) {
-        this.cleanWeatherTime = cleanWeatherTimeIn;
-    }
-
-    public boolean isThundering() {
-        return this.thundering;
-    }
-
-    public void setThundering(boolean thunderingIn) {
-        this.thundering = thunderingIn;
-    }
-
-    public int getThunderTime() {
-        return this.thunderTime;
-    }
-
-    public void setThunderTime(int time) {
-        this.thunderTime = time;
-    }
-
-    public boolean isRaining() {
-        return this.raining;
-    }
-
-    public void setRaining(boolean isRaining) {
-        this.raining = isRaining;
-    }
-
-    public int getRainTime() {
-        return this.rainTime;
-    }
-
-    public void setRainTime(int time) {
-        this.rainTime = time;
-    }
-
     public WorldSettings.GameType getGameType() {
         return this.theGameType;
-    }
-
-    public boolean isMapFeaturesEnabled() {
-        return this.mapFeaturesEnabled;
-    }
-
-    public void setMapFeaturesEnabled(boolean enabled) {
-        this.mapFeaturesEnabled = enabled;
     }
 
     public void setGameType(WorldSettings.GameType type) {
@@ -424,32 +376,8 @@ public class WorldInfo {
         return this.hardcore;
     }
 
-    public void setHardcore(boolean hardcoreIn) {
-        this.hardcore = hardcoreIn;
-    }
-
-    public WorldType getTerrainType() {
-        return this.terrainType;
-    }
-
-    public void setTerrainType(WorldType type) {
-        this.terrainType = type;
-    }
-
-    public String getGeneratorOptions() {
-        return this.generatorOptions;
-    }
-
     public boolean areCommandsAllowed() {
         return this.allowCommands;
-    }
-
-    public void setAllowCommands(boolean allow) {
-        this.allowCommands = allow;
-    }
-
-    public boolean isInitialized() {
-        return this.initialized;
     }
 
     public void setServerInitialized(boolean initializedIn) {
@@ -458,22 +386,6 @@ public class WorldInfo {
 
     public GameRules getGameRulesInstance() {
         return this.theGameRules;
-    }
-
-    public double getBorderCenterX() {
-        return this.borderCenterX;
-    }
-
-    public double getBorderCenterZ() {
-        return this.borderCenterZ;
-    }
-
-    public double getBorderSize() {
-        return this.borderSize;
-    }
-
-    public void setBorderSize(double size) {
-        this.borderSize = size;
     }
 
     public long getBorderLerpTime() {
@@ -498,54 +410,6 @@ public class WorldInfo {
 
     public void getBorderCenterX(double posX) {
         this.borderCenterX = posX;
-    }
-
-    public double getBorderSafeZone() {
-        return this.borderSafeZone;
-    }
-
-    public void setBorderSafeZone(double amount) {
-        this.borderSafeZone = amount;
-    }
-
-    public double getBorderDamagePerBlock() {
-        return this.borderDamagePerBlock;
-    }
-
-    public void setBorderDamagePerBlock(double damage) {
-        this.borderDamagePerBlock = damage;
-    }
-
-    public int getBorderWarningDistance() {
-        return this.borderWarningDistance;
-    }
-
-    public int getBorderWarningTime() {
-        return this.borderWarningTime;
-    }
-
-    public void setBorderWarningDistance(int amountOfBlocks) {
-        this.borderWarningDistance = amountOfBlocks;
-    }
-
-    public void setBorderWarningTime(int ticks) {
-        this.borderWarningTime = ticks;
-    }
-
-    public EnumDifficulty getDifficulty() {
-        return this.difficulty;
-    }
-
-    public void setDifficulty(EnumDifficulty newDifficulty) {
-        this.difficulty = newDifficulty;
-    }
-
-    public boolean isDifficultyLocked() {
-        return this.difficultyLocked;
-    }
-
-    public void setDifficultyLocked(boolean locked) {
-        this.difficultyLocked = locked;
     }
 
     public void addToCrashReport(CrashReportCategory category) {

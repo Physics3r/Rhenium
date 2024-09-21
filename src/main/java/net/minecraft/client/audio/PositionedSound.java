@@ -1,16 +1,21 @@
 package net.minecraft.client.audio;
 
+import lombok.Getter;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class PositionedSound implements ISound {
     protected final ResourceLocation positionedSoundLocation;
+    @Getter
     protected float volume = 1.0F;
+    @Getter
     protected float pitch = 1.0F;
     protected float xPosF;
     protected float yPosF;
     protected float zPosF;
     protected boolean repeat = false;
+    @Getter
     protected int repeatDelay = 0;
+    @Getter
     protected ISound.AttenuationType attenuationType = ISound.AttenuationType.LINEAR;
 
     protected PositionedSound(ResourceLocation soundResource) {
@@ -25,18 +30,6 @@ public abstract class PositionedSound implements ISound {
         return this.repeat;
     }
 
-    public int getRepeatDelay() {
-        return this.repeatDelay;
-    }
-
-    public float getVolume() {
-        return this.volume;
-    }
-
-    public float getPitch() {
-        return this.pitch;
-    }
-
     public float getXPosF() {
         return this.xPosF;
     }
@@ -49,7 +42,4 @@ public abstract class PositionedSound implements ISound {
         return this.zPosF;
     }
 
-    public ISound.AttenuationType getAttenuationType() {
-        return this.attenuationType;
-    }
 }

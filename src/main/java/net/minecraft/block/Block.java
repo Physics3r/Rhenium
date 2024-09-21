@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -75,9 +76,13 @@ public class Block {
             return "mob.slime.small";
         }
     };
+    @Getter
     protected boolean fullBlock;
+    @Getter
     protected int lightOpacity;
+    @Getter
     protected boolean translucent;
+    @Getter
     protected int lightValue;
     protected boolean useNeighborBrightness;
     protected float blockHardness;
@@ -96,6 +101,7 @@ public class Block {
     protected final Material blockMaterial;
     protected final MapColor blockMapColor;
     public float slipperiness;
+    @Getter
     protected final BlockState blockState;
     private IBlockState defaultBlockState;
     private String unlocalizedName;
@@ -135,22 +141,6 @@ public class Block {
                 return null;
             }
         }
-    }
-
-    public boolean isFullBlock() {
-        return this.fullBlock;
-    }
-
-    public int getLightOpacity() {
-        return this.lightOpacity;
-    }
-
-    public boolean isTranslucent() {
-        return this.translucent;
-    }
-
-    public int getLightValue() {
-        return this.lightValue;
     }
 
     public boolean getUseNeighborBrightness() {
@@ -778,10 +768,6 @@ public class Block {
         return new BlockState(this, new IProperty[0]);
     }
 
-    public BlockState getBlockState() {
-        return this.blockState;
-    }
-
     protected final void setDefaultState(IBlockState state) {
         this.defaultBlockState = state;
     }
@@ -1055,21 +1041,15 @@ public class Block {
 
     public static class SoundType {
         public final String soundName;
+        @Getter
         public final float volume;
+        @Getter
         public final float frequency;
 
         public SoundType(String name, float volume, float frequency) {
             this.soundName = name;
             this.volume = volume;
             this.frequency = frequency;
-        }
-
-        public float getVolume() {
-            return this.volume;
-        }
-
-        public float getFrequency() {
-            return this.frequency;
         }
 
         public String getBreakSound() {

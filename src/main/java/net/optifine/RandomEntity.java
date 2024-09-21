@@ -2,11 +2,15 @@ package net.optifine;
 
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.BiomeGenBase;
 
+@Setter
+@Getter
 public class RandomEntity implements IRandomEntity {
     private Entity entity;
 
@@ -47,11 +51,4 @@ public class RandomEntity implements IRandomEntity {
         }
     }
 
-    public Entity getEntity() {
-        return this.entity;
-    }
-
-    public void setEntity(Entity entity) {
-        this.entity = entity;
-    }
 }

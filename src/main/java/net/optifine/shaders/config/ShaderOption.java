@@ -3,18 +3,30 @@ package net.optifine.shaders.config;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.src.Config;
 import net.optifine.shaders.Shaders;
 import net.optifine.util.StrUtils;
 
 public abstract class ShaderOption {
+    @Getter
     private String name = null;
+    @Setter
+    @Getter
     private String description = null;
+    @Getter
     private String value = null;
     private String[] values = null;
+    @Getter
     private String valueDefault = null;
+    @Getter
     private String[] paths = null;
+    @Setter
+    @Getter
     private boolean enabled = true;
+    @Setter
+    @Getter
     private boolean visible = true;
     public static final String COLOR_GREEN = "§a";
     public static final String COLOR_RED = "§c";
@@ -32,27 +44,11 @@ public abstract class ShaderOption {
         }
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
     public String getDescriptionText() {
         String s = Config.normalize(this.description);
         s = StrUtils.removePrefix(s, "//");
         s = Shaders.translate("option." + this.getName() + ".comment", s);
         return s;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getValue() {
-        return this.value;
     }
 
     public boolean setValue(String value) {
@@ -64,10 +60,6 @@ public abstract class ShaderOption {
             this.value = value;
             return true;
         }
-    }
-
-    public String getValueDefault() {
-        return this.valueDefault;
     }
 
     public void resetValue() {
@@ -104,10 +96,6 @@ public abstract class ShaderOption {
         return -1;
     }
 
-    public String[] getPaths() {
-        return this.paths;
-    }
-
     public void addPaths(String[] newPaths) {
         List<String> list = Arrays.<String>asList(this.paths);
 
@@ -120,24 +108,8 @@ public abstract class ShaderOption {
         }
     }
 
-    public boolean isEnabled() {
-        return this.enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public boolean isChanged() {
         return !Config.equals(this.value, this.valueDefault);
-    }
-
-    public boolean isVisible() {
-        return this.visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
     }
 
     public boolean isValidValue(String val) {

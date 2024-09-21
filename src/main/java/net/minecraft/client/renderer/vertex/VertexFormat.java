@@ -4,13 +4,16 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class VertexFormat {
     private static final Logger LOGGER = LogManager.getLogger();
+    @Getter
     private final List<VertexFormatElement> elements;
     private final List<Integer> offsets;
+    @Getter
     private int nextOffset;
     private int colorElementOffset;
     private List<Integer> uvOffsetsById;
@@ -125,14 +128,6 @@ public class VertexFormat {
 
     public int getIntegerSize() {
         return this.getNextOffset() / 4;
-    }
-
-    public int getNextOffset() {
-        return this.nextOffset;
-    }
-
-    public List<VertexFormatElement> getElements() {
-        return this.elements;
     }
 
     public int getElementCount() {

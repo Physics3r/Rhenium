@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.client.gui.GuiEnchantment;
 import net.minecraft.client.gui.GuiHopper;
 import net.minecraft.client.gui.GuiScreen;
@@ -29,6 +30,7 @@ import java.util.Properties;
 public class CustomGuiProperties {
     private String fileName = null;
     private String basePath = null;
+    @Getter
     private CustomGuiProperties.EnumContainer container = null;
     private Map<ResourceLocation, ResourceLocation> textureLocations = null;
     private NbtTagValue nbtName = null;
@@ -490,10 +492,6 @@ public class CustomGuiProperties {
             default:
                 return null;
         }
-    }
-
-    public CustomGuiProperties.EnumContainer getContainer() {
-        return this.container;
     }
 
     public ResourceLocation getTextureLocation(ResourceLocation loc) {

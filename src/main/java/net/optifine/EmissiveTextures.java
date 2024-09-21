@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
@@ -15,8 +16,10 @@ import java.util.Map;
 import java.util.Properties;
 
 public class EmissiveTextures {
+    @Getter
     private static String suffixEmissive = null;
     private static String suffixEmissivePng = null;
+    @Getter
     private static boolean active = false;
     private static boolean render = false;
     private static boolean hasEmissive = false;
@@ -25,14 +28,6 @@ public class EmissiveTextures {
     private static float lightMapY;
     private static final String SUFFIX_PNG = ".png";
     private static final ResourceLocation LOCATION_EMPTY = new ResourceLocation("mcpatcher/ctm/default/empty.png");
-
-    public static boolean isActive() {
-        return active;
-    }
-
-    public static String getSuffixEmissive() {
-        return suffixEmissive;
-    }
 
     public static void beginRender() {
         render = true;

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -47,6 +48,7 @@ public class CustomItems {
     private static CustomItemProperties[][] enchantmentProperties = null;
     private static Map mapPotionIds = null;
     private static ItemModelGenerator itemModelGenerator = new ItemModelGenerator();
+    @Getter
     private static boolean useGlint = true;
     private static boolean renderOffHand = false;
     public static final int MASK_POTION_SPLASH = 16384;
@@ -835,7 +837,4 @@ public class CustomItems {
         }
     }
 
-    public static boolean isUseGlint() {
-        return useGlint;
-    }
 }

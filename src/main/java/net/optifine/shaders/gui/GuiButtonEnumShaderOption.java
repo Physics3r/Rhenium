@@ -1,20 +1,18 @@
 package net.optifine.shaders.gui;
 
+import lombok.Getter;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.optifine.shaders.Shaders;
 import net.optifine.shaders.config.EnumShaderOption;
 
+@Getter
 public class GuiButtonEnumShaderOption extends GuiButton {
     private EnumShaderOption enumShaderOption = null;
 
     public GuiButtonEnumShaderOption(EnumShaderOption enumShaderOption, int x, int y, int widthIn, int heightIn) {
         super(enumShaderOption.ordinal(), x, y, widthIn, heightIn, getButtonText(enumShaderOption));
         this.enumShaderOption = enumShaderOption;
-    }
-
-    public EnumShaderOption getEnumShaderOption() {
-        return this.enumShaderOption;
     }
 
     private static String getButtonText(EnumShaderOption eso) {

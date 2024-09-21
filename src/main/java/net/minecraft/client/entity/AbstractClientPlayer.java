@@ -2,8 +2,8 @@ package net.minecraft.client.entity;
 
 import com.mojang.authlib.GameProfile;
 
-import java.io.File;
-
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ImageBufferDownload;
@@ -27,9 +27,16 @@ import net.optifine.reflect.Reflector;
 
 public abstract class AbstractClientPlayer extends EntityPlayer {
     private NetworkPlayerInfo playerInfo;
+    @Setter
+    @Getter
     private ResourceLocation locationOfCape = null;
+    @Setter
+    @Getter
     private long reloadCapeTimeMs = 0L;
+    @Setter
+    @Getter
     private boolean elytraOfCape = false;
+    @Getter
     private String nameClear = null;
     private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
 
@@ -141,37 +148,9 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
         return Reflector.ForgeHooksClient_getOffsetFOV.exists() ? Reflector.callFloat(Reflector.ForgeHooksClient_getOffsetFOV, new Object[]{this, Float.valueOf(f)}) : f;
     }
 
-    public String getNameClear() {
-        return this.nameClear;
-    }
-
-    public ResourceLocation getLocationOfCape() {
-        return this.locationOfCape;
-    }
-
-    public void setLocationOfCape(ResourceLocation p_setLocationOfCape_1_) {
-        this.locationOfCape = p_setLocationOfCape_1_;
-    }
-
     public boolean hasElytraCape() {
         ResourceLocation resourcelocation = this.getLocationCape();
         return resourcelocation == null ? false : (resourcelocation == this.locationOfCape ? this.elytraOfCape : true);
-    }
-
-    public void setElytraOfCape(boolean p_setElytraOfCape_1_) {
-        this.elytraOfCape = p_setElytraOfCape_1_;
-    }
-
-    public boolean isElytraOfCape() {
-        return this.elytraOfCape;
-    }
-
-    public long getReloadCapeTimeMs() {
-        return this.reloadCapeTimeMs;
-    }
-
-    public void setReloadCapeTimeMs(long p_setReloadCapeTimeMs_1_) {
-        this.reloadCapeTimeMs = p_setReloadCapeTimeMs_1_;
     }
 
     public Vec3 getLook(float partialTicks) {

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiEnchantment;
 import net.minecraft.client.gui.GuiHopper;
@@ -36,6 +37,7 @@ import net.optifine.util.ResUtils;
 
 public class CustomGuis {
     private static Minecraft mc = Config.getMinecraft();
+    @Getter
     private static PlayerControllerOF playerControllerOF = null;
     private static CustomGuiProperties[][] guiProperties = null;
     public static boolean isChristmas = isChristmas();
@@ -246,10 +248,6 @@ public class CustomGuis {
 
             list.add(cgp);
         }
-    }
-
-    public static PlayerControllerOF getPlayerControllerOF() {
-        return playerControllerOF;
     }
 
     public static void setPlayerControllerOF(PlayerControllerOF playerControllerOF) {

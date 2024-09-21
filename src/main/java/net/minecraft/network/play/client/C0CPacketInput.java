@@ -2,10 +2,12 @@ package net.minecraft.network.play.client;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
 
+@Getter
 public class C0CPacketInput implements Packet<INetHandlerPlayServer> {
     private float strafeSpeed;
     private float forwardSpeed;
@@ -50,19 +52,4 @@ public class C0CPacketInput implements Packet<INetHandlerPlayServer> {
         handler.processInput(this);
     }
 
-    public float getStrafeSpeed() {
-        return this.strafeSpeed;
-    }
-
-    public float getForwardSpeed() {
-        return this.forwardSpeed;
-    }
-
-    public boolean isJumping() {
-        return this.jumping;
-    }
-
-    public boolean isSneaking() {
-        return this.sneaking;
-    }
 }

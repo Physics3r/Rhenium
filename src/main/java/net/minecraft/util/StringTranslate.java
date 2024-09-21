@@ -10,6 +10,7 @@ import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import lombok.Getter;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 
@@ -18,6 +19,7 @@ public class StringTranslate {
     private static final Splitter equalSignSplitter = Splitter.on('=').limit(2);
     private static StringTranslate instance = new StringTranslate();
     private final Map<String, String> languageList = Maps.<String, String>newHashMap();
+    @Getter
     private long lastUpdateTimeInMilliseconds;
 
     public StringTranslate() {
@@ -75,7 +77,4 @@ public class StringTranslate {
         return this.languageList.containsKey(key);
     }
 
-    public long getLastUpdateTimeInMilliseconds() {
-        return this.lastUpdateTimeInMilliseconds;
-    }
 }

@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -86,6 +87,7 @@ public class BlockHugeMushroom extends Block {
 
         private static final BlockHugeMushroom.EnumType[] META_LOOKUP = new BlockHugeMushroom.EnumType[16];
         private final int meta;
+        @Getter
         private final String name;
 
         private EnumType(int meta, String name) {
@@ -108,10 +110,6 @@ public class BlockHugeMushroom extends Block {
 
             BlockHugeMushroom.EnumType blockhugemushroom$enumtype = META_LOOKUP[meta];
             return blockhugemushroom$enumtype == null ? META_LOOKUP[0] : blockhugemushroom$enumtype;
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         static {

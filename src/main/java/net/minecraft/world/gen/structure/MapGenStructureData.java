@@ -1,8 +1,10 @@
 package net.minecraft.world.gen.structure;
 
+import lombok.Getter;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldSavedData;
 
+@Getter
 public class MapGenStructureData extends WorldSavedData {
     private NBTTagCompound tagCompound = new NBTTagCompound();
 
@@ -26,7 +28,4 @@ public class MapGenStructureData extends WorldSavedData {
         return "[" + chunkX + "," + chunkZ + "]";
     }
 
-    public NBTTagCompound getTagCompound() {
-        return this.tagCompound;
-    }
 }

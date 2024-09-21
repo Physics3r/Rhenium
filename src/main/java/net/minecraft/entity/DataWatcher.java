@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.item.ItemStack;
@@ -324,9 +326,13 @@ public class DataWatcher {
     }
 
     public static class WatchableObject {
+        @Getter
         private final int objectType;
+        @Getter
         private final int dataValueId;
         private Object watchedObject;
+        @Setter
+        @Getter
         private boolean watched;
 
         public WatchableObject(int type, int id, Object object) {
@@ -334,10 +340,6 @@ public class DataWatcher {
             this.watchedObject = object;
             this.objectType = type;
             this.watched = true;
-        }
-
-        public int getDataValueId() {
-            return this.dataValueId;
         }
 
         public void setObject(Object object) {
@@ -348,16 +350,5 @@ public class DataWatcher {
             return this.watchedObject;
         }
 
-        public int getObjectType() {
-            return this.objectType;
-        }
-
-        public boolean isWatched() {
-            return this.watched;
-        }
-
-        public void setWatched(boolean watched) {
-            this.watched = watched;
-        }
     }
 }

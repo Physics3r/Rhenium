@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -55,7 +57,11 @@ public class Config {
     public static final String OF_RELEASE = "M6_pre2";
     public static final String VERSION = "OptiFine_1.8.9_HD_U_M6_pre2";
     private static String build = null;
+    @Setter
+    @Getter
     private static String newRelease = null;
+    @Setter
+    @Getter
     private static boolean notify64BitJava = false;
     public static String openGlVersion = null;
     public static String openGlRenderer = null;
@@ -64,15 +70,22 @@ public class Config {
     public static GlVersion glVersion = null;
     public static GlVersion glslVersion = null;
     public static int minecraftVersionInt = -1;
+    @Getter
     public static boolean fancyFogAvailable = false;
+    @Getter
     public static boolean occlusionAvailable = false;
+    @Getter
     private static GameSettings gameSettings = null;
+    @Getter
     private static Minecraft minecraft = Minecraft.getMinecraft();
     private static boolean initialized = false;
     private static Thread minecraftThread = null;
+    @Getter
     private static DisplayMode desktopDisplayMode = null;
     private static DisplayMode[] displayModes = null;
+    @Getter
     private static int antialiasingLevel = 0;
+    @Getter
     private static int availableProcessors = 0;
     public static boolean zoomMode = false;
     public static boolean zoomSmoothCamera = false;
@@ -192,14 +205,6 @@ public class Config {
         }
 
         return build;
-    }
-
-    public static boolean isFancyFogAvailable() {
-        return fancyFogAvailable;
-    }
-
-    public static boolean isOcclusionAvailable() {
-        return occlusionAvailable;
     }
 
     public static int getMinecraftVersionInt() {
@@ -730,10 +735,6 @@ public class Config {
         }
     }
 
-    public static Minecraft getMinecraft() {
-        return minecraft;
-    }
-
     public static TextureManager getTextureManager() {
         return minecraft.getTextureManager();
     }
@@ -932,10 +933,6 @@ public class Config {
         return getAnisotropicFilterLevel() > 1;
     }
 
-    public static int getAntialiasingLevel() {
-        return antialiasingLevel;
-    }
-
     public static boolean isAntialiasing() {
         return getAntialiasingLevel() > 0;
     }
@@ -1044,10 +1041,6 @@ public class Config {
 
         String[] astring = (String[]) list.toArray(new String[list.size()]);
         return astring;
-    }
-
-    public static DisplayMode getDesktopDisplayMode() {
-        return desktopDisplayMode;
     }
 
     public static DisplayMode[] getDisplayModes() {
@@ -1306,18 +1299,6 @@ public class Config {
         }
     }
 
-    public static GameSettings getGameSettings() {
-        return gameSettings;
-    }
-
-    public static String getNewRelease() {
-        return newRelease;
-    }
-
-    public static void setNewRelease(String p_setNewRelease_0_) {
-        newRelease = p_setNewRelease_0_;
-    }
-
     public static int compareRelease(String p_compareRelease_0_, String p_compareRelease_1_) {
         String[] astring = splitRelease(p_compareRelease_0_);
         String[] astring1 = splitRelease(p_compareRelease_1_);
@@ -1384,10 +1365,6 @@ public class Config {
         i = intHash(i + p_getRandom_0_.getZ());
         i = intHash(i + p_getRandom_0_.getY());
         return i;
-    }
-
-    public static int getAvailableProcessors() {
-        return availableProcessors;
     }
 
     public static void updateAvailableProcessors() {
@@ -1772,14 +1749,6 @@ public class Config {
         }
 
         return 32;
-    }
-
-    public static boolean isNotify64BitJava() {
-        return notify64BitJava;
-    }
-
-    public static void setNotify64BitJava(boolean p_setNotify64BitJava_0_) {
-        notify64BitJava = p_setNotify64BitJava_0_;
     }
 
     public static boolean isConnectedModels() {

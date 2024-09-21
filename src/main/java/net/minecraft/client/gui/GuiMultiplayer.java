@@ -6,6 +6,8 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
@@ -18,6 +20,7 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
     private static final Logger logger = LogManager.getLogger();
+    @Getter
     private final OldServerPinger oldServerPinger = new OldServerPinger();
     private GuiScreen parentScreen;
     private ServerSelectionList serverListSelector;
@@ -29,6 +32,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
     private boolean addingServer;
     private boolean editingServer;
     private boolean directConnect;
+    @Setter
     private String hoveringText;
     private ServerData selectedServer;
     private LanServerDetector.LanServerList lanServerList;
@@ -302,14 +306,6 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback {
                 this.btnDeleteServer.enabled = true;
             }
         }
-    }
-
-    public OldServerPinger getOldServerPinger() {
-        return this.oldServerPinger;
-    }
-
-    public void setHoveringText(String p_146793_1_) {
-        this.hoveringText = p_146793_1_;
     }
 
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {

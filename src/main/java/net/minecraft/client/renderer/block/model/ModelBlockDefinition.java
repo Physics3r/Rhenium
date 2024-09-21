@@ -3,6 +3,7 @@ package net.minecraft.client.renderer.block.model;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.*;
+import lombok.Getter;
 import net.minecraft.client.resources.model.ModelRotation;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -98,9 +99,11 @@ public class ModelBlockDefinition {
     }
 
     public static class Variant {
+        @Getter
         private final ResourceLocation modelLocation;
         private final ModelRotation modelRotation;
         private final boolean uvLock;
+        @Getter
         private final int weight;
 
         public Variant(ResourceLocation modelLocationIn, ModelRotation modelRotationIn, boolean uvLockIn, int weightIn) {
@@ -110,20 +113,12 @@ public class ModelBlockDefinition {
             this.weight = weightIn;
         }
 
-        public ResourceLocation getModelLocation() {
-            return this.modelLocation;
-        }
-
         public ModelRotation getRotation() {
             return this.modelRotation;
         }
 
         public boolean isUvLocked() {
             return this.uvLock;
-        }
-
-        public int getWeight() {
-            return this.weight;
         }
 
         public boolean equals(Object p_equals_1_) {

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreenWorking;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -34,7 +35,6 @@ import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
-import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,10 +48,12 @@ public class ResourcePackRepository {
             return flag || flag1;
         }
     };
+    @Getter
     private final File dirResourcepacks;
     public final IResourcePack rprDefaultResourcePack;
     private final File dirServerResourcepacks;
     public final IMetadataSerializer rprMetadataSerializer;
+    @Getter
     private IResourcePack resourcePackInstance;
     private final ReentrantLock lock = new ReentrantLock();
     private ListenableFuture<Object> downloadingPacks;
@@ -142,10 +144,6 @@ public class ResourcePackRepository {
         this.repositoryEntries.addAll(repositories);
     }
 
-    public File getDirResourcepacks() {
-        return this.dirResourcepacks;
-    }
-
     public ListenableFuture<Object> downloadResourcePack(String url, String hash) {
         String s;
 
@@ -174,7 +172,7 @@ public class ResourcePackRepository {
                     logger.warn("File {} had wrong hash (expected {}, found {}). Deleting it.", file1, hash, s1);
                     FileUtils.deleteQuietly(file1);
                 } catch (IOException ioexception) {
-                    logger.warn("File " + file1 + " couldn\'t be hashed. Deleting it.", ioexception);
+                    logger.warn("File {} couldn't be hashed. Deleting it.", file1, ioexception);
                     FileUtils.deleteQuietly(file1);
                 }
             }
@@ -224,10 +222,6 @@ public class ResourcePackRepository {
     public ListenableFuture<Object> setResourcePackInstance(File resourceFile) {
         this.resourcePackInstance = new FileResourcePack(resourceFile);
         return Minecraft.getMinecraft().scheduleResourcesRefresh();
-    }
-
-    public IResourcePack getResourcePackInstance() {
-        return this.resourcePackInstance;
     }
 
     public void clearResourcePack() {

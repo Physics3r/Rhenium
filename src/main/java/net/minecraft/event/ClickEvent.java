@@ -1,9 +1,11 @@
 package net.minecraft.event;
 
 import com.google.common.collect.Maps;
+import lombok.Getter;
 
 import java.util.Map;
 
+@Getter
 public class ClickEvent {
     private final ClickEvent.Action action;
     private final String value;
@@ -11,14 +13,6 @@ public class ClickEvent {
     public ClickEvent(ClickEvent.Action theAction, String theValue) {
         this.action = theAction;
         this.value = theValue;
-    }
-
-    public ClickEvent.Action getAction() {
-        return this.action;
-    }
-
-    public String getValue() {
-        return this.value;
     }
 
     public boolean equals(Object p_equals_1_) {
@@ -64,6 +58,7 @@ public class ClickEvent {
 
         private static final Map<String, ClickEvent.Action> nameMapping = Maps.<String, ClickEvent.Action>newHashMap();
         private final boolean allowedInChat;
+        @Getter
         private final String canonicalName;
 
         private Action(String canonicalNameIn, boolean allowedInChatIn) {
@@ -73,10 +68,6 @@ public class ClickEvent {
 
         public boolean shouldAllowInChat() {
             return this.allowedInChat;
-        }
-
-        public String getCanonicalName() {
-            return this.canonicalName;
         }
 
         public static ClickEvent.Action getValueByCanonicalName(String canonicalNameIn) {

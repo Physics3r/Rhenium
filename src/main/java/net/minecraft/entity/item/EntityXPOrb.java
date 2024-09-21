@@ -1,5 +1,6 @@
 package net.minecraft.entity.item;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +15,7 @@ public class EntityXPOrb extends Entity {
     public int xpOrbAge;
     public int delayBeforeCanPickup;
     private int xpOrbHealth = 5;
+    @Getter
     private int xpValue;
     private EntityPlayer closestPlayer;
     private int xpTargetColor;
@@ -173,10 +175,6 @@ public class EntityXPOrb extends Entity {
                 this.setDead();
             }
         }
-    }
-
-    public int getXpValue() {
-        return this.xpValue;
     }
 
     public int getTextureByXP() {

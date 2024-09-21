@@ -2,6 +2,7 @@ package net.minecraft.client.shader;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.util.JsonException;
 import org.apache.logging.log4j.LogManager;
@@ -9,14 +10,11 @@ import org.apache.logging.log4j.Logger;
 
 public class ShaderLinkHelper {
     private static final Logger logger = LogManager.getLogger();
+    @Getter
     private static ShaderLinkHelper staticShaderLinkHelper;
 
     public static void setNewStaticShaderLinkHelper() {
         staticShaderLinkHelper = new ShaderLinkHelper();
-    }
-
-    public static ShaderLinkHelper getStaticShaderLinkHelper() {
-        return staticShaderLinkHelper;
     }
 
     public void deleteShader(ShaderManager p_148077_1_) {

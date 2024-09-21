@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
 
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -42,7 +43,9 @@ public class FontRenderer implements IResourceManagerReloadListener {
     private final TextureManager renderEngine;
     private float posX;
     private float posY;
+    @Setter
     private boolean unicodeFlag;
+    @Setter
     private boolean bidiFlag;
     private float red;
     private float blue;
@@ -650,16 +653,8 @@ public class FontRenderer implements IResourceManagerReloadListener {
         return this.FONT_HEIGHT * this.listFormattedStringToWidth(str, maxLength).size();
     }
 
-    public void setUnicodeFlag(boolean unicodeFlagIn) {
-        this.unicodeFlag = unicodeFlagIn;
-    }
-
     public boolean getUnicodeFlag() {
         return this.unicodeFlag;
-    }
-
-    public void setBidiFlag(boolean bidiFlagIn) {
-        this.bidiFlag = bidiFlagIn;
     }
 
     public List<String> listFormattedStringToWidth(String str, int wrapWidth) {

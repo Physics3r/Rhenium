@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.AnimationFrame;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
@@ -23,23 +25,36 @@ import net.optifine.util.CounterInt;
 import net.optifine.util.TextureUtils;
 
 public class TextureAtlasSprite {
+    @Getter
     private final String iconName;
     protected List<int[][]> framesTextureData = Lists.<int[][]>newArrayList();
     protected int[][] interpolatedFrameData;
+    @Setter
+    @Getter
     private AnimationMetadataSection animationMetadata;
     protected boolean rotated;
+    @Getter
     protected int originX;
+    @Getter
     protected int originY;
     protected int width;
     protected int height;
+    @Getter
     private float minU;
+    @Getter
     private float maxU;
+    @Getter
     private float minV;
+    @Getter
     private float maxV;
     protected int frameCounter;
     protected int tickCounter;
+    @Setter
     private static String locationNameClock = "builtin/clock";
+    @Setter
     private static String locationNameCompass = "builtin/compass";
+    @Setter
+    @Getter
     private int indexInMap = -1;
     public float baseU;
     public float baseV;
@@ -54,7 +69,9 @@ public class TextureAtlasSprite {
     public boolean isShadersSprite = false;
     public boolean isEmissive = false;
     public TextureAtlasSprite spriteEmissive = null;
+    @Getter
     private int animationIndex = -1;
+    @Getter
     private boolean animationActive = false;
 
     private TextureAtlasSprite(String p_i7_1_, boolean p_i7_2_) {
@@ -73,14 +90,6 @@ public class TextureAtlasSprite {
     protected static TextureAtlasSprite makeAtlasSprite(ResourceLocation spriteResourceLocation) {
         String s = spriteResourceLocation.toString();
         return locationNameClock.equals(s) ? new TextureClock(s) : (locationNameCompass.equals(s) ? new TextureCompass(s) : new TextureAtlasSprite(s));
-    }
-
-    public static void setLocationNameClock(String clockName) {
-        locationNameClock = clockName;
-    }
-
-    public static void setLocationNameCompass(String compassName) {
-        locationNameCompass = compassName;
     }
 
     public void initSprite(int inX, int inY, int originInX, int originInY, boolean rotatedIn) {
@@ -138,14 +147,6 @@ public class TextureAtlasSprite {
         this.animationIndex = atlasSpirit.animationIndex;
     }
 
-    public int getOriginX() {
-        return this.originX;
-    }
-
-    public int getOriginY() {
-        return this.originY;
-    }
-
     public int getIconWidth() {
         return this.width;
     }
@@ -154,34 +155,14 @@ public class TextureAtlasSprite {
         return this.height;
     }
 
-    public float getMinU() {
-        return this.minU;
-    }
-
-    public float getMaxU() {
-        return this.maxU;
-    }
-
     public float getInterpolatedU(double u) {
         float f = this.maxU - this.minU;
         return this.minU + f * (float) u / 16.0F;
     }
 
-    public float getMinV() {
-        return this.minV;
-    }
-
-    public float getMaxV() {
-        return this.maxV;
-    }
-
     public float getInterpolatedV(double v) {
         float f = this.maxV - this.minV;
         return this.minV + f * ((float) v / 16.0F);
-    }
-
-    public String getIconName() {
-        return this.iconName;
     }
 
     public void updateAnimation() {
@@ -476,22 +457,10 @@ public class TextureAtlasSprite {
         return true;
     }
 
-    public int getIndexInMap() {
-        return this.indexInMap;
-    }
-
-    public void setIndexInMap(int p_setIndexInMap_1_) {
-        this.indexInMap = p_setIndexInMap_1_;
-    }
-
     public void updateIndexInMap(CounterInt p_updateIndexInMap_1_) {
         if (this.indexInMap < 0) {
             this.indexInMap = p_updateIndexInMap_1_.nextValue();
         }
-    }
-
-    public int getAnimationIndex() {
-        return this.animationIndex;
     }
 
     public void setAnimationIndex(int p_setAnimationIndex_1_) {
@@ -504,10 +473,6 @@ public class TextureAtlasSprite {
         if (this.spriteSpecular != null) {
             this.spriteSpecular.setAnimationIndex(p_setAnimationIndex_1_);
         }
-    }
-
-    public boolean isAnimationActive() {
-        return this.animationActive;
     }
 
     private void fixTransparentColor(int[] p_fixTransparentColor_1_) {
@@ -595,14 +560,6 @@ public class TextureAtlasSprite {
         List<int[][]> list = new ArrayList();
         list.addAll(this.framesTextureData);
         return list;
-    }
-
-    public AnimationMetadataSection getAnimationMetadata() {
-        return this.animationMetadata;
-    }
-
-    public void setAnimationMetadata(AnimationMetadataSection p_setAnimationMetadata_1_) {
-        this.animationMetadata = p_setAnimationMetadata_1_;
     }
 
     private void loadShadersSprites() {

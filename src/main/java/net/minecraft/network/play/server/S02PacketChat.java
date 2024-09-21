@@ -2,11 +2,13 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.IChatComponent;
 
+@Getter
 public class S02PacketChat implements Packet<INetHandlerPlayClient> {
     private IChatComponent chatComponent;
     private byte type;
@@ -37,15 +39,8 @@ public class S02PacketChat implements Packet<INetHandlerPlayClient> {
         handler.handleChat(this);
     }
 
-    public IChatComponent getChatComponent() {
-        return this.chatComponent;
-    }
-
     public boolean isChat() {
         return this.type == 1 || this.type == 2;
     }
 
-    public byte getType() {
-        return this.type;
-    }
 }

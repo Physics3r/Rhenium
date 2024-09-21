@@ -1,5 +1,6 @@
 package net.minecraft.entity;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryMerchant;
 import net.minecraft.item.ItemStack;
@@ -10,6 +11,7 @@ import net.minecraft.village.MerchantRecipeList;
 
 public class NpcMerchant implements IMerchant {
     private InventoryMerchant theMerchantInventory;
+    @Getter
     private EntityPlayer customer;
     private MerchantRecipeList recipeList;
     private IChatComponent field_175548_d;
@@ -18,10 +20,6 @@ public class NpcMerchant implements IMerchant {
         this.customer = p_i45817_1_;
         this.field_175548_d = p_i45817_2_;
         this.theMerchantInventory = new InventoryMerchant(p_i45817_1_, this);
-    }
-
-    public EntityPlayer getCustomer() {
-        return this.customer;
     }
 
     public void setCustomer(EntityPlayer p_70932_1_) {

@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.src.Config;
@@ -16,6 +17,7 @@ import java.util.Properties;
 
 public class CustomBlockLayers {
     private static EnumWorldBlockLayer[] renderLayers = null;
+    @Getter
     public static boolean active = false;
 
     public static EnumWorldBlockLayer getRenderLayer(IBlockState blockState) {
@@ -95,7 +97,4 @@ public class CustomBlockLayers {
         }
     }
 
-    public static boolean isActive() {
-        return active;
-    }
 }

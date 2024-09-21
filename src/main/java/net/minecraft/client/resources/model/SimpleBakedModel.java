@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BreakingFour;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -12,9 +13,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 
 public class SimpleBakedModel implements IBakedModel {
+    @Getter
     protected final List<BakedQuad> generalQuads;
     protected final List<List<BakedQuad>> faceQuads;
+    @Getter
     protected final boolean ambientOcclusion;
+    @Getter
     protected final boolean gui3d;
     protected final TextureAtlasSprite texture;
     protected final ItemCameraTransforms cameraTransforms;
@@ -30,18 +34,6 @@ public class SimpleBakedModel implements IBakedModel {
 
     public List<BakedQuad> getFaceQuads(EnumFacing facing) {
         return this.faceQuads.get(facing.ordinal());
-    }
-
-    public List<BakedQuad> getGeneralQuads() {
-        return this.generalQuads;
-    }
-
-    public boolean isAmbientOcclusion() {
-        return this.ambientOcclusion;
-    }
-
-    public boolean isGui3d() {
-        return this.gui3d;
     }
 
     public boolean isBuiltInRenderer() {

@@ -1,9 +1,13 @@
 package net.minecraft.world;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class WorldSavedData {
     public final String mapName;
+    @Setter
+    @Getter
     private boolean dirty;
 
     public WorldSavedData(String name) {
@@ -18,11 +22,4 @@ public abstract class WorldSavedData {
         this.setDirty(true);
     }
 
-    public void setDirty(boolean isDirty) {
-        this.dirty = isDirty;
-    }
-
-    public boolean isDirty() {
-        return this.dirty;
-    }
 }

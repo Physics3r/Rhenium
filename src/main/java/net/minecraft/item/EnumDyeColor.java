@@ -1,5 +1,6 @@
 package net.minecraft.item;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IStringSerializable;
@@ -25,9 +26,13 @@ public enum EnumDyeColor implements IStringSerializable {
     private static final EnumDyeColor[] META_LOOKUP = new EnumDyeColor[values().length];
     private static final EnumDyeColor[] DYE_DMG_LOOKUP = new EnumDyeColor[values().length];
     private final int meta;
+    @Getter
     private final int dyeDamage;
+    @Getter
     private final String name;
+    @Getter
     private final String unlocalizedName;
+    @Getter
     private final MapColor mapColor;
     private final EnumChatFormatting chatColor;
 
@@ -42,18 +47,6 @@ public enum EnumDyeColor implements IStringSerializable {
 
     public int getMetadata() {
         return this.meta;
-    }
-
-    public int getDyeDamage() {
-        return this.dyeDamage;
-    }
-
-    public String getUnlocalizedName() {
-        return this.unlocalizedName;
-    }
-
-    public MapColor getMapColor() {
-        return this.mapColor;
     }
 
     public static EnumDyeColor byDyeDamage(int damage) {
@@ -74,10 +67,6 @@ public enum EnumDyeColor implements IStringSerializable {
 
     public String toString() {
         return this.unlocalizedName;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     static {

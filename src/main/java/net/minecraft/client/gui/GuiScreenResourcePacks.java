@@ -8,6 +8,7 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.ResourcePackListEntry;
 import net.minecraft.client.resources.ResourcePackListEntryDefault;
@@ -21,7 +22,9 @@ import org.lwjgl.Sys;
 public class GuiScreenResourcePacks extends GuiScreen {
     private static final Logger logger = LogManager.getLogger();
     private final GuiScreen parentScreen;
+    @Getter
     private List<ResourcePackListEntry> availableResourcePacks;
+    @Getter
     private List<ResourcePackListEntry> selectedResourcePacks;
     private GuiResourcePackAvailable availableResourcePacksList;
     private GuiResourcePackSelected selectedResourcePacksList;
@@ -74,14 +77,6 @@ public class GuiScreenResourcePacks extends GuiScreen {
 
     public List<ResourcePackListEntry> getListContaining(ResourcePackListEntry p_146962_1_) {
         return this.hasResourcePackEntry(p_146962_1_) ? this.selectedResourcePacks : this.availableResourcePacks;
-    }
-
-    public List<ResourcePackListEntry> getAvailableResourcePacks() {
-        return this.availableResourcePacks;
-    }
-
-    public List<ResourcePackListEntry> getSelectedResourcePacks() {
-        return this.selectedResourcePacks;
     }
 
     protected void actionPerformed(GuiButton button) throws IOException {

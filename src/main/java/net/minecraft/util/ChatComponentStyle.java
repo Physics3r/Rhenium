@@ -3,11 +3,13 @@ package net.minecraft.util;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import lombok.Getter;
 
 import java.util.Iterator;
 import java.util.List;
 
 public abstract class ChatComponentStyle implements IChatComponent {
+    @Getter
     protected List<IChatComponent> siblings = Lists.<IChatComponent>newArrayList();
     private ChatStyle style;
 
@@ -15,10 +17,6 @@ public abstract class ChatComponentStyle implements IChatComponent {
         component.getChatStyle().setParentStyle(this.getChatStyle());
         this.siblings.add(component);
         return this;
-    }
-
-    public List<IChatComponent> getSiblings() {
-        return this.siblings;
     }
 
     public IChatComponent appendText(String text) {

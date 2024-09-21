@@ -100,7 +100,7 @@ public class HttpUtil {
             return stringbuffer.toString();
         } catch (Exception exception) {
             if (!skipLoggingErrors) {
-                logger.error("Could not post to " + url, exception);
+                logger.error("Could not post to {}", url, exception);
             }
 
             return "";

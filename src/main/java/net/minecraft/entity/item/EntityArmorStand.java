@@ -2,6 +2,7 @@ package net.minecraft.entity.item;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -36,11 +37,17 @@ public class EntityArmorStand extends EntityLivingBase {
     private long punchCooldown;
     private int disabledSlots;
     private boolean field_181028_bj;
+    @Getter
     private Rotations headRotation;
+    @Getter
     private Rotations bodyRotation;
+    @Getter
     private Rotations leftArmRotation;
+    @Getter
     private Rotations rightArmRotation;
+    @Getter
     private Rotations leftLegRotation;
+    @Getter
     private Rotations rightLegRotation;
 
     public EntityArmorStand(World worldIn) {
@@ -695,30 +702,6 @@ public class EntityArmorStand extends EntityLivingBase {
     public void setRightLegRotation(Rotations p_175427_1_) {
         this.rightLegRotation = p_175427_1_;
         this.dataWatcher.updateObject(16, p_175427_1_);
-    }
-
-    public Rotations getHeadRotation() {
-        return this.headRotation;
-    }
-
-    public Rotations getBodyRotation() {
-        return this.bodyRotation;
-    }
-
-    public Rotations getLeftArmRotation() {
-        return this.leftArmRotation;
-    }
-
-    public Rotations getRightArmRotation() {
-        return this.rightArmRotation;
-    }
-
-    public Rotations getLeftLegRotation() {
-        return this.leftLegRotation;
-    }
-
-    public Rotations getRightLegRotation() {
-        return this.rightLegRotation;
     }
 
     public boolean canBeCollidedWith() {

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.Map.Entry;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -54,13 +55,20 @@ public class Potion {
     public static final Potion field_180144_E = null;
     public static final Potion field_180145_F = null;
     public static final Potion field_180146_G = null;
+    @Getter
     public final int id;
+    @Getter
     private final Map<IAttribute, AttributeModifier> attributeModifierMap = Maps.<IAttribute, AttributeModifier>newHashMap();
     private final boolean isBadEffect;
+    @Getter
     private final int liquidColor;
+    @Getter
     private String name = "";
+    @Getter
     private int statusIconIndex = -1;
+    @Getter
     private double effectiveness;
+    @Getter
     private boolean usable;
 
     protected Potion(int potionID, ResourceLocation location, boolean badEffect, int potionColor) {
@@ -89,10 +97,6 @@ public class Potion {
     protected Potion setIconIndex(int p_76399_1_, int p_76399_2_) {
         this.statusIconIndex = p_76399_1_ + p_76399_2_ * 8;
         return this;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public void performEffect(EntityLivingBase entityLivingBaseIn, int p_76394_2_) {
@@ -162,16 +166,8 @@ public class Potion {
         return this;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public boolean hasStatusIcon() {
         return this.statusIconIndex >= 0;
-    }
-
-    public int getStatusIconIndex() {
-        return this.statusIconIndex;
     }
 
     public boolean isBadEffect() {
@@ -192,26 +188,10 @@ public class Potion {
         return this;
     }
 
-    public double getEffectiveness() {
-        return this.effectiveness;
-    }
-
-    public boolean isUsable() {
-        return this.usable;
-    }
-
-    public int getLiquidColor() {
-        return this.liquidColor;
-    }
-
     public Potion registerPotionAttributeModifier(IAttribute p_111184_1_, String p_111184_2_, double p_111184_3_, int p_111184_5_) {
         AttributeModifier attributemodifier = new AttributeModifier(UUID.fromString(p_111184_2_), this.getName(), p_111184_3_, p_111184_5_);
         this.attributeModifierMap.put(p_111184_1_, attributemodifier);
         return this;
-    }
-
-    public Map<IAttribute, AttributeModifier> getAttributeModifierMap() {
-        return this.attributeModifierMap;
     }
 
     public void removeAttributesModifiersFromEntity(EntityLivingBase entityLivingBaseIn, BaseAttributeMap p_111187_2_, int amplifier) {

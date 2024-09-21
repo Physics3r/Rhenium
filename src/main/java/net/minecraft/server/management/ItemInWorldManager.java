@@ -1,5 +1,6 @@
 package net.minecraft.server.management;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.material.Material;
@@ -23,6 +24,7 @@ import net.minecraft.world.WorldSettings;
 public class ItemInWorldManager {
     public World theWorld;
     public EntityPlayerMP thisPlayerMP;
+    @Getter
     private WorldSettings.GameType gameType = WorldSettings.GameType.NOT_SET;
     private boolean isDestroyingBlock;
     private int initialDamage;
@@ -42,10 +44,6 @@ public class ItemInWorldManager {
         type.configurePlayerCapabilities(this.thisPlayerMP.capabilities);
         this.thisPlayerMP.sendPlayerAbilities();
         this.thisPlayerMP.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.UPDATE_GAME_MODE, new EntityPlayerMP[]{this.thisPlayerMP}));
-    }
-
-    public WorldSettings.GameType getGameType() {
-        return this.gameType;
     }
 
     public boolean survivalOrAdventure() {

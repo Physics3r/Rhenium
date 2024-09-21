@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,16 +74,22 @@ public abstract class ServerConfigurationManager {
     private final MinecraftServer mcServer;
     private final List<EntityPlayerMP> playerEntityList = Lists.<EntityPlayerMP>newArrayList();
     private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.<UUID, EntityPlayerMP>newHashMap();
+    @Getter
     private final UserListBans bannedPlayers;
+    @Getter
     private final BanList bannedIPs;
     private final UserListOps ops;
     private final UserListWhitelist whiteListedPlayers;
     private final Map<UUID, StatisticsFile> playerStatFiles;
     private IPlayerFileData playerNBTManagerObj;
     private boolean whiteListEnforced;
+    @Getter
     protected int maxPlayers;
+    @Getter
     private int viewDistance;
+    @Setter
     private WorldSettings.GameType gameType;
+    @Setter
     private boolean commandsAllowedForAll;
     private int playerPingIndex;
 
@@ -586,14 +594,6 @@ public abstract class ServerConfigurationManager {
         return agameprofile;
     }
 
-    public UserListBans getBannedPlayers() {
-        return this.bannedPlayers;
-    }
-
-    public BanList getBannedIPs() {
-        return this.bannedIPs;
-    }
-
     public void addOp(GameProfile profile) {
         this.ops.addEntry(new UserListOpsEntry(profile, this.mcServer.getOpPermissionLevel(), this.ops.bypassesPlayerLimit(profile)));
     }
@@ -695,10 +695,6 @@ public abstract class ServerConfigurationManager {
         return this.playerEntityList.size();
     }
 
-    public int getMaxPlayers() {
-        return this.maxPlayers;
-    }
-
     public String[] getAvailablePlayerDat() {
         return this.mcServer.worldServers[0].getSaveHandler().getPlayerNBTManager().getAvailablePlayerDat();
     }
@@ -719,20 +715,12 @@ public abstract class ServerConfigurationManager {
         return list;
     }
 
-    public int getViewDistance() {
-        return this.viewDistance;
-    }
-
     public MinecraftServer getServerInstance() {
         return this.mcServer;
     }
 
     public NBTTagCompound getHostPlayerData() {
         return null;
-    }
-
-    public void setGameType(WorldSettings.GameType p_152604_1_) {
-        this.gameType = p_152604_1_;
     }
 
     private void setPlayerGameTypeBasedOnOther(EntityPlayerMP p_72381_1_, EntityPlayerMP p_72381_2_, World worldIn) {
@@ -743,10 +731,6 @@ public abstract class ServerConfigurationManager {
         }
 
         p_72381_1_.theItemInWorldManager.initializeGameType(worldIn.getWorldInfo().getGameType());
-    }
-
-    public void setCommandsAllowedForAll(boolean p_72387_1_) {
-        this.commandsAllowedForAll = p_72387_1_;
     }
 
     public void removeAllPlayers() {

@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S08PacketPlayerPosLook implements Packet<INetHandlerPlayClient> {
+    @Getter
     private double x;
+    @Getter
     private double y;
+    @Getter
     private double z;
+    @Getter
     private float yaw;
+    @Getter
     private float pitch;
     private Set<S08PacketPlayerPosLook.EnumFlags> field_179835_f;
 
@@ -48,26 +54,6 @@ public class S08PacketPlayerPosLook implements Packet<INetHandlerPlayClient> {
 
     public void processPacket(INetHandlerPlayClient handler) {
         handler.handlePlayerPosLook(this);
-    }
-
-    public double getX() {
-        return this.x;
-    }
-
-    public double getY() {
-        return this.y;
-    }
-
-    public double getZ() {
-        return this.z;
-    }
-
-    public float getYaw() {
-        return this.yaw;
-    }
-
-    public float getPitch() {
-        return this.pitch;
     }
 
     public Set<S08PacketPlayerPosLook.EnumFlags> func_179834_f() {

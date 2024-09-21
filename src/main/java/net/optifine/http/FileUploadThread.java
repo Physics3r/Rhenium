@@ -1,11 +1,16 @@
 package net.optifine.http;
 
+import lombok.Getter;
+
 import java.util.Map;
 
 public class FileUploadThread extends Thread {
+    @Getter
     private String urlString;
     private Map headers;
+    @Getter
     private byte[] content;
+    @Getter
     private IFileUploadListener listener;
 
     public FileUploadThread(String urlString, Map headers, byte[] content, IFileUploadListener listener) {
@@ -24,15 +29,4 @@ public class FileUploadThread extends Thread {
         }
     }
 
-    public String getUrlString() {
-        return this.urlString;
-    }
-
-    public byte[] getContent() {
-        return this.content;
-    }
-
-    public IFileUploadListener getListener() {
-        return this.listener;
-    }
 }

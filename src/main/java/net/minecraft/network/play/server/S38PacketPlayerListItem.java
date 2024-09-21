@@ -8,6 +8,7 @@ import com.mojang.authlib.properties.Property;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -16,6 +17,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldSettings;
 
 public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
+    @Getter
     private S38PacketPlayerListItem.Action action;
     private final List<S38PacketPlayerListItem.AddPlayerData> players = Lists.<S38PacketPlayerListItem.AddPlayerData>newArrayList();
 
@@ -172,10 +174,6 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
         return this.players;
     }
 
-    public S38PacketPlayerListItem.Action getAction() {
-        return this.action;
-    }
-
     public String toString() {
         return Objects.toStringHelper(this).add("action", this.action).add("entries", this.players).toString();
     }
@@ -189,9 +187,12 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
     }
 
     public class AddPlayerData {
+        @Getter
         private final int ping;
         private final WorldSettings.GameType gamemode;
+        @Getter
         private final GameProfile profile;
+        @Getter
         private final IChatComponent displayName;
 
         public AddPlayerData(GameProfile profile, int pingIn, WorldSettings.GameType gamemodeIn, IChatComponent displayNameIn) {
@@ -201,20 +202,8 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
             this.displayName = displayNameIn;
         }
 
-        public GameProfile getProfile() {
-            return this.profile;
-        }
-
-        public int getPing() {
-            return this.ping;
-        }
-
         public WorldSettings.GameType getGameMode() {
             return this.gamemode;
-        }
-
-        public IChatComponent getDisplayName() {
-            return this.displayName;
         }
 
         public String toString() {

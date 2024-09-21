@@ -1,10 +1,14 @@
 package net.minecraft.pathfinding;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 
 public class PathEntity {
     private final PathPoint[] points;
+    @Setter
+    @Getter
     private int currentPathIndex;
     private int pathLength;
 
@@ -35,14 +39,6 @@ public class PathEntity {
 
     public void setCurrentPathLength(int length) {
         this.pathLength = length;
-    }
-
-    public int getCurrentPathIndex() {
-        return this.currentPathIndex;
-    }
-
-    public void setCurrentPathIndex(int currentPathIndexIn) {
-        this.currentPathIndex = currentPathIndexIn;
     }
 
     public Vec3 getVectorFromIndex(Entity entityIn, int index) {

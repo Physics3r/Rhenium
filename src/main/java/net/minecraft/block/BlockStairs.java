@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -597,6 +598,7 @@ public class BlockStairs extends Block {
         return new BlockState(this, new IProperty[]{FACING, HALF, SHAPE});
     }
 
+    @Getter
     public static enum EnumHalf implements IStringSerializable {
         TOP("top"),
         BOTTOM("bottom");
@@ -611,11 +613,9 @@ public class BlockStairs extends Block {
             return this.name;
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 
+    @Getter
     public static enum EnumShape implements IStringSerializable {
         STRAIGHT("straight"),
         INNER_LEFT("inner_left"),
@@ -633,8 +633,5 @@ public class BlockStairs extends Block {
             return this.name;
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 }

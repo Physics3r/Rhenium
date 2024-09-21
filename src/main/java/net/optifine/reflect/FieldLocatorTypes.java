@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
 import net.optifine.Log;
 
+@Getter
 public class FieldLocatorTypes implements IFieldLocator {
     private Field field = null;
 
@@ -40,7 +42,4 @@ public class FieldLocatorTypes implements IFieldLocator {
         }
     }
 
-    public Field getField() {
-        return this.field;
-    }
 }

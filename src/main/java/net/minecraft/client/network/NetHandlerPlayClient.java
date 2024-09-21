@@ -44,7 +44,6 @@ import net.minecraft.client.player.inventory.ContainerLocalMenu;
 import net.minecraft.client.player.inventory.LocalBlockIntercommunication;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.stream.MetadataAchievement;
 import net.minecraft.client.stream.MetadataCombat;
 import net.minecraft.client.stream.MetadataPlayerDeath;
 import net.minecraft.creativetab.CreativeTabs;
@@ -58,7 +57,6 @@ import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.NpcMerchant;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
-import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -720,12 +718,12 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                 entity = this.gameController.thePlayer;
 
                 if (entity1 instanceof EntityBoat) {
-                    ((EntityBoat) entity1).setIsBoatEmpty(false);
+                    ((EntityBoat) entity1).setBoatEmpty(false);
                 }
 
                 flag = entity.ridingEntity == null && entity1 != null;
             } else if (entity1 instanceof EntityBoat) {
-                ((EntityBoat) entity1).setIsBoatEmpty(true);
+                ((EntityBoat) entity1).setBoatEmpty(true);
             }
 
             if (entity == null) {

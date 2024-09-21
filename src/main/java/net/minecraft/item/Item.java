@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import lombok.Getter;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -33,9 +34,11 @@ public class Item {
     private CreativeTabs tabToDisplayOn;
     protected static Random itemRand = new Random();
     protected int maxStackSize = 64;
+    @Getter
     private int maxDamage;
     protected boolean bFull3D;
     protected boolean hasSubtypes;
+    @Getter
     private Item containerItem;
     private String potionEffect;
     private String unlocalizedName;
@@ -108,10 +111,6 @@ public class Item {
         return this;
     }
 
-    public int getMaxDamage() {
-        return this.maxDamage;
-    }
-
     protected Item setMaxDamage(int maxDamageIn) {
         this.maxDamage = maxDamageIn;
         return this;
@@ -175,10 +174,6 @@ public class Item {
 
     public boolean getShareTag() {
         return true;
-    }
-
-    public Item getContainerItem() {
-        return this.containerItem;
     }
 
     public boolean hasContainerItem() {
@@ -715,6 +710,7 @@ public class Item {
         itemRegistry.register(id, textualID, itemIn);
     }
 
+    @Getter
     public static enum ToolMaterial {
         WOOD(0, 59, 2.0F, 0.0F, 15),
         STONE(1, 131, 4.0F, 1.0F, 5),
@@ -734,26 +730,6 @@ public class Item {
             this.efficiencyOnProperMaterial = efficiency;
             this.damageVsEntity = damageVsEntity;
             this.enchantability = enchantability;
-        }
-
-        public int getMaxUses() {
-            return this.maxUses;
-        }
-
-        public float getEfficiencyOnProperMaterial() {
-            return this.efficiencyOnProperMaterial;
-        }
-
-        public float getDamageVsEntity() {
-            return this.damageVsEntity;
-        }
-
-        public int getHarvestLevel() {
-            return this.harvestLevel;
-        }
-
-        public int getEnchantability() {
-            return this.enchantability;
         }
 
         public Item getRepairItem() {

@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -39,6 +40,7 @@ public abstract class BlockLog extends BlockRotatedPillar {
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
     }
 
+    @Getter
     public static enum EnumAxis implements IStringSerializable {
         X("x"),
         Y("y"),
@@ -71,8 +73,5 @@ public abstract class BlockLog extends BlockRotatedPillar {
             }
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 }

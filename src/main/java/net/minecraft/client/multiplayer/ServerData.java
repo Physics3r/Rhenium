@@ -1,5 +1,7 @@
 package net.minecraft.client.multiplayer;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
@@ -14,6 +16,8 @@ public class ServerData {
     public String gameVersion = "1.8.9";
     public boolean field_78841_f;
     public String playerList;
+    @Setter
+    @Getter
     private ServerData.ServerResourceMode resourceMode = ServerData.ServerResourceMode.PROMPT;
     private String serverIcon;
     private boolean lanServer;
@@ -40,14 +44,6 @@ public class ServerData {
         }
 
         return nbttagcompound;
-    }
-
-    public ServerData.ServerResourceMode getResourceMode() {
-        return this.resourceMode;
-    }
-
-    public void setResourceMode(ServerData.ServerResourceMode mode) {
-        this.resourceMode = mode;
     }
 
     public static ServerData getServerDataFromNBTCompound(NBTTagCompound nbtCompound) {
@@ -90,6 +86,7 @@ public class ServerData {
         this.lanServer = serverDataIn.lanServer;
     }
 
+    @Getter
     public static enum ServerResourceMode {
         ENABLED("enabled"),
         DISABLED("disabled"),
@@ -101,8 +98,5 @@ public class ServerData {
             this.motd = new ChatComponentTranslation("addServer.resourcePack." + name, new Object[0]);
         }
 
-        public IChatComponent getMotd() {
-            return this.motd;
-        }
     }
 }

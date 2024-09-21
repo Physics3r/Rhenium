@@ -3,6 +3,8 @@ package net.minecraft.world.chunk;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -39,19 +41,25 @@ public class Chunk {
     private final boolean[] updateSkylightColumns;
     private boolean isChunkLoaded;
     private final World worldObj;
+    @Getter
     private final int[] heightMap;
     public final int xPosition;
     public final int zPosition;
     private boolean isGapLightingUpdated;
     private final Map<BlockPos, TileEntity> chunkTileEntityMap;
+    @Getter
     private final ClassInheritanceMultiMap<Entity>[] entityLists;
     private boolean isTerrainPopulated;
     private boolean isLightPopulated;
     private boolean field_150815_m;
     private boolean isModified;
+    @Setter
     private boolean hasEntities;
+    @Setter
     private long lastSaveTime;
     private int heightMapMinimum;
+    @Setter
+    @Getter
     private long inhabitedTime;
     private int queuedLightChecks;
     private ConcurrentLinkedQueue<BlockPos> tileEntityPosQueue;
@@ -1180,10 +1188,6 @@ public class Chunk {
         return this.worldObj;
     }
 
-    public int[] getHeightMap() {
-        return this.heightMap;
-    }
-
     public void setHeightMap(int[] newHeightMap) {
         if (this.heightMap.length != newHeightMap.length) {
             logger.warn("Could not set level chunk heightmap, array length is {} instead of {}", newHeightMap.length, this.heightMap.length);
@@ -1196,10 +1200,6 @@ public class Chunk {
 
     public Map<BlockPos, TileEntity> getTileEntityMap() {
         return this.chunkTileEntityMap;
-    }
-
-    public ClassInheritanceMultiMap<Entity>[] getEntityLists() {
-        return this.entityLists;
     }
 
     public boolean isTerrainPopulated() {
@@ -1222,24 +1222,8 @@ public class Chunk {
         this.isModified = modified;
     }
 
-    public void setHasEntities(boolean hasEntitiesIn) {
-        this.hasEntities = hasEntitiesIn;
-    }
-
-    public void setLastSaveTime(long saveTime) {
-        this.lastSaveTime = saveTime;
-    }
-
     public int getLowestHeight() {
         return this.heightMapMinimum;
-    }
-
-    public long getInhabitedTime() {
-        return this.inhabitedTime;
-    }
-
-    public void setInhabitedTime(long newInhabitedTime) {
-        this.inhabitedTime = newInhabitedTime;
     }
 
     public static enum EnumCreateEntityType {

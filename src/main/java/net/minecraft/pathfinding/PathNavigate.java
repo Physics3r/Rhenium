@@ -1,5 +1,6 @@
 package net.minecraft.pathfinding;
 
+import lombok.Setter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,11 +18,13 @@ public abstract class PathNavigate {
     protected EntityLiving theEntity;
     protected World worldObj;
     protected PathEntity currentPath;
+    @Setter
     protected double speed;
     private final IAttributeInstance pathSearchRange;
     private int totalTicks;
     private int ticksAtLastPos;
     private Vec3 lastPosCheck = new Vec3(0.0D, 0.0D, 0.0D);
+    @Setter
     private float heightRequirement = 1.0F;
     private final PathFinder pathFinder;
 
@@ -33,10 +36,6 @@ public abstract class PathNavigate {
     }
 
     protected abstract PathFinder getPathFinder();
-
-    public void setSpeed(double speedIn) {
-        this.speed = speedIn;
-    }
 
     public float getPathSearchRange() {
         return (float) this.pathSearchRange.getAttributeValue();
@@ -64,10 +63,6 @@ public abstract class PathNavigate {
     public boolean tryMoveToXYZ(double x, double y, double z, double speedIn) {
         PathEntity pathentity = this.getPathToXYZ(MathHelper.floor_double(x), (int) y, MathHelper.floor_double(z));
         return this.setPath(pathentity, speedIn);
-    }
-
-    public void setHeightRequirement(float jumpHeight) {
-        this.heightRequirement = jumpHeight;
     }
 
     public PathEntity getPathToEntityLiving(Entity entityIn) {

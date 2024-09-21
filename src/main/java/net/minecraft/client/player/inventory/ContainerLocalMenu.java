@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,6 +14,7 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.LockCode;
 
 public class ContainerLocalMenu extends InventoryBasic implements ILockableContainer {
+    @Getter
     private String guiID;
     private Map<Integer, Integer> field_174895_b = Maps.<Integer, Integer>newHashMap();
 
@@ -42,10 +44,6 @@ public class ContainerLocalMenu extends InventoryBasic implements ILockableConta
 
     public LockCode getLockCode() {
         return LockCode.EMPTY_CODE;
-    }
-
-    public String getGuiID() {
-        return this.guiID;
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {

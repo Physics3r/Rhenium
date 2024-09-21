@@ -87,8 +87,8 @@ public class EntityAIVillagerMate extends EntityAIBase {
         EntityVillager entityvillager = this.villagerObj.createChild(this.mate);
         this.mate.setGrowingAge(6000);
         this.villagerObj.setGrowingAge(6000);
-        this.mate.setIsWillingToMate(false);
-        this.villagerObj.setIsWillingToMate(false);
+        this.mate.setWillingToMate(false);
+        this.villagerObj.setWillingToMate(false);
         entityvillager.setGrowingAge(-24000);
         entityvillager.setLocationAndAngles(this.villagerObj.posX, this.villagerObj.posY, this.villagerObj.posZ, 0.0F, 0.0F);
         this.worldObj.spawnEntityInWorld(entityvillager);

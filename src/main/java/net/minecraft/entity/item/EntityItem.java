@@ -1,5 +1,7 @@
 package net.minecraft.entity.item;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,10 +21,15 @@ import org.apache.logging.log4j.Logger;
 
 public class EntityItem extends Entity {
     private static final Logger logger = LogManager.getLogger();
+    @Getter
     private int age;
     private int delayBeforeCanPickup;
     private int health;
+    @Setter
+    @Getter
     private String thrower;
+    @Setter
+    @Getter
     private String owner;
     public float hoverStart;
 
@@ -325,26 +332,6 @@ public class EntityItem extends Entity {
     public void setEntityItemStack(ItemStack stack) {
         this.getDataWatcher().updateObject(10, stack);
         this.getDataWatcher().setObjectWatched(10);
-    }
-
-    public String getOwner() {
-        return this.owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getThrower() {
-        return this.thrower;
-    }
-
-    public void setThrower(String thrower) {
-        this.thrower = thrower;
-    }
-
-    public int getAge() {
-        return this.age;
     }
 
     public void setDefaultPickupDelay() {

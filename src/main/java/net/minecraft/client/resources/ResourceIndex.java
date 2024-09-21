@@ -11,15 +11,16 @@ import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import lombok.Getter;
 import net.minecraft.util.JsonUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@Getter
 public class ResourceIndex {
     private static final Logger logger = LogManager.getLogger();
     private final Map<String, File> resourceMap = Maps.<String, File>newHashMap();
@@ -56,7 +57,4 @@ public class ResourceIndex {
         }
     }
 
-    public Map<String, File> getResourceMap() {
-        return this.resourceMap;
-    }
 }

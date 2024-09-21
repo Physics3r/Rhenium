@@ -13,6 +13,8 @@ import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Type;
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.JsonUtils;
 
@@ -20,6 +22,8 @@ public class ServerStatusResponse {
     private IChatComponent serverMotd;
     private ServerStatusResponse.PlayerCountData playerCount;
     private ServerStatusResponse.MinecraftProtocolVersionIdentifier protocolVersion;
+    @Setter
+    @Getter
     private String favicon;
 
     public IChatComponent getServerDescription() {
@@ -46,14 +50,7 @@ public class ServerStatusResponse {
         this.protocolVersion = protocolVersionData;
     }
 
-    public void setFavicon(String faviconBlob) {
-        this.favicon = faviconBlob;
-    }
-
-    public String getFavicon() {
-        return this.favicon;
-    }
-
+    @Getter
     public static class MinecraftProtocolVersionIdentifier {
         private final String name;
         private final int protocol;
@@ -61,14 +58,6 @@ public class ServerStatusResponse {
         public MinecraftProtocolVersionIdentifier(String nameIn, int protocolIn) {
             this.name = nameIn;
             this.protocol = protocolIn;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public int getProtocol() {
-            return this.protocol;
         }
 
         public static class Serializer implements JsonDeserializer<ServerStatusResponse.MinecraftProtocolVersionIdentifier>, JsonSerializer<ServerStatusResponse.MinecraftProtocolVersionIdentifier> {
@@ -86,30 +75,16 @@ public class ServerStatusResponse {
         }
     }
 
+    @Getter
     public static class PlayerCountData {
         private final int maxPlayers;
         private final int onlinePlayerCount;
+        @Setter
         private GameProfile[] players;
 
         public PlayerCountData(int maxOnlinePlayers, int onlinePlayers) {
             this.maxPlayers = maxOnlinePlayers;
             this.onlinePlayerCount = onlinePlayers;
-        }
-
-        public int getMaxPlayers() {
-            return this.maxPlayers;
-        }
-
-        public int getOnlinePlayerCount() {
-            return this.onlinePlayerCount;
-        }
-
-        public GameProfile[] getPlayers() {
-            return this.players;
-        }
-
-        public void setPlayers(GameProfile[] playersIn) {
-            this.players = playersIn;
         }
 
         public static class Serializer implements JsonDeserializer<ServerStatusResponse.PlayerCountData>, JsonSerializer<ServerStatusResponse.PlayerCountData> {

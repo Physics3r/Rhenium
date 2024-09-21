@@ -1,11 +1,16 @@
 package net.minecraft.world.storage;
 
+import lombok.Getter;
 import net.minecraft.world.WorldSettings;
 
 public class SaveFormatComparator implements Comparable<SaveFormatComparator> {
+    @Getter
     private final String fileName;
+    @Getter
     private final String displayName;
+    @Getter
     private final long lastTimePlayed;
+    @Getter
     private final long sizeOnDisk;
     private final boolean requiresConversion;
     private final WorldSettings.GameType theEnumGameType;
@@ -23,24 +28,8 @@ public class SaveFormatComparator implements Comparable<SaveFormatComparator> {
         this.cheatsEnabled = cheatsEnabledIn;
     }
 
-    public String getFileName() {
-        return this.fileName;
-    }
-
-    public String getDisplayName() {
-        return this.displayName;
-    }
-
-    public long getSizeOnDisk() {
-        return this.sizeOnDisk;
-    }
-
     public boolean requiresConversion() {
         return this.requiresConversion;
-    }
-
-    public long getLastTimePlayed() {
-        return this.lastTimePlayed;
     }
 
     public int compareTo(SaveFormatComparator p_compareTo_1_) {

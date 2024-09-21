@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockEnderChest;
@@ -31,7 +32,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.chunk.ChunkRenderDispatcher;
@@ -162,6 +162,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private int renderDistanceChunks = -1;
     private int renderEntitiesStartupCounter = 2;
     private int countEntitiesTotal;
+    @Getter
     private int countEntitiesRendered;
     private int countEntitiesHidden;
     private boolean debugFixTerrainFrustum = false;
@@ -190,6 +191,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private int renderDistance = 0;
     private int renderDistanceSq = 0;
     private static final Set SET_ALL_FACINGS = Collections.unmodifiableSet(new HashSet(Arrays.asList(EnumFacing.VALUES)));
+    @Getter
     private int countTileEntitiesRendered;
     private IChunkProvider worldChunkProvider = null;
     private LongHashMap worldChunkProviderMap = null;
@@ -252,11 +254,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 this.entityOutlineShader.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
                 this.entityOutlineFramebuffer = this.entityOutlineShader.getFramebufferRaw("final");
             } catch (IOException ioexception) {
-                logger.warn("Failed to load shader: " + resourcelocation, ioexception);
+                logger.warn("Failed to load shader: {}", resourcelocation, ioexception);
                 this.entityOutlineShader = null;
                 this.entityOutlineFramebuffer = null;
             } catch (JsonSyntaxException jsonsyntaxexception) {
-                logger.warn("Failed to load shader: " + resourcelocation, jsonsyntaxexception);
+                logger.warn("Failed to load shader: {}", resourcelocation, jsonsyntaxexception);
                 this.entityOutlineShader = null;
                 this.entityOutlineFramebuffer = null;
             }
@@ -2753,14 +2755,6 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
     public int getCountActiveRenderers() {
         return this.renderInfos.size();
-    }
-
-    public int getCountEntitiesRendered() {
-        return this.countEntitiesRendered;
-    }
-
-    public int getCountTileEntitiesRendered() {
-        return this.countTileEntitiesRendered;
     }
 
     public int getCountLoadedChunks() {

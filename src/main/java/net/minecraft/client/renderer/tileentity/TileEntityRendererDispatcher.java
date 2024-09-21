@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -36,6 +37,7 @@ import net.optifine.reflect.Reflector;
 public class TileEntityRendererDispatcher {
     public Map<Class, TileEntitySpecialRenderer> mapSpecialRenderers = Maps.newHashMap();
     public static TileEntityRendererDispatcher instance = new TileEntityRendererDispatcher();
+    @Getter
     public FontRenderer fontRenderer;
     public static double staticPlayerX;
     public static double staticPlayerY;
@@ -169,10 +171,6 @@ public class TileEntityRendererDispatcher {
 
     public void setWorld(World worldIn) {
         this.worldObj = worldIn;
-    }
-
-    public FontRenderer getFontRenderer() {
-        return this.fontRenderer;
     }
 
     public void preDrawBatch() {

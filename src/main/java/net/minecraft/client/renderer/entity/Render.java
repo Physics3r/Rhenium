@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -27,10 +29,15 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer {
     private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
+    @Getter
     protected final RenderManager renderManager;
     public float shadowSize;
     protected float shadowOpaque = 1.0F;
+    @Setter
+    @Getter
     private Class entityClass = null;
+    @Setter
+    @Getter
     private ResourceLocation locationTextureCustom = null;
 
     protected Render(RenderManager renderManager) {
@@ -335,31 +342,11 @@ public abstract class Render<T extends Entity> implements IEntityRenderer {
         }
     }
 
-    public RenderManager getRenderManager() {
-        return this.renderManager;
-    }
-
     public boolean isMultipass() {
         return false;
     }
 
     public void renderMultipass(T p_renderMultipass_1_, double p_renderMultipass_2_, double p_renderMultipass_4_, double p_renderMultipass_6_, float p_renderMultipass_8_, float p_renderMultipass_9_) {
-    }
-
-    public Class getEntityClass() {
-        return this.entityClass;
-    }
-
-    public void setEntityClass(Class p_setEntityClass_1_) {
-        this.entityClass = p_setEntityClass_1_;
-    }
-
-    public ResourceLocation getLocationTextureCustom() {
-        return this.locationTextureCustom;
-    }
-
-    public void setLocationTextureCustom(ResourceLocation p_setLocationTextureCustom_1_) {
-        this.locationTextureCustom = p_setLocationTextureCustom_1_;
     }
 
     public static void setModelBipedMain(RenderBiped p_setModelBipedMain_0_, ModelBiped p_setModelBipedMain_1_) {

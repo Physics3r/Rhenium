@@ -23,8 +23,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.text.ParseException;
@@ -38,6 +36,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import org.apache.commons.io.IOUtils;
@@ -229,6 +228,7 @@ public class PlayerProfileCache {
         return arraylist;
     }
 
+    @Getter
     class ProfileEntry {
         private final GameProfile gameProfile;
         private final Date expirationDate;
@@ -238,13 +238,6 @@ public class PlayerProfileCache {
             this.expirationDate = expirationDateIn;
         }
 
-        public GameProfile getGameProfile() {
-            return this.gameProfile;
-        }
-
-        public Date getExpirationDate() {
-            return this.expirationDate;
-        }
     }
 
     class Serializer implements JsonDeserializer<PlayerProfileCache.ProfileEntry>, JsonSerializer<PlayerProfileCache.ProfileEntry> {

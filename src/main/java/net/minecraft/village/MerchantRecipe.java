@@ -1,14 +1,20 @@
 package net.minecraft.village;
 
+import lombok.Getter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class MerchantRecipe {
+    @Getter
     private ItemStack itemToBuy;
+    @Getter
     private ItemStack secondItemToBuy;
+    @Getter
     private ItemStack itemToSell;
+    @Getter
     private int toolUses;
+    @Getter
     private int maxTradeUses;
     private boolean rewardsExp;
 
@@ -37,28 +43,8 @@ public class MerchantRecipe {
         this(buy1, new ItemStack(sellItem));
     }
 
-    public ItemStack getItemToBuy() {
-        return this.itemToBuy;
-    }
-
-    public ItemStack getSecondItemToBuy() {
-        return this.secondItemToBuy;
-    }
-
     public boolean hasSecondItemToBuy() {
         return this.secondItemToBuy != null;
-    }
-
-    public ItemStack getItemToSell() {
-        return this.itemToSell;
-    }
-
-    public int getToolUses() {
-        return this.toolUses;
-    }
-
-    public int getMaxTradeUses() {
-        return this.maxTradeUses;
     }
 
     public void incrementToolUses() {

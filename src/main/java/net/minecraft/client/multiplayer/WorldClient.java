@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -49,6 +50,7 @@ public class WorldClient extends World {
     private final Set<Entity> entitySpawnQueue = Sets.<Entity>newHashSet();
     private final Minecraft mc = Minecraft.getMinecraft();
     private final Set<ChunkCoordIntPair> previousActiveChunkSet = Sets.<ChunkCoordIntPair>newHashSet();
+    @Getter
     private boolean playerUpdate = false;
 
     public WorldClient(NetHandlerPlayClient netHandler, WorldSettings settings, int dimension, EnumDifficulty difficulty, Profiler profilerIn) {
@@ -386,7 +388,4 @@ public class WorldClient extends World {
         }
     }
 
-    public boolean isPlayerUpdate() {
-        return this.playerUpdate;
-    }
 }

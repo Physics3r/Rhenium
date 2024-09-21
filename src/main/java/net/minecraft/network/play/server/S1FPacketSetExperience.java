@@ -2,13 +2,16 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S1FPacketSetExperience implements Packet<INetHandlerPlayClient> {
     private float field_149401_a;
+    @Getter
     private int totalExperience;
+    @Getter
     private int level;
 
     public S1FPacketSetExperience() {
@@ -40,11 +43,4 @@ public class S1FPacketSetExperience implements Packet<INetHandlerPlayClient> {
         return this.field_149401_a;
     }
 
-    public int getTotalExperience() {
-        return this.totalExperience;
-    }
-
-    public int getLevel() {
-        return this.level;
-    }
 }

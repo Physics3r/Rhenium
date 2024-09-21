@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.model.IModelPart;
@@ -35,6 +36,7 @@ public enum ModelRotation implements IModelState, ITransformation {
 
     private static final Map<Integer, ModelRotation> mapRotations = Maps.<Integer, ModelRotation>newHashMap();
     private final int combinedXY;
+    @Getter
     private final Matrix4f matrix4d;
     private final int quartersX;
     private final int quartersY;
@@ -55,10 +57,6 @@ public enum ModelRotation implements IModelState, ITransformation {
         Matrix4f.rotate((float) (-p_i46087_4_) * 0.017453292F, new Vector3f(0.0F, 1.0F, 0.0F), matrix4f1, matrix4f1);
         this.quartersY = MathHelper.abs_int(p_i46087_4_ / 90);
         Matrix4f.mul(matrix4f1, matrix4f, this.matrix4d);
-    }
-
-    public Matrix4f getMatrix4d() {
-        return this.matrix4d;
     }
 
     public EnumFacing rotateFace(EnumFacing p_177523_1_) {

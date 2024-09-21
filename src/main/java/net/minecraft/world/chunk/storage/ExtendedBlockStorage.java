@@ -1,5 +1,7 @@
 package net.minecraft.world.chunk.storage;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -8,10 +10,17 @@ import net.optifine.reflect.Reflector;
 
 public class ExtendedBlockStorage {
     private int yBase;
+    @Getter
     private int blockRefCount;
     private int tickRefCount;
+    @Setter
+    @Getter
     private char[] data;
+    @Setter
+    @Getter
     private NibbleArray blocklightArray;
+    @Setter
+    @Getter
     private NibbleArray skylightArray;
 
     public ExtendedBlockStorage(int y, boolean storeSkylight) {
@@ -119,31 +128,4 @@ public class ExtendedBlockStorage {
         this.tickRefCount = j;
     }
 
-    public char[] getData() {
-        return this.data;
-    }
-
-    public void setData(char[] dataArray) {
-        this.data = dataArray;
-    }
-
-    public NibbleArray getBlocklightArray() {
-        return this.blocklightArray;
-    }
-
-    public NibbleArray getSkylightArray() {
-        return this.skylightArray;
-    }
-
-    public void setBlocklightArray(NibbleArray newBlocklightArray) {
-        this.blocklightArray = newBlocklightArray;
-    }
-
-    public void setSkylightArray(NibbleArray newSkylightArray) {
-        this.skylightArray = newSkylightArray;
-    }
-
-    public int getBlockRefCount() {
-        return this.blockRefCount;
-    }
 }

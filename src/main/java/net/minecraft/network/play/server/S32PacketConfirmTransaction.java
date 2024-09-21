@@ -2,12 +2,15 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S32PacketConfirmTransaction implements Packet<INetHandlerPlayClient> {
+    @Getter
     private int windowId;
+    @Getter
     private short actionNumber;
     private boolean field_148893_c;
 
@@ -34,14 +37,6 @@ public class S32PacketConfirmTransaction implements Packet<INetHandlerPlayClient
         buf.writeByte(this.windowId);
         buf.writeShort(this.actionNumber);
         buf.writeBoolean(this.field_148893_c);
-    }
-
-    public int getWindowId() {
-        return this.windowId;
-    }
-
-    public short getActionNumber() {
-        return this.actionNumber;
     }
 
     public boolean func_148888_e() {

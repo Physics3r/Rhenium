@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -121,7 +120,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable {
                         logger.warn("File {} does not exist, cannot add it to event {}", new Object[]{resourcelocation1, location});
                         continue;
                     } catch (IOException ioexception) {
-                        logger.warn("Could not load sound file " + resourcelocation1 + ", cannot add it to event " + location, ioexception);
+                        logger.warn("Could not load sound file {}, cannot add it to event {}", resourcelocation1, location, ioexception);
                         continue;
                     } finally {
                         IOUtils.closeQuietly(inputstream);

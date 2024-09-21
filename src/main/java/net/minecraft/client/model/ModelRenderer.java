@@ -5,6 +5,8 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
@@ -29,6 +31,7 @@ public class ModelRenderer {
     public float rotateAngleY;
     public float rotateAngleZ;
     private boolean compiled;
+    @Getter
     private int displayList;
     public boolean mirror;
     public boolean showModel;
@@ -46,8 +49,13 @@ public class ModelRenderer {
     public float scaleY;
     public float scaleZ;
     private int countResetDisplayList;
+    @Setter
+    @Getter
     private ResourceLocation textureLocation;
+    @Setter
+    @Getter
     private String id;
+    @Setter
     private ModelUpdater modelUpdater;
     private RenderGlobal renderGlobal;
 
@@ -348,31 +356,11 @@ public class ModelRenderer {
         return this.compiled;
     }
 
-    public int getDisplayList() {
-        return this.displayList;
-    }
-
     private void checkResetDisplayList() {
         if (this.countResetDisplayList != Shaders.countResetDisplayLists) {
             this.compiled = false;
             this.countResetDisplayList = Shaders.countResetDisplayLists;
         }
-    }
-
-    public ResourceLocation getTextureLocation() {
-        return this.textureLocation;
-    }
-
-    public void setTextureLocation(ResourceLocation p_setTextureLocation_1_) {
-        this.textureLocation = p_setTextureLocation_1_;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String p_setId_1_) {
-        this.id = p_setId_1_;
     }
 
     public void addBox(int[][] p_addBox_1_, float p_addBox_2_, float p_addBox_3_, float p_addBox_4_, float p_addBox_5_, float p_addBox_6_, float p_addBox_7_, float p_addBox_8_) {
@@ -420,10 +408,6 @@ public class ModelRenderer {
                 return null;
             }
         }
-    }
-
-    public void setModelUpdater(ModelUpdater p_setModelUpdater_1_) {
-        this.modelUpdater = p_setModelUpdater_1_;
     }
 
     public String toString() {

@@ -1,5 +1,6 @@
 package net.minecraft.command;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Score;
@@ -165,6 +166,7 @@ public class CommandResultStats {
         }
     }
 
+    @Getter
     public static enum Type {
         SUCCESS_COUNT(0, "SuccessCount"),
         AFFECTED_BLOCKS(1, "AffectedBlocks"),
@@ -178,14 +180,6 @@ public class CommandResultStats {
         private Type(int id, String name) {
             this.typeID = id;
             this.typeName = name;
-        }
-
-        public int getTypeID() {
-            return this.typeID;
-        }
-
-        public String getTypeName() {
-            return this.typeName;
         }
 
         public static String[] getTypeNames() {

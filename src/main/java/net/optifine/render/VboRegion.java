@@ -1,5 +1,6 @@
 package net.optifine.render;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.VboRenderList;
@@ -15,6 +16,7 @@ public class VboRegion {
     private EnumWorldBlockLayer layer = null;
     private int glBufferId = OpenGlHelper.glGenBuffers();
     private int capacity = 4096;
+    @Getter
     private int positionTop = 0;
     private int sizeUsed;
     private LinkedList<VboRange> rangeList = new LinkedList();
@@ -256,7 +258,4 @@ public class VboRegion {
         return (int) (bytes / (long) this.vertexBytes);
     }
 
-    public int getPositionTop() {
-        return this.positionTop;
-    }
 }

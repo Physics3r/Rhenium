@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
@@ -13,6 +14,7 @@ public class CrashReportCategory {
     private final CrashReport crashReport;
     private final String name;
     private final List<CrashReportCategory.Entry> children = Lists.<CrashReportCategory.Entry>newArrayList();
+    @Getter
     private StackTraceElement[] stackTrace = new StackTraceElement[0];
 
     public CrashReportCategory(CrashReport report, String name) {
@@ -150,10 +152,6 @@ public class CrashReportCategory {
         }
     }
 
-    public StackTraceElement[] getStackTrace() {
-        return this.stackTrace;
-    }
-
     public static void addBlockInfo(CrashReportCategory category, final BlockPos pos, final Block blockIn, final int blockData) {
         final int i = Block.getIdFromBlock(blockIn);
         category.addCrashSectionCallable("Block type", new Callable<String>() {
@@ -195,6 +193,7 @@ public class CrashReportCategory {
         });
     }
 
+    @Getter
     static class Entry {
         private final String key;
         private final String value;
@@ -212,12 +211,5 @@ public class CrashReportCategory {
             }
         }
 
-        public String getKey() {
-            return this.key;
-        }
-
-        public String getValue() {
-            return this.value;
-        }
     }
 }

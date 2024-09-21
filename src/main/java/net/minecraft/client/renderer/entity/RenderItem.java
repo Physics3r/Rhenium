@@ -3,6 +3,7 @@ package net.minecraft.client.renderer.entity;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -72,6 +73,7 @@ public class RenderItem implements IResourceManagerReloadListener {
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
     private boolean notRenderingEffectsInGUI = true;
     public float zLevel;
+    @Getter
     private final ItemModelMesher itemModelMesher;
     private final TextureManager textureManager;
     private ModelResourceLocation modelLocation = null;
@@ -95,10 +97,6 @@ public class RenderItem implements IResourceManagerReloadListener {
 
     public void isNotRenderingEffectsInGUI(boolean isNot) {
         this.notRenderingEffectsInGUI = isNot;
-    }
-
-    public ItemModelMesher getItemModelMesher() {
-        return this.itemModelMesher;
     }
 
     protected void registerItem(Item itm, int subType, String identifier) {

@@ -5,6 +5,8 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +23,10 @@ public abstract class TileEntity {
     private static final Logger logger = LogManager.getLogger();
     private static Map<String, Class<? extends TileEntity>> nameToClassMap = Maps.<String, Class<? extends TileEntity>>newHashMap();
     private static Map<Class<? extends TileEntity>, String> classToNameMap = Maps.<Class<? extends TileEntity>, String>newHashMap();
+    @Setter
     protected World worldObj;
+    @Setter
+    @Getter
     protected BlockPos pos = BlockPos.ORIGIN;
     protected boolean tileEntityInvalid;
     private int blockMetadata = -1;
@@ -38,10 +43,6 @@ public abstract class TileEntity {
 
     public World getWorld() {
         return this.worldObj;
-    }
-
-    public void setWorldObj(World worldIn) {
-        this.worldObj = worldIn;
     }
 
     public boolean hasWorldObj() {
@@ -119,10 +120,6 @@ public abstract class TileEntity {
         return 4096.0D;
     }
 
-    public BlockPos getPos() {
-        return this.pos;
-    }
-
     public Block getBlockType() {
         if (this.blockType == null) {
             this.blockType = this.worldObj.getBlockState(this.pos).getBlock();
@@ -190,10 +187,6 @@ public abstract class TileEntity {
                 }
             });
         }
-    }
-
-    public void setPos(BlockPos posIn) {
-        this.pos = posIn;
     }
 
     public boolean func_183000_F() {

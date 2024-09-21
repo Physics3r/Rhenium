@@ -1,5 +1,6 @@
 package net.minecraft.world.storage;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +15,7 @@ import java.io.*;
 
 public class SaveHandler implements ISaveHandler, IPlayerFileData {
     private static final Logger logger = LogManager.getLogger();
+    @Getter
     private final File worldDirectory;
     private final File playersDirectory;
     private final File mapDataDir;
@@ -49,10 +51,6 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData {
             ioexception.printStackTrace();
             throw new RuntimeException("Failed to check session lock, aborting");
         }
-    }
-
-    public File getWorldDirectory() {
-        return this.worldDirectory;
     }
 
     public void checkSessionLock() throws MinecraftException {

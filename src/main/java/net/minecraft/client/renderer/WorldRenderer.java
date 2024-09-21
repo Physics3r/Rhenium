@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Comparator;
 
+import lombok.Getter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
@@ -39,8 +40,10 @@ public class WorldRenderer {
     private double xOffset;
     private double yOffset;
     private double zOffset;
+    @Getter
     private VertexFormat vertexFormat;
     private boolean isDrawing;
+    @Getter
     private EnumWorldBlockLayer blockLayer = null;
     private boolean[] drawnIcons = new boolean[256];
     private TextureAtlasSprite[] quadSprites = null;
@@ -626,10 +629,6 @@ public class WorldRenderer {
         return this.modeTriangles ? this.byteBufferTriangles : this.byteBuffer;
     }
 
-    public VertexFormat getVertexFormat() {
-        return this.vertexFormat;
-    }
-
     public int getVertexCount() {
         return this.modeTriangles ? this.vertexCount / 4 * 6 : this.vertexCount;
     }
@@ -813,10 +812,6 @@ public class WorldRenderer {
 
     public double getZOffset() {
         return this.zOffset;
-    }
-
-    public EnumWorldBlockLayer getBlockLayer() {
-        return this.blockLayer;
     }
 
     public void putColorMultiplierRgba(float p_putColorMultiplierRgba_1_, float p_putColorMultiplierRgba_2_, float p_putColorMultiplierRgba_3_, float p_putColorMultiplierRgba_4_, int p_putColorMultiplierRgba_5_) {

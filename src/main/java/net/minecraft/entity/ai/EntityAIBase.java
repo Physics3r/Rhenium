@@ -1,5 +1,10 @@
 package net.minecraft.entity.ai;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public abstract class EntityAIBase {
     private int mutexBits;
 
@@ -22,11 +27,4 @@ public abstract class EntityAIBase {
     public void updateTask() {
     }
 
-    public void setMutexBits(int mutexBitsIn) {
-        this.mutexBits = mutexBitsIn;
-    }
-
-    public int getMutexBits() {
-        return this.mutexBits;
-    }
 }

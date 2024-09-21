@@ -1,5 +1,6 @@
 package net.minecraft.entity.item;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,6 +9,7 @@ import net.minecraft.world.World;
 
 public class EntityTNTPrimed extends Entity {
     public int fuse;
+    @Getter
     private EntityLivingBase tntPlacedBy;
 
     public EntityTNTPrimed(World worldIn) {
@@ -80,10 +82,6 @@ public class EntityTNTPrimed extends Entity {
 
     protected void readEntityFromNBT(NBTTagCompound tagCompund) {
         this.fuse = tagCompund.getByte("Fuse");
-    }
-
-    public EntityLivingBase getTntPlacedBy() {
-        return this.tntPlacedBy;
     }
 
     public float getEyeHeight() {

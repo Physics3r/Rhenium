@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
@@ -50,9 +51,12 @@ public enum EnumParticleTypes {
     ITEM_TAKE("take", 40, false),
     MOB_APPEARANCE("mobappearance", 41, true);
 
+    @Getter
     private final String particleName;
+    @Getter
     private final int particleID;
     private final boolean shouldIgnoreRange;
+    @Getter
     private final int argumentCount;
     private static final Map<Integer, EnumParticleTypes> PARTICLES = Maps.<Integer, EnumParticleTypes>newHashMap();
     private static final String[] PARTICLE_NAMES;
@@ -70,18 +74,6 @@ public enum EnumParticleTypes {
 
     public static String[] getParticleNames() {
         return PARTICLE_NAMES;
-    }
-
-    public String getParticleName() {
-        return this.particleName;
-    }
-
-    public int getParticleID() {
-        return this.particleID;
-    }
-
-    public int getArgumentCount() {
-        return this.argumentCount;
     }
 
     public boolean getShouldIgnoreRange() {

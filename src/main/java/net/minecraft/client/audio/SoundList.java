@@ -1,24 +1,20 @@
 package net.minecraft.client.audio;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 public class SoundList {
+    @Getter
     private final List<SoundList.SoundEntry> soundList = Lists.<SoundList.SoundEntry>newArrayList();
+    @Setter
     private boolean replaceExisting;
     private SoundCategory category;
 
-    public List<SoundList.SoundEntry> getSoundList() {
-        return this.soundList;
-    }
-
     public boolean canReplaceExisting() {
         return this.replaceExisting;
-    }
-
-    public void setReplaceExisting(boolean p_148572_1_) {
-        this.replaceExisting = p_148572_1_;
     }
 
     public SoundCategory getSoundCategory() {
@@ -35,6 +31,8 @@ public class SoundList {
         private float pitch = 1.0F;
         private int weight = 1;
         private SoundList.SoundEntry.Type type = SoundList.SoundEntry.Type.FILE;
+        @Setter
+        @Getter
         private boolean streaming = false;
 
         public String getSoundEntryName() {
@@ -75,14 +73,6 @@ public class SoundList {
 
         public void setSoundEntryType(SoundList.SoundEntry.Type typeIn) {
             this.type = typeIn;
-        }
-
-        public boolean isStreaming() {
-            return this.streaming;
-        }
-
-        public void setStreaming(boolean isStreaming) {
-            this.streaming = isStreaming;
         }
 
         public static enum Type {

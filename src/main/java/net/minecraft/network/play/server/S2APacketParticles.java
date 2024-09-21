@@ -2,12 +2,14 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.EnumParticleTypes;
 
 public class S2APacketParticles implements Packet<INetHandlerPlayClient> {
+    @Getter
     private EnumParticleTypes particleType;
     private float xCoord;
     private float yCoord;
@@ -15,8 +17,11 @@ public class S2APacketParticles implements Packet<INetHandlerPlayClient> {
     private float xOffset;
     private float yOffset;
     private float zOffset;
+    @Getter
     private float particleSpeed;
+    @Getter
     private int particleCount;
+    @Getter
     private boolean longDistance;
     private int[] particleArguments;
 
@@ -79,14 +84,6 @@ public class S2APacketParticles implements Packet<INetHandlerPlayClient> {
         }
     }
 
-    public EnumParticleTypes getParticleType() {
-        return this.particleType;
-    }
-
-    public boolean isLongDistance() {
-        return this.longDistance;
-    }
-
     public double getXCoordinate() {
         return this.xCoord;
     }
@@ -109,14 +106,6 @@ public class S2APacketParticles implements Packet<INetHandlerPlayClient> {
 
     public float getZOffset() {
         return this.zOffset;
-    }
-
-    public float getParticleSpeed() {
-        return this.particleSpeed;
-    }
-
-    public int getParticleCount() {
-        return this.particleCount;
     }
 
     public int[] getParticleArgs() {

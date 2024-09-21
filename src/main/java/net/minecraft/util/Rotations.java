@@ -1,8 +1,10 @@
 package net.minecraft.util;
 
+import lombok.Getter;
 import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.nbt.NBTTagList;
 
+@Getter
 public class Rotations {
     protected final float x;
     protected final float y;
@@ -37,15 +39,4 @@ public class Rotations {
         }
     }
 
-    public float getX() {
-        return this.x;
-    }
-
-    public float getY() {
-        return this.y;
-    }
-
-    public float getZ() {
-        return this.z;
-    }
 }

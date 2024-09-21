@@ -3,6 +3,7 @@ package net.minecraft.block;
 import java.util.List;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -113,6 +114,7 @@ public abstract class BlockStoneSlabNew extends BlockSlab {
 
         private static final BlockStoneSlabNew.EnumType[] META_LOOKUP = new BlockStoneSlabNew.EnumType[values().length];
         private final int meta;
+        @Getter
         private final String name;
         private final MapColor field_181069_e;
 
@@ -140,10 +142,6 @@ public abstract class BlockStoneSlabNew extends BlockSlab {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         public String getUnlocalizedName() {

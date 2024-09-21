@@ -2,11 +2,13 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.IChatComponent;
 
+@Getter
 public class S47PacketPlayerListHeaderFooter implements Packet<INetHandlerPlayClient> {
     private IChatComponent header;
     private IChatComponent footer;
@@ -32,11 +34,4 @@ public class S47PacketPlayerListHeaderFooter implements Packet<INetHandlerPlayCl
         handler.handlePlayerListHeaderFooter(this);
     }
 
-    public IChatComponent getHeader() {
-        return this.header;
-    }
-
-    public IChatComponent getFooter() {
-        return this.footer;
-    }
 }

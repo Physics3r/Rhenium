@@ -3,6 +3,7 @@ package net.minecraft.network.play.server;
 import java.io.IOException;
 import java.util.Collection;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -10,6 +11,7 @@ import net.minecraft.util.Vec4b;
 import net.minecraft.world.storage.MapData;
 
 public class S34PacketMaps implements Packet<INetHandlerPlayClient> {
+    @Getter
     private int mapId;
     private byte mapScale;
     private Vec4b[] mapVisiblePlayersVec4b;
@@ -82,10 +84,6 @@ public class S34PacketMaps implements Packet<INetHandlerPlayClient> {
 
     public void processPacket(INetHandlerPlayClient handler) {
         handler.handleMaps(this);
-    }
-
-    public int getMapId() {
-        return this.mapId;
     }
 
     public void setMapdataTo(MapData mapdataIn) {

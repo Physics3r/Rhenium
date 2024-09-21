@@ -2,12 +2,14 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S48PacketResourcePackSend implements Packet<INetHandlerPlayClient> {
     private String url;
+    @Getter
     private String hash;
 
     public S48PacketResourcePackSend() {
@@ -40,7 +42,4 @@ public class S48PacketResourcePackSend implements Packet<INetHandlerPlayClient> 
         return this.url;
     }
 
-    public String getHash() {
-        return this.hash;
-    }
 }

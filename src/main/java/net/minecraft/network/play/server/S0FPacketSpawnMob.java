@@ -3,6 +3,7 @@ package net.minecraft.network.play.server;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,14 +15,23 @@ import net.minecraft.util.MathHelper;
 public class S0FPacketSpawnMob implements Packet<INetHandlerPlayClient> {
     private int entityId;
     private int type;
+    @Getter
     private int x;
+    @Getter
     private int y;
+    @Getter
     private int z;
+    @Getter
     private int velocityX;
+    @Getter
     private int velocityY;
+    @Getter
     private int velocityZ;
+    @Getter
     private byte yaw;
+    @Getter
     private byte pitch;
+    @Getter
     private byte headPitch;
     private DataWatcher field_149043_l;
     private List<DataWatcher.WatchableObject> watcher;
@@ -123,39 +133,4 @@ public class S0FPacketSpawnMob implements Packet<INetHandlerPlayClient> {
         return this.type;
     }
 
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public int getZ() {
-        return this.z;
-    }
-
-    public int getVelocityX() {
-        return this.velocityX;
-    }
-
-    public int getVelocityY() {
-        return this.velocityY;
-    }
-
-    public int getVelocityZ() {
-        return this.velocityZ;
-    }
-
-    public byte getYaw() {
-        return this.yaw;
-    }
-
-    public byte getPitch() {
-        return this.pitch;
-    }
-
-    public byte getHeadPitch() {
-        return this.headPitch;
-    }
 }

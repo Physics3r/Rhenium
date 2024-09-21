@@ -2,6 +2,7 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -9,11 +10,14 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.MathHelper;
 
 public class S18PacketEntityTeleport implements Packet<INetHandlerPlayClient> {
+    @Getter
     private int entityId;
     private int posX;
     private int posY;
     private int posZ;
+    @Getter
     private byte yaw;
+    @Getter
     private byte pitch;
     private boolean onGround;
 
@@ -64,10 +68,6 @@ public class S18PacketEntityTeleport implements Packet<INetHandlerPlayClient> {
         handler.handleEntityTeleport(this);
     }
 
-    public int getEntityId() {
-        return this.entityId;
-    }
-
     public int getX() {
         return this.posX;
     }
@@ -78,14 +78,6 @@ public class S18PacketEntityTeleport implements Packet<INetHandlerPlayClient> {
 
     public int getZ() {
         return this.posZ;
-    }
-
-    public byte getYaw() {
-        return this.yaw;
-    }
-
-    public byte getPitch() {
-        return this.pitch;
     }
 
     public boolean getOnGround() {

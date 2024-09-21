@@ -1,6 +1,8 @@
 package net.minecraft.tileentity;
 
 import com.google.gson.JsonParseException;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
@@ -23,7 +25,10 @@ public class TileEntitySign extends TileEntity {
     public final IChatComponent[] signText = new IChatComponent[]{new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText("")};
     public int lineBeingEdited = -1;
     private boolean isEditable = true;
+    @Setter
+    @Getter
     private EntityPlayer player;
+    @Getter
     private final CommandResultStats stats = new CommandResultStats();
 
     public void writeToNBT(NBTTagCompound compound) {
@@ -121,14 +126,6 @@ public class TileEntitySign extends TileEntity {
         }
     }
 
-    public void setPlayer(EntityPlayer playerIn) {
-        this.player = playerIn;
-    }
-
-    public EntityPlayer getPlayer() {
-        return this.player;
-    }
-
     public boolean executeCommand(final EntityPlayer playerIn) {
         ICommandSender icommandsender = new ICommandSender() {
             public String getName() {
@@ -186,7 +183,4 @@ public class TileEntitySign extends TileEntity {
         return true;
     }
 
-    public CommandResultStats getStats() {
-        return this.stats;
-    }
 }

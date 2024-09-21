@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ICommandSender;
@@ -21,20 +23,16 @@ import net.minecraft.world.World;
 
 public abstract class CommandBlockLogic implements ICommandSender {
     private static final SimpleDateFormat timestampFormat = new SimpleDateFormat("HH:mm:ss");
+    @Getter
     private int successCount;
+    @Setter
     private boolean trackOutput = true;
+    @Setter
+    @Getter
     private IChatComponent lastOutput = null;
     private String commandStored = "";
     private String customName = "@";
     private final CommandResultStats resultStats = new CommandResultStats();
-
-    public int getSuccessCount() {
-        return this.successCount;
-    }
-
-    public IChatComponent getLastOutput() {
-        return this.lastOutput;
-    }
 
     public void writeDataToNBT(NBTTagCompound tagCompound) {
         tagCompound.setString("Command", this.commandStored);
@@ -147,14 +145,6 @@ public abstract class CommandBlockLogic implements ICommandSender {
     public abstract int func_145751_f();
 
     public abstract void func_145757_a(ByteBuf p_145757_1_);
-
-    public void setLastOutput(IChatComponent lastOutputMessage) {
-        this.lastOutput = lastOutputMessage;
-    }
-
-    public void setTrackOutput(boolean shouldTrackOutput) {
-        this.trackOutput = shouldTrackOutput;
-    }
 
     public boolean shouldTrackOutput() {
         return this.trackOutput;

@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -55,7 +56,9 @@ public class BlockStoneBrick extends Block {
 
         private static final BlockStoneBrick.EnumType[] META_LOOKUP = new BlockStoneBrick.EnumType[values().length];
         private final int meta;
+        @Getter
         private final String name;
+        @Getter
         private final String unlocalizedName;
 
         private EnumType(int meta, String name, String unlocalizedName) {
@@ -78,14 +81,6 @@ public class BlockStoneBrick extends Block {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

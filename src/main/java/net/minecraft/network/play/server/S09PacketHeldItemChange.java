@@ -2,10 +2,12 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 
+@Getter
 public class S09PacketHeldItemChange implements Packet<INetHandlerPlayClient> {
     private int heldItemHotbarIndex;
 
@@ -28,7 +30,4 @@ public class S09PacketHeldItemChange implements Packet<INetHandlerPlayClient> {
         handler.handleHeldItemChange(this);
     }
 
-    public int getHeldItemHotbarIndex() {
-        return this.heldItemHotbarIndex;
-    }
 }

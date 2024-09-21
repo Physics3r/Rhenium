@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.block.model;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.src.Config;
@@ -11,6 +12,7 @@ import net.optifine.reflect.Reflector;
 
 public class BakedQuad implements IVertexProducer {
     protected int[] vertexData;
+    @Getter
     protected final int tintIndex;
     protected EnumFacing face;
     protected TextureAtlasSprite sprite;
@@ -49,10 +51,6 @@ public class BakedQuad implements IVertexProducer {
 
     public boolean hasTintIndex() {
         return this.tintIndex != -1;
-    }
-
-    public int getTintIndex() {
-        return this.tintIndex;
     }
 
     public EnumFacing getFace() {

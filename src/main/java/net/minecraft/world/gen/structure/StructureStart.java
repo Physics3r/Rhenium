@@ -4,11 +4,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 
+@Getter
 public abstract class StructureStart {
     protected LinkedList<StructureComponent> components = new LinkedList();
     protected StructureBoundingBox boundingBox;
@@ -21,14 +23,6 @@ public abstract class StructureStart {
     public StructureStart(int chunkX, int chunkZ) {
         this.chunkPosX = chunkX;
         this.chunkPosZ = chunkZ;
-    }
-
-    public StructureBoundingBox getBoundingBox() {
-        return this.boundingBox;
-    }
-
-    public LinkedList<StructureComponent> getComponents() {
-        return this.components;
     }
 
     public void generateStructure(World worldIn, Random rand, StructureBoundingBox structurebb) {
@@ -136,11 +130,4 @@ public abstract class StructureStart {
     public void func_175787_b(ChunkCoordIntPair pair) {
     }
 
-    public int getChunkPosX() {
-        return this.chunkPosX;
-    }
-
-    public int getChunkPosZ() {
-        return this.chunkPosZ;
-    }
 }

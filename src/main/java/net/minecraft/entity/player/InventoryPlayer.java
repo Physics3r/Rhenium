@@ -2,6 +2,8 @@ package net.minecraft.entity.player;
 
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -22,6 +24,8 @@ public class InventoryPlayer implements IInventory {
     public ItemStack[] armorInventory = new ItemStack[4];
     public int currentItem;
     public EntityPlayer player;
+    @Setter
+    @Getter
     private ItemStack itemStack;
     public boolean inventoryChanged;
 
@@ -523,14 +527,6 @@ public class InventoryPlayer implements IInventory {
 
     public void markDirty() {
         this.inventoryChanged = true;
-    }
-
-    public void setItemStack(ItemStack itemStackIn) {
-        this.itemStack = itemStackIn;
-    }
-
-    public ItemStack getItemStack() {
-        return this.itemStack;
     }
 
     public boolean isUseableByPlayer(EntityPlayer player) {

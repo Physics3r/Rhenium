@@ -3,6 +3,7 @@ package net.minecraft.network.play.server;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -10,6 +11,7 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S30PacketWindowItems implements Packet<INetHandlerPlayClient> {
     private int windowId;
+    @Getter
     private ItemStack[] itemStacks;
 
     public S30PacketWindowItems() {
@@ -52,7 +54,4 @@ public class S30PacketWindowItems implements Packet<INetHandlerPlayClient> {
         return this.windowId;
     }
 
-    public ItemStack[] getItemStacks() {
-        return this.itemStacks;
-    }
 }

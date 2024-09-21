@@ -4,10 +4,12 @@ import com.mojang.authlib.GameProfile;
 
 import java.net.SocketAddress;
 
+import lombok.Getter;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.management.ServerConfigurationManager;
 
+@Getter
 public class IntegratedPlayerList extends ServerConfigurationManager {
     private NBTTagCompound hostPlayerData;
 
@@ -33,7 +35,4 @@ public class IntegratedPlayerList extends ServerConfigurationManager {
         return (IntegratedServer) super.getServerInstance();
     }
 
-    public NBTTagCompound getHostPlayerData() {
-        return this.hostPlayerData;
-    }
 }

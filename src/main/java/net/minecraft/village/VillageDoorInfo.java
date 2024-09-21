@@ -1,14 +1,19 @@
 package net.minecraft.village;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
 public class VillageDoorInfo {
+    @Getter
     private final BlockPos doorBlockPos;
     private final BlockPos insideBlock;
     private final EnumFacing insideDirection;
     private int lastActivityTimestamp;
+    @Setter
     private boolean isDetachedFromVillageFlag;
+    @Getter
     private int doorOpeningRestrictionCounter;
 
     public VillageDoorInfo(BlockPos pos, int p_i45871_2_, int p_i45871_3_, int p_i45871_4_) {
@@ -52,14 +57,6 @@ public class VillageDoorInfo {
         ++this.doorOpeningRestrictionCounter;
     }
 
-    public int getDoorOpeningRestrictionCounter() {
-        return this.doorOpeningRestrictionCounter;
-    }
-
-    public BlockPos getDoorBlockPos() {
-        return this.doorBlockPos;
-    }
-
     public BlockPos getInsideBlockPos() {
         return this.insideBlock;
     }
@@ -84,7 +81,4 @@ public class VillageDoorInfo {
         return this.isDetachedFromVillageFlag;
     }
 
-    public void setIsDetachedFromVillageFlag(boolean detached) {
-        this.isDetachedFromVillageFlag = detached;
-    }
 }

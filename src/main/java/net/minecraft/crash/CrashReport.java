@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.text.SimpleDateFormat;
@@ -14,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.gen.layer.IntCache;
 import net.optifine.CrashReporter;
@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CrashReport {
     private static final Logger logger = LogManager.getLogger();
+    @Getter
     private final String description;
     private final Throwable cause;
     private final CrashReportCategory theReportCategory = new CrashReportCategory(this, "System Details");
@@ -103,10 +104,6 @@ public class CrashReport {
             Object object = Reflector.call(Reflector.FMLCommonHandler_instance, new Object[0]);
             Reflector.callString(object, Reflector.FMLCommonHandler_enhanceCrashReport, new Object[]{this, this.theReportCategory});
         }
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public Throwable getCrashCause() {

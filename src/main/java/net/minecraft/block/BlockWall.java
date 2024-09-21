@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -136,7 +137,9 @@ public class BlockWall extends Block {
 
         private static final BlockWall.EnumType[] META_LOOKUP = new BlockWall.EnumType[values().length];
         private final int meta;
+        @Getter
         private final String name;
+        @Getter
         private String unlocalizedName;
 
         private EnumType(int meta, String name, String unlocalizedName) {
@@ -159,14 +162,6 @@ public class BlockWall extends Block {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

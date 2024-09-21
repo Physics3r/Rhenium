@@ -4,6 +4,7 @@ import io.netty.buffer.Unpooled;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,6 +27,7 @@ import org.apache.logging.log4j.Logger;
 public class GuiMerchant extends GuiContainer {
     private static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation MERCHANT_GUI_TEXTURE = new ResourceLocation("textures/gui/container/villager.png");
+    @Getter
     private IMerchant merchant;
     private GuiMerchant.MerchantButton nextButton;
     private GuiMerchant.MerchantButton previousButton;
@@ -168,10 +170,6 @@ public class GuiMerchant extends GuiContainer {
             GlStateManager.enableDepth();
             RenderHelper.enableStandardItemLighting();
         }
-    }
-
-    public IMerchant getMerchant() {
-        return this.merchant;
     }
 
     static class MerchantButton extends GuiButton {

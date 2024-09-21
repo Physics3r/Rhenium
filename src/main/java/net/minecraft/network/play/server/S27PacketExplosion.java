@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -15,7 +16,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient> {
     private double posX;
     private double posY;
     private double posZ;
+    @Getter
     private float strength;
+    @Getter
     private List<BlockPos> affectedBlockPositions;
     private float field_149152_f;
     private float field_149153_g;
@@ -113,11 +116,4 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient> {
         return this.posZ;
     }
 
-    public float getStrength() {
-        return this.strength;
-    }
-
-    public List<BlockPos> getAffectedBlockPositions() {
-        return this.affectedBlockPositions;
-    }
 }

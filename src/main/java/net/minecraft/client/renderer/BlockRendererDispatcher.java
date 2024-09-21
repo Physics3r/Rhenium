@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -18,8 +19,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
 
 public class BlockRendererDispatcher implements IResourceManagerReloadListener {
+    @Getter
     private BlockModelShapes blockModelShapes;
     private final GameSettings gameSettings;
+    @Getter
     private final BlockModelRenderer blockModelRenderer = new BlockModelRenderer();
     private final ChestRenderer chestRenderer = new ChestRenderer();
     private final BlockFluidRenderer fluidRenderer = new BlockFluidRenderer();
@@ -27,10 +30,6 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener {
     public BlockRendererDispatcher(BlockModelShapes blockModelShapesIn, GameSettings gameSettingsIn) {
         this.blockModelShapes = blockModelShapesIn;
         this.gameSettings = gameSettingsIn;
-    }
-
-    public BlockModelShapes getBlockModelShapes() {
-        return this.blockModelShapes;
     }
 
     public void renderBlockDamage(IBlockState state, BlockPos pos, TextureAtlasSprite texture, IBlockAccess blockAccess) {
@@ -73,10 +72,6 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener {
             CrashReportCategory.addBlockInfo(crashreportcategory, pos, state.getBlock(), state.getBlock().getMetaFromState(state));
             throw new ReportedException(crashreport);
         }
-    }
-
-    public BlockModelRenderer getBlockModelRenderer() {
-        return this.blockModelRenderer;
     }
 
     private IBakedModel getBakedModel(IBlockState state, BlockPos pos) {

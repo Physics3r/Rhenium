@@ -2,11 +2,13 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.EnumDifficulty;
 
+@Getter
 public class S41PacketServerDifficulty implements Packet<INetHandlerPlayClient> {
     private EnumDifficulty difficulty;
     private boolean difficultyLocked;
@@ -31,11 +33,4 @@ public class S41PacketServerDifficulty implements Packet<INetHandlerPlayClient> 
         buf.writeByte(this.difficulty.getDifficultyId());
     }
 
-    public boolean isDifficultyLocked() {
-        return this.difficultyLocked;
-    }
-
-    public EnumDifficulty getDifficulty() {
-        return this.difficulty;
-    }
 }

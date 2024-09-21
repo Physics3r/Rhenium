@@ -4,10 +4,10 @@ import com.google.common.collect.Maps;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonException;
@@ -18,6 +18,7 @@ import org.lwjgl.BufferUtils;
 
 public class ShaderLoader {
     private final ShaderLoader.ShaderType shaderType;
+    @Getter
     private final String shaderFilename;
     private int shader;
     private int shaderAttachCount = 0;
@@ -40,10 +41,6 @@ public class ShaderLoader {
             OpenGlHelper.glDeleteShader(this.shader);
             this.shaderType.getLoadedShaders().remove(this.shaderFilename);
         }
-    }
-
-    public String getShaderFilename() {
-        return this.shaderFilename;
     }
 
     public static ShaderLoader loadShader(IResourceManager resourceManager, ShaderLoader.ShaderType type, String filename) throws IOException {
@@ -90,6 +87,7 @@ public class ShaderLoader {
         VERTEX("vertex", ".vsh", OpenGlHelper.GL_VERTEX_SHADER),
         FRAGMENT("fragment", ".fsh", OpenGlHelper.GL_FRAGMENT_SHADER);
 
+        @Getter
         private final String shaderName;
         private final String shaderExtension;
         private final int shaderMode;
@@ -99,10 +97,6 @@ public class ShaderLoader {
             this.shaderName = p_i45090_3_;
             this.shaderExtension = p_i45090_4_;
             this.shaderMode = p_i45090_5_;
-        }
-
-        public String getShaderName() {
-            return this.shaderName;
         }
 
         protected String getShaderExtension() {

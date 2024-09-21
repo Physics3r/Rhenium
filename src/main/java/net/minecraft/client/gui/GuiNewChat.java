@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class GuiNewChat extends Gui {
     private static final Logger logger = LogManager.getLogger();
     private final Minecraft mc;
+    @Getter
     private final List<String> sentMessages = Lists.<String>newArrayList();
     private final List<ChatLine> chatLines = Lists.<ChatLine>newArrayList();
     private final List<ChatLine> drawnChatLines = Lists.<ChatLine>newArrayList();
@@ -156,10 +158,6 @@ public class GuiNewChat extends Gui {
             ChatLine chatline = this.chatLines.get(i);
             this.setChatLine(chatline.getChatComponent(), chatline.getChatLineID(), chatline.getUpdatedCounter(), true);
         }
-    }
-
-    public List<String> getSentMessages() {
-        return this.sentMessages;
     }
 
     public void addToSentMessages(String message) {

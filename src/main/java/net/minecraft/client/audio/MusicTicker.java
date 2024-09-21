@@ -2,6 +2,7 @@ package net.minecraft.client.audio;
 
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
@@ -51,6 +52,7 @@ public class MusicTicker implements ITickable {
         }
     }
 
+    @Getter
     public static enum MusicType {
         MENU(new ResourceLocation("minecraft:music.menu"), 20, 600),
         GAME(new ResourceLocation("minecraft:music.game"), 12000, 24000),
@@ -70,16 +72,5 @@ public class MusicTicker implements ITickable {
             this.maxDelay = maxDelayIn;
         }
 
-        public ResourceLocation getMusicLocation() {
-            return this.musicLocation;
-        }
-
-        public int getMinDelay() {
-            return this.minDelay;
-        }
-
-        public int getMaxDelay() {
-            return this.maxDelay;
-        }
     }
 }

@@ -3,6 +3,7 @@ package net.minecraft.world;
 import java.util.Set;
 import java.util.TreeMap;
 
+import lombok.Getter;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class GameRules {
@@ -92,6 +93,7 @@ public class GameRules {
         private boolean valueBoolean;
         private int valueInteger;
         private double valueDouble;
+        @Getter
         private final GameRules.ValueType type;
 
         public Value(String value, GameRules.ValueType type) {
@@ -142,9 +144,6 @@ public class GameRules {
             return this.valueInteger;
         }
 
-        public GameRules.ValueType getType() {
-            return this.type;
-        }
     }
 
     public static enum ValueType {

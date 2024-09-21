@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Map.Entry;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDurability;
@@ -39,9 +41,14 @@ public final class ItemStack {
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("#.###");
     public int stackSize;
     public int animationsToGo;
+    @Setter
+    @Getter
     private Item item;
     private NBTTagCompound stackTagCompound;
+    @Getter
     private int itemDamage;
+    @Setter
+    @Getter
     private EntityItemFrame itemFrame;
     private Block canDestroyCacheBlock;
     private boolean canDestroyCacheResult;
@@ -104,10 +111,6 @@ public final class ItemStack {
 
         this.stackSize -= amount;
         return itemstack;
-    }
-
-    public Item getItem() {
-        return this.item;
     }
 
     public boolean onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -186,10 +189,6 @@ public final class ItemStack {
 
     public boolean isItemDamaged() {
         return this.isItemStackDamageable() && this.itemDamage > 0;
-    }
-
-    public int getItemDamage() {
-        return this.itemDamage;
     }
 
     public int getMetadata() {
@@ -645,14 +644,6 @@ public final class ItemStack {
         return this.itemFrame != null;
     }
 
-    public void setItemFrame(EntityItemFrame frame) {
-        this.itemFrame = frame;
-    }
-
-    public EntityItemFrame getItemFrame() {
-        return this.itemFrame;
-    }
-
     public int getRepairCost() {
         return this.hasTagCompound() && this.stackTagCompound.hasKey("RepairCost", 3) ? this.stackTagCompound.getInteger("RepairCost") : 0;
     }
@@ -685,10 +676,6 @@ public final class ItemStack {
         }
 
         return multimap;
-    }
-
-    public void setItem(Item newItem) {
-        this.item = newItem;
     }
 
     public IChatComponent getChatComponent() {

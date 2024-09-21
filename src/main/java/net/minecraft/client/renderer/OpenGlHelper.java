@@ -6,6 +6,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;
@@ -77,6 +78,7 @@ public class OpenGlHelper {
     public static boolean extBlendFuncSeparate;
     public static boolean openGL21;
     public static boolean shadersSupported;
+    @Getter
     private static String logText = "";
     private static String cpu;
     public static boolean vboSupported;
@@ -303,10 +305,6 @@ public class OpenGlHelper {
 
     public static boolean areShadersSupported() {
         return shadersSupported;
-    }
-
-    public static String getLogText() {
-        return logText;
     }
 
     public static int glGetProgrami(int program, int pname) {

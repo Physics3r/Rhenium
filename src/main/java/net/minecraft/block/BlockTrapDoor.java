@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -217,6 +218,7 @@ public class BlockTrapDoor extends Block {
         return new BlockState(this, new IProperty[]{FACING, OPEN, HALF});
     }
 
+    @Getter
     public static enum DoorHalf implements IStringSerializable {
         TOP("top"),
         BOTTOM("bottom");
@@ -231,8 +233,5 @@ public class BlockTrapDoor extends Block {
             return this.name;
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 }

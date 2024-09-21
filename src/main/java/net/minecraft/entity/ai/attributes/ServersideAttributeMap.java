@@ -6,9 +6,11 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.Getter;
 import net.minecraft.server.management.LowerStringMap;
 
 public class ServersideAttributeMap extends BaseAttributeMap {
+    @Getter
     private final Set<IAttributeInstance> attributeInstanceSet = Sets.<IAttributeInstance>newHashSet();
     protected final Map<String, IAttributeInstance> descriptionToAttributeInstanceMap = new LowerStringMap();
 
@@ -52,10 +54,6 @@ public class ServersideAttributeMap extends BaseAttributeMap {
                 modifiableattributeinstance.flagForUpdate();
             }
         }
-    }
-
-    public Set<IAttributeInstance> getAttributeInstanceSet() {
-        return this.attributeInstanceSet;
     }
 
     public Collection<IAttributeInstance> getWatchedAttributes() {

@@ -2,10 +2,12 @@ package net.minecraft.network.play.client;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
 
+@Getter
 public class C09PacketHeldItemChange implements Packet<INetHandlerPlayServer> {
     private int slotId;
 
@@ -28,7 +30,4 @@ public class C09PacketHeldItemChange implements Packet<INetHandlerPlayServer> {
         handler.processHeldItemChange(this);
     }
 
-    public int getSlotId() {
-        return this.slotId;
-    }
 }

@@ -13,11 +13,13 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.Map.Entry;
 
+import lombok.Getter;
 import net.minecraft.util.HttpUtil;
 
 public class PlayerUsageSnooper {
     private final Map<String, Object> snooperStats = Maps.<String, Object>newHashMap();
     private final Map<String, Object> clientStats = Maps.<String, Object>newHashMap();
+    @Getter
     private final String uniqueID = UUID.randomUUID().toString();
     private final URL serverUrl;
     private final IPlayerUsage playerStatsCollector;
@@ -135,10 +137,6 @@ public class PlayerUsageSnooper {
 
     public void stopSnooper() {
         this.threadTrigger.cancel();
-    }
-
-    public String getUniqueID() {
-        return this.uniqueID;
     }
 
     public long getMinecraftStartTimeMillis() {

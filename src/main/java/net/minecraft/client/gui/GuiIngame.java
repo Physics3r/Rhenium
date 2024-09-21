@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -54,6 +55,7 @@ public class GuiIngame extends Gui {
     private final Minecraft mc;
     private final RenderItem itemRenderer;
     private final GuiNewChat persistantChatGUI;
+    @Getter
     private int updateCounter;
     private String recordPlaying = "";
     private int recordPlayingUpFor;
@@ -62,6 +64,7 @@ public class GuiIngame extends Gui {
     private int remainingHighlightTicks;
     private ItemStack highlightingItemStack;
     private final GuiOverlayDebug overlayDebug;
+    @Getter
     private final GuiSpectator spectatorGui;
     private final GuiPlayerTabOverlay overlayPlayerList;
     private int titlesTimer;
@@ -963,16 +966,8 @@ public class GuiIngame extends Gui {
         return this.persistantChatGUI;
     }
 
-    public int getUpdateCounter() {
-        return this.updateCounter;
-    }
-
     public FontRenderer getFontRenderer() {
         return this.mc.fontRendererObj;
-    }
-
-    public GuiSpectator getSpectatorGui() {
-        return this.spectatorGui;
     }
 
     public GuiPlayerTabOverlay getTabList() {

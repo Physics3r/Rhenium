@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.chunk;
 
 import com.google.common.collect.Sets;
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockRedstoneWire;
@@ -42,8 +43,11 @@ public class RenderChunk {
     private final World world;
     private final RenderGlobal renderGlobal;
     public static int renderChunksUpdated;
+    @Getter
     private BlockPos position;
+    @Getter
     public CompiledChunk compiledChunk = CompiledChunk.DUMMY;
+    @Getter
     private final ReentrantLock lockCompileTask = new ReentrantLock();
     private final ReentrantLock lockCompiledChunk = new ReentrantLock();
     private ChunkCompileTaskGenerator compileTask = null;
@@ -53,6 +57,7 @@ public class RenderChunk {
     private final VertexBuffer[] vertexBuffers = new VertexBuffer[EnumWorldBlockLayer.values().length];
     public AxisAlignedBB boundingBox;
     private int frameIndex = -1;
+    @Getter
     private boolean needsUpdate = true;
     private EnumMap<EnumFacing, BlockPos> mapEnumFacing = null;
     private BlockPos[] positionOffsets16 = new BlockPos[EnumFacing.VALUES.length];
@@ -60,6 +65,7 @@ public class RenderChunk {
     private final EnumWorldBlockLayer[] blockLayersSingle = new EnumWorldBlockLayer[1];
     private final boolean isMipmaps = Config.isMipmaps();
     private final boolean fixBlockLayer = !Reflector.BetterFoliageClient.exists();
+    @Getter
     private boolean playerUpdate = false;
     public int regionX;
     public int regionZ;
@@ -69,6 +75,7 @@ public class RenderChunk {
     private RenderChunk[] renderChunkNeighbours = new RenderChunk[EnumFacing.VALUES.length];
     private RenderChunk[] renderChunkNeighboursValid = new RenderChunk[EnumFacing.VALUES.length];
     private boolean renderChunkNeighboursUpated = false;
+    @Getter
     private RenderGlobal.ContainerLocalRenderInformation renderInfo = new RenderGlobal.ContainerLocalRenderInformation(this, null, 0);
     public AabbFrame boundingBoxParent;
 
@@ -296,10 +303,6 @@ public class RenderChunk {
         }
     }
 
-    public ReentrantLock getLockCompileTask() {
-        return this.lockCompileTask;
-    }
-
     public ChunkCompileTaskGenerator makeCompileTaskChunk() {
         this.lockCompileTask.lock();
         ChunkCompileTaskGenerator chunkcompiletaskgenerator;
@@ -381,10 +384,6 @@ public class RenderChunk {
         GlStateManager.multMatrix(this.modelviewMatrix);
     }
 
-    public CompiledChunk getCompiledChunk() {
-        return this.compiledChunk;
-    }
-
     public void setCompiledChunk(CompiledChunk compiledChunkIn) {
         this.lockCompiledChunk.lock();
 
@@ -410,10 +409,6 @@ public class RenderChunk {
         }
     }
 
-    public BlockPos getPosition() {
-        return this.position;
-    }
-
     public void setNeedsUpdate(boolean needsUpdateIn) {
         this.needsUpdate = needsUpdateIn;
 
@@ -424,10 +419,6 @@ public class RenderChunk {
         } else {
             this.playerUpdate = false;
         }
-    }
-
-    public boolean isNeedsUpdate() {
-        return this.needsUpdate;
     }
 
     public BlockPos getBlockPosOffset16(EnumFacing p_181701_1_) {
@@ -453,10 +444,6 @@ public class RenderChunk {
         } else {
             return false;
         }
-    }
-
-    public boolean isPlayerUpdate() {
-        return this.playerUpdate;
     }
 
     protected RegionRenderCache createRegionRenderCache(World p_createRegionRenderCache_1_, BlockPos p_createRegionRenderCache_2_, BlockPos p_createRegionRenderCache_3_, int p_createRegionRenderCache_4_) {
@@ -576,10 +563,6 @@ public class RenderChunk {
         }
 
         return this.renderChunkNeighboursValid[p_getRenderChunkNeighbour_1_.ordinal()];
-    }
-
-    public RenderGlobal.ContainerLocalRenderInformation getRenderInfo() {
-        return this.renderInfo;
     }
 
     private void updateRenderChunkNeighboursValid() {

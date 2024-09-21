@@ -1,5 +1,7 @@
 package net.minecraft.world;
 
+import lombok.Getter;
+
 public class WorldType {
     public static final WorldType[] worldTypes = new WorldType[16];
     public static final WorldType DEFAULT = (new WorldType(0, "default", 1)).setVersioned();
@@ -11,6 +13,7 @@ public class WorldType {
     public static final WorldType DEFAULT_1_1 = (new WorldType(8, "default_1_1", 0)).setCanBeCreated(false);
     private final int worldTypeId;
     private final String worldType;
+    @Getter
     private final int generatorVersion;
     private boolean canBeCreated;
     private boolean isWorldTypeVersioned;
@@ -38,10 +41,6 @@ public class WorldType {
 
     public String getTranslatedInfo() {
         return this.getTranslateName() + ".info";
-    }
-
-    public int getGeneratorVersion() {
-        return this.generatorVersion;
     }
 
     public WorldType getWorldTypeForGeneratorVersion(int version) {

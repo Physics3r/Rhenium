@@ -3,6 +3,8 @@ package net.minecraft.world;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -34,8 +36,11 @@ import java.util.*;
 import java.util.concurrent.Callable;
 
 public abstract class World implements IBlockAccess {
+    @Setter
+    @Getter
     private int seaLevel = 63;
     protected boolean scheduledUpdatesAreImmediate;
+    @Getter
     public final List<Entity> loadedEntityList = Lists.<Entity>newArrayList();
     protected final List<Entity> unloadedEntityList = Lists.<Entity>newArrayList();
     public final List<TileEntity> loadedTileEntityList = Lists.<TileEntity>newArrayList();
@@ -46,6 +51,8 @@ public abstract class World implements IBlockAccess {
     public final List<Entity> weatherEffects = Lists.<Entity>newArrayList();
     protected final IntHashMap<Entity> entitiesById = new IntHashMap();
     private long cloudColour = 16777215L;
+    @Setter
+    @Getter
     private int skylightSubtracted;
     protected int updateLCG = (new Random()).nextInt();
     protected final int DIST_HASH_MAGIC = 1013904223;
@@ -53,14 +60,21 @@ public abstract class World implements IBlockAccess {
     protected float rainingStrength;
     protected float prevThunderingStrength;
     protected float thunderingStrength;
+    @Setter
+    @Getter
     private int lastLightningBolt;
     public final Random rand = new Random();
     public final WorldProvider provider;
     protected List<IWorldAccess> worldAccesses = Lists.<IWorldAccess>newArrayList();
+    @Getter
     protected IChunkProvider chunkProvider;
+    @Getter
     protected final ISaveHandler saveHandler;
+    @Getter
     protected WorldInfo worldInfo;
+    @Getter
     protected boolean findingSpawnPoint;
+    @Getter
     protected MapStorage mapStorage;
     protected VillageCollection villageCollectionObj;
     public final Profiler theProfiler;
@@ -72,6 +86,7 @@ public abstract class World implements IBlockAccess {
     protected boolean spawnHostileMobs;
     protected boolean spawnPeacefulMobs;
     private boolean processingLoadedTiles;
+    @Getter
     private final WorldBorder worldBorder;
     int[] lightUpdateBlockList;
 
@@ -2266,10 +2281,6 @@ public abstract class World implements IBlockAccess {
         return this.entitiesById.lookup(id);
     }
 
-    public List<Entity> getLoadedEntityList() {
-        return this.loadedEntityList;
-    }
-
     public void markChunkDirty(BlockPos pos, TileEntity unusedTileEntity) {
         if (this.isBlockLoaded(pos)) {
             this.getChunkFromBlockCoords(pos).setChunkModified();
@@ -2304,14 +2315,6 @@ public abstract class World implements IBlockAccess {
         Block block = this.getBlockState(pos).getBlock();
         AxisAlignedBB axisalignedbb = p_175716_3_ ? null : blockIn.getCollisionBoundingBox(this, pos, blockIn.getDefaultState());
         return axisalignedbb != null && !this.checkNoEntityCollision(axisalignedbb, entityIn) ? false : (block.getMaterial() == Material.circuits && blockIn == Blocks.anvil ? true : block.getMaterial().isReplaceable() && blockIn.canReplace(this, pos, side, itemStackIn));
-    }
-
-    public int getSeaLevel() {
-        return this.seaLevel;
-    }
-
-    public void setSeaLevel(int p_181544_1_) {
-        this.seaLevel = p_181544_1_;
     }
 
     public int getStrongPower(BlockPos pos, EnumFacing direction) {
@@ -2519,20 +2522,8 @@ public abstract class World implements IBlockAccess {
     public void setEntityState(Entity entityIn, byte state) {
     }
 
-    public IChunkProvider getChunkProvider() {
-        return this.chunkProvider;
-    }
-
     public void addBlockEvent(BlockPos pos, Block blockIn, int eventID, int eventParam) {
         blockIn.onBlockEventReceived(this, pos, this.getBlockState(pos), eventID, eventParam);
-    }
-
-    public ISaveHandler getSaveHandler() {
-        return this.saveHandler;
-    }
-
-    public WorldInfo getWorldInfo() {
-        return this.worldInfo;
     }
 
     public GameRules getGameRules() {
@@ -2584,10 +2575,6 @@ public abstract class World implements IBlockAccess {
     public boolean isBlockinHighHumidity(BlockPos pos) {
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
         return biomegenbase.isHighHumidity();
-    }
-
-    public MapStorage getMapStorage() {
-        return this.mapStorage;
     }
 
     public void setItemData(String dataID, WorldSavedData worldSavedDataIn) {
@@ -2736,32 +2723,8 @@ public abstract class World implements IBlockAccess {
         return this.getWorldInfo().getDifficulty();
     }
 
-    public int getSkylightSubtracted() {
-        return this.skylightSubtracted;
-    }
-
-    public void setSkylightSubtracted(int newSkylightSubtracted) {
-        this.skylightSubtracted = newSkylightSubtracted;
-    }
-
-    public int getLastLightningBolt() {
-        return this.lastLightningBolt;
-    }
-
-    public void setLastLightningBolt(int lastLightningBoltIn) {
-        this.lastLightningBolt = lastLightningBoltIn;
-    }
-
-    public boolean isFindingSpawnPoint() {
-        return this.findingSpawnPoint;
-    }
-
     public VillageCollection getVillageCollection() {
         return this.villageCollectionObj;
-    }
-
-    public WorldBorder getWorldBorder() {
-        return this.worldBorder;
     }
 
     public boolean isSpawnChunk(int x, int z) {

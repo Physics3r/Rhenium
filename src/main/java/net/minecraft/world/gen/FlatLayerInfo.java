@@ -1,12 +1,15 @@
 package net.minecraft.world.gen;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
 public class FlatLayerInfo {
     private final int field_175902_a;
+    @Getter
     private IBlockState layerMaterial;
+    @Getter
     private int layerCount;
     private int layerMinimumY;
 
@@ -24,14 +27,6 @@ public class FlatLayerInfo {
     public FlatLayerInfo(int p_i45628_1_, int p_i45628_2_, Block p_i45628_3_, int p_i45628_4_) {
         this(p_i45628_1_, p_i45628_2_, p_i45628_3_);
         this.layerMaterial = p_i45628_3_.getStateFromMeta(p_i45628_4_);
-    }
-
-    public int getLayerCount() {
-        return this.layerCount;
-    }
-
-    public IBlockState getLayerMaterial() {
-        return this.layerMaterial;
     }
 
     private Block getLayerMaterialBlock() {

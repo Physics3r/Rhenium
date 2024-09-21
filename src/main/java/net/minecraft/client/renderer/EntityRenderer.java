@@ -63,7 +63,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EntitySelectors;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
@@ -255,11 +254,11 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
                 this.useShader = true;
             } catch (IOException ioexception) {
-                logger.warn("Failed to load shader: " + resourceLocationIn, ioexception);
+                logger.warn("Failed to load shader: {}", resourceLocationIn, ioexception);
                 this.shaderIndex = shaderCount;
                 this.useShader = false;
             } catch (JsonSyntaxException jsonsyntaxexception) {
-                logger.warn("Failed to load shader: " + resourceLocationIn, jsonsyntaxexception);
+                logger.warn("Failed to load shader: {}", resourceLocationIn, jsonsyntaxexception);
                 this.shaderIndex = shaderCount;
                 this.useShader = false;
             }

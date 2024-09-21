@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
@@ -31,6 +32,7 @@ import net.minecraft.util.ITickable;
 
 public class TileEntityBeacon extends TileEntityLockable implements ITickable, IInventory {
     public static final Potion[][] effectsList = new Potion[][]{{Potion.moveSpeed, Potion.digSpeed}, {Potion.resistance, Potion.jump}, {Potion.damageBoost}, {Potion.regeneration}};
+    @Getter
     private final List<TileEntityBeacon.BeamSegment> beamSegments = Lists.<TileEntityBeacon.BeamSegment>newArrayList();
     private long beamRenderCounter;
     private float field_146014_j;
@@ -163,10 +165,6 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
                 entityplayer.triggerAchievement(AchievementList.fullBeacon);
             }
         }
-    }
-
-    public List<TileEntityBeacon.BeamSegment> getBeamSegments() {
-        return this.beamSegments;
     }
 
     public float shouldBeamRender() {
@@ -352,6 +350,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         }
     }
 
+    @Getter
     public static class BeamSegment {
         private final float[] colors;
         private int height;
@@ -365,12 +364,5 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
             ++this.height;
         }
 
-        public float[] getColors() {
-            return this.colors;
-        }
-
-        public int getHeight() {
-            return this.height;
-        }
     }
 }

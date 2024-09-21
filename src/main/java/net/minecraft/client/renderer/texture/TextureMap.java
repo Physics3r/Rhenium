@@ -2,6 +2,8 @@ package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.StitcherException;
 import net.minecraft.client.resources.IResource;
@@ -40,8 +42,11 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
     private final List<TextureAtlasSprite> listAnimatedSprites;
     private final Map<String, TextureAtlasSprite> mapRegisteredSprites;
     private final Map<String, TextureAtlasSprite> mapUploadedSprites;
+    @Getter
     private final String basePath;
     private final IIconCreator iconCreator;
+    @Setter
+    @Getter
     private int mipmapLevels;
     private final TextureAtlasSprite missingImage;
     private boolean skipFirst;
@@ -54,6 +59,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
     private CounterInt counterIndexInMap;
     public int atlasWidth;
     public int atlasHeight;
+    @Getter
     private int countAnimationsActive;
     private int frameCountAnimations;
 
@@ -230,7 +236,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
                         AnimationMetadataSection animationmetadatasection = iresource.getMetadata("animation");
                         textureatlassprite3.loadSprite(abufferedimage, animationmetadatasection);
                     } catch (RuntimeException runtimeexception) {
-                        logger.error("Unable to parse metadata from " + resourcelocation2, runtimeexception);
+                        logger.error("Unable to parse metadata from {}", resourcelocation2, runtimeexception);
                         ReflectorForge.FMLClientHandler_trackBrokenTexture(resourcelocation2, runtimeexception.getMessage());
                         continue;
                     } catch (IOException ioexception1) {
@@ -549,10 +555,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         this.updateAnimations();
     }
 
-    public void setMipmapLevels(int mipmapLevelsIn) {
-        this.mipmapLevels = mipmapLevelsIn;
-    }
-
     public TextureAtlasSprite getMissingSprite() {
         return this.missingImage;
     }
@@ -573,14 +575,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public boolean setTextureEntry(TextureAtlasSprite p_setTextureEntry_1_) {
         return this.setTextureEntry(p_setTextureEntry_1_.getIconName(), p_setTextureEntry_1_);
-    }
-
-    public String getBasePath() {
-        return this.basePath;
-    }
-
-    public int getMipmapLevels() {
-        return this.mipmapLevels;
     }
 
     private boolean isAbsoluteLocation(ResourceLocation p_isAbsoluteLocation_1_) {
@@ -802,7 +796,4 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         return this.listAnimatedSprites.size();
     }
 
-    public int getCountAnimationsActive() {
-        return this.countAnimationsActive;
-    }
 }

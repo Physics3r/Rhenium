@@ -19,7 +19,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.Proxy;
 import java.security.KeyPair;
 import java.text.SimpleDateFormat;
@@ -35,6 +34,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandManager;
@@ -43,7 +44,6 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetworkSystem;
 import net.minecraft.network.ServerStatusResponse;
 import net.minecraft.network.play.server.S03PacketTimeUpdate;
@@ -87,38 +87,59 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private final PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("server", this, getCurrentTimeMillis());
     private final File anvilFile;
     private final List<ITickable> playersOnline = Lists.<ITickable>newArrayList();
+    @Getter
     protected final ICommandManager commandManager;
     public final Profiler theProfiler = new Profiler();
+    @Getter
     private final NetworkSystem networkSystem;
     private final ServerStatusResponse statusResponse = new ServerStatusResponse();
     private final Random random = new Random();
     private int serverPort = -1;
     public WorldServer[] worldServers;
     private ServerConfigurationManager serverConfigManager;
+    @Getter
     private boolean serverRunning = true;
+    @Getter
     private boolean serverStopped;
+    @Getter
     private int tickCounter;
+    @Getter
     protected final Proxy serverProxy;
     public String currentTask;
     public int percentDone;
+    @Setter
     private boolean onlineMode;
+    @Setter
     private boolean canSpawnAnimals;
+    @Setter
     private boolean canSpawnNPCs;
     private boolean pvpEnabled;
+    @Setter
     private boolean allowFlight;
     private String motd;
+    @Setter
+    @Getter
     private int buildLimit;
+    @Getter
     private int maxPlayerIdleMinutes = 0;
     public final long[] tickTimeArray = new long[100];
     public long[][] timeOfLastDimensionTick;
     private KeyPair serverKeyPair;
+    @Setter
+    @Getter
     private String serverOwner;
+    @Setter
+    @Getter
     private String folderName;
+    @Setter
+    @Getter
     private String worldName;
     private boolean isDemo;
     private boolean enableBonusChest;
     private boolean worldIsBeingDeleted;
+    @Getter
     private String resourcePackUrl = "";
+    @Getter
     private String resourcePackHash = "";
     private boolean serverIsRunning;
     private long timeOfLastWarning;
@@ -375,10 +396,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 this.usageSnooper.stopSnooper();
             }
         }
-    }
-
-    public boolean isServerRunning() {
-        return this.serverRunning;
     }
 
     public void initiateShutdown() {
@@ -726,40 +743,12 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return true;
     }
 
-    public ICommandManager getCommandManager() {
-        return this.commandManager;
-    }
-
     public KeyPair getKeyPair() {
         return this.serverKeyPair;
     }
 
-    public String getServerOwner() {
-        return this.serverOwner;
-    }
-
-    public void setServerOwner(String owner) {
-        this.serverOwner = owner;
-    }
-
     public boolean isSinglePlayer() {
         return this.serverOwner != null;
-    }
-
-    public String getFolderName() {
-        return this.folderName;
-    }
-
-    public void setFolderName(String name) {
-        this.folderName = name;
-    }
-
-    public void setWorldName(String p_71246_1_) {
-        this.worldName = p_71246_1_;
-    }
-
-    public String getWorldName() {
-        return this.worldName;
     }
 
     public void setKeyPair(KeyPair keyPair) {
@@ -821,14 +810,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.initiateShutdown();
     }
 
-    public String getResourcePackUrl() {
-        return this.resourcePackUrl;
-    }
-
-    public String getResourcePackHash() {
-        return this.resourcePackHash;
-    }
-
     public void setResourcePack(String url, String hash) {
         this.resourcePackUrl = url;
         this.resourcePackHash = hash;
@@ -888,16 +869,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return this.onlineMode;
     }
 
-    public void setOnlineMode(boolean online) {
-        this.onlineMode = online;
-    }
-
     public boolean getCanSpawnAnimals() {
         return this.canSpawnAnimals;
-    }
-
-    public void setCanSpawnAnimals(boolean spawnAnimals) {
-        this.canSpawnAnimals = spawnAnimals;
     }
 
     public boolean getCanSpawnNPCs() {
@@ -905,10 +878,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public abstract boolean shouldUseNativeTransport();
-
-    public void setCanSpawnNPCs(boolean spawnNpcs) {
-        this.canSpawnNPCs = spawnNpcs;
-    }
 
     public boolean isPVPEnabled() {
         return this.pvpEnabled;
@@ -922,10 +891,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return this.allowFlight;
     }
 
-    public void setAllowFlight(boolean allow) {
-        this.allowFlight = allow;
-    }
-
     public abstract boolean isCommandBlockEnabled();
 
     public String getMOTD() {
@@ -934,18 +899,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
     public void setMOTD(String motdIn) {
         this.motd = motdIn;
-    }
-
-    public int getBuildLimit() {
-        return this.buildLimit;
-    }
-
-    public void setBuildLimit(int maxBuildHeight) {
-        this.buildLimit = maxBuildHeight;
-    }
-
-    public boolean isServerStopped() {
-        return this.serverStopped;
     }
 
     public ServerConfigurationManager getConfigurationManager() {
@@ -962,10 +915,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         }
     }
 
-    public NetworkSystem getNetworkSystem() {
-        return this.networkSystem;
-    }
-
     public boolean serverIsInRunLoop() {
         return this.serverIsRunning;
     }
@@ -975,10 +924,6 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public abstract String shareToLAN(WorldSettings.GameType type, boolean allowCheats);
-
-    public int getTickCounter() {
-        return this.tickCounter;
-    }
 
     public void enableProfiling() {
         this.startProfiling = true;
@@ -1016,16 +961,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         return this.isGamemodeForced;
     }
 
-    public Proxy getServerProxy() {
-        return this.serverProxy;
-    }
-
     public static long getCurrentTimeMillis() {
         return System.currentTimeMillis();
-    }
-
-    public int getMaxPlayerIdleMinutes() {
-        return this.maxPlayerIdleMinutes;
     }
 
     public void setPlayerIdleTimeout(int idleTimeout) {

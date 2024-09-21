@@ -2,11 +2,14 @@ package net.optifine.shaders.uniform;
 
 import java.util.Arrays;
 
+import lombok.Getter;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.ARBShaderObjects;
 
 public abstract class ShaderUniformBase {
+    @Getter
     private String name;
+    @Getter
     private int program = 0;
     private int[] locations = new int[]{-1};
     private static final int LOCATION_UNDEFINED = -1;
@@ -34,14 +37,6 @@ public abstract class ShaderUniformBase {
     }
 
     protected abstract void onProgramSet(int var1);
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getProgram() {
-        return this.program;
-    }
 
     public int getLocation() {
         if (this.program <= 0) {

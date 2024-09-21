@@ -2,6 +2,7 @@ package net.minecraft.entity.item;
 
 import java.util.List;
 
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -20,6 +21,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBoat extends Entity {
+    @Setter
     private boolean isBoatEmpty;
     private double speedMultiplier;
     private int boatPosRotationIncrements;
@@ -447,7 +449,4 @@ public class EntityBoat extends Entity {
         return this.dataWatcher.getWatchableObjectInt(18);
     }
 
-    public void setIsBoatEmpty(boolean p_70270_1_) {
-        this.isBoatEmpty = p_70270_1_;
-    }
 }

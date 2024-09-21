@@ -3,6 +3,7 @@ package net.minecraft.entity.ai.attributes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import lombok.Getter;
 
 import java.util.Collection;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance {
     private final Map<Integer, Set<AttributeModifier>> mapByOperation = Maps.<Integer, Set<AttributeModifier>>newHashMap();
     private final Map<String, Set<AttributeModifier>> mapByName = Maps.<String, Set<AttributeModifier>>newHashMap();
     private final Map<UUID, AttributeModifier> mapByUUID = Maps.<UUID, AttributeModifier>newHashMap();
+    @Getter
     private double baseValue;
     private boolean needsUpdate = true;
     private double cachedValue;
@@ -31,10 +33,6 @@ public class ModifiableAttributeInstance implements IAttributeInstance {
 
     public IAttribute getAttribute() {
         return this.genericAttribute;
-    }
-
-    public double getBaseValue() {
-        return this.baseValue;
     }
 
     public void setBaseValue(double baseValue) {

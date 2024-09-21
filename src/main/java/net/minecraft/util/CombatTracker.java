@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 
 public class CombatTracker {
     private final List<CombatEntry> combatEntries = Lists.<CombatEntry>newArrayList();
+    @Getter
     private final EntityLivingBase fighter;
     private int field_94555_c;
     private int field_152775_d;
@@ -190,7 +192,4 @@ public class CombatTracker {
         }
     }
 
-    public EntityLivingBase getFighter() {
-        return this.fighter;
-    }
 }

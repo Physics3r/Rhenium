@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;
@@ -11,7 +12,6 @@ import net.optifine.util.TextureUtils;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +22,7 @@ import java.util.Properties;
 
 public class TextureAnimations {
     private static TextureAnimation[] textureAnimations = null;
+    @Getter
     private static int countAnimationsActive = 0;
     private static int frameCountAnimations = 0;
 
@@ -274,7 +275,4 @@ public class TextureAnimations {
         return textureAnimations == null ? 0 : textureAnimations.length;
     }
 
-    public static int getCountAnimationsActive() {
-        return countAnimationsActive;
-    }
 }

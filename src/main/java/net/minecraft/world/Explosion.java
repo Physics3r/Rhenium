@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +36,9 @@ public class Explosion {
     private final double explosionZ;
     private final Entity exploder;
     private final float explosionSize;
+    @Getter
     private final List<BlockPos> affectedBlockPositions;
+    @Getter
     private final Map<EntityPlayer, Vec3> playerKnockbackMap;
 
     public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size, List<BlockPos> affectedPositions) {
@@ -200,10 +203,6 @@ public class Explosion {
         }
     }
 
-    public Map<EntityPlayer, Vec3> getPlayerKnockbackMap() {
-        return this.playerKnockbackMap;
-    }
-
     public EntityLivingBase getExplosivePlacedBy() {
         return this.exploder == null ? null : (this.exploder instanceof EntityTNTPrimed ? ((EntityTNTPrimed) this.exploder).getTntPlacedBy() : (this.exploder instanceof EntityLivingBase ? (EntityLivingBase) this.exploder : null));
     }
@@ -212,7 +211,4 @@ public class Explosion {
         this.affectedBlockPositions.clear();
     }
 
-    public List<BlockPos> getAffectedBlockPositions() {
-        return this.affectedBlockPositions;
-    }
 }

@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDirectional;
@@ -83,6 +84,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     private InventoryEnderChest theInventoryEnderChest = new InventoryEnderChest();
     public Container inventoryContainer;
     public Container openContainer;
+    @Getter
     protected FoodStats foodStats = new FoodStats();
     protected int flyToggleTimer;
     public float prevCameraYaw;
@@ -96,11 +98,13 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public double chasingPosZ;
     protected boolean sleeping;
     public BlockPos playerLocation;
+    @Getter
     private int sleepTimer;
     public float renderOffsetX;
     public float renderOffsetY;
     public float renderOffsetZ;
     private BlockPos spawnChunk;
+    @Getter
     private boolean spawnForced;
     private BlockPos startMinecartRidingCoordinate;
     public PlayerCapabilities capabilities = new PlayerCapabilities();
@@ -108,11 +112,14 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public int experienceTotal;
     public float experience;
     private int xpSeed;
+    @Getter
     private ItemStack itemInUse;
+    @Getter
     private int itemInUseCount;
     protected float speedOnGround = 0.1F;
     protected float speedInAir = 0.02F;
     private int lastXPSound;
+    @Getter
     private final GameProfile gameProfile;
     private boolean hasReducedDebug = false;
     public EntityFishHook fishEntity;
@@ -141,14 +148,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         this.dataWatcher.addObject(17, Float.valueOf(0.0F));
         this.dataWatcher.addObject(18, Integer.valueOf(0));
         this.dataWatcher.addObject(10, Byte.valueOf((byte) 0));
-    }
-
-    public ItemStack getItemInUse() {
-        return this.itemInUse;
-    }
-
-    public int getItemInUseCount() {
-        return this.itemInUseCount;
     }
 
     public boolean isUsingItem() {
@@ -1066,10 +1065,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return false;
     }
 
-    public GameProfile getGameProfile() {
-        return this.gameProfile;
-    }
-
     public EntityPlayer.EnumStatus trySleep(BlockPos bedLocation) {
         if (!this.worldObj.isRemote) {
             if (this.isPlayerSleeping() || !this.isEntityAlive()) {
@@ -1243,19 +1238,11 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return this.sleeping && this.sleepTimer >= 100;
     }
 
-    public int getSleepTimer() {
-        return this.sleepTimer;
-    }
-
     public void addChatComponentMessage(IChatComponent chatComponent) {
     }
 
     public BlockPos getBedLocation() {
         return this.spawnChunk;
-    }
-
-    public boolean isSpawnForced() {
-        return this.spawnForced;
     }
 
     public void setSpawnPoint(BlockPos pos, boolean forced) {
@@ -1483,10 +1470,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
                 this.foodStats.addExhaustion(p_71020_1_);
             }
         }
-    }
-
-    public FoodStats getFoodStats() {
-        return this.foodStats;
     }
 
     public boolean canEat(boolean ignoreHunger) {
@@ -1733,6 +1716,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         this.hasReducedDebug = reducedDebug;
     }
 
+    @Getter
     public static enum EnumChatVisibility {
         FULL(0, "options.chat.visibility.full"),
         SYSTEM(1, "options.chat.visibility.system"),
@@ -1747,16 +1731,8 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.resourceKey = resourceKey;
         }
 
-        public int getChatVisibility() {
-            return this.chatVisibility;
-        }
-
         public static EntityPlayer.EnumChatVisibility getEnumChatVisibility(int id) {
             return ID_LOOKUP[id % ID_LOOKUP.length];
-        }
-
-        public String getResourceKey() {
-            return this.resourceKey;
         }
 
         static {

@@ -1,5 +1,6 @@
 package net.minecraft.world.gen.structure;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockDoor;
@@ -20,8 +21,10 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class StructureComponent {
+    @Getter
     protected StructureBoundingBox boundingBox;
     protected EnumFacing coordBaseMode;
+    @Getter
     protected int componentType;
 
     public StructureComponent() {
@@ -60,14 +63,6 @@ public abstract class StructureComponent {
     }
 
     public abstract boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn);
-
-    public StructureBoundingBox getBoundingBox() {
-        return this.boundingBox;
-    }
-
-    public int getComponentType() {
-        return this.componentType;
-    }
 
     public static StructureComponent findIntersecting(List<StructureComponent> listIn, StructureBoundingBox boundingboxIn) {
         for (StructureComponent structurecomponent : listIn) {

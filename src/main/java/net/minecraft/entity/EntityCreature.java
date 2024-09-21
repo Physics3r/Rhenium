@@ -2,6 +2,7 @@ package net.minecraft.entity;
 
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -13,7 +14,9 @@ import net.minecraft.world.World;
 public abstract class EntityCreature extends EntityLiving {
     public static final UUID FLEEING_SPEED_MODIFIER_UUID = UUID.fromString("E199AD21-BA8A-4C53-8D13-6182D5C69D3A");
     public static final AttributeModifier FLEEING_SPEED_MODIFIER = (new AttributeModifier(FLEEING_SPEED_MODIFIER_UUID, "Fleeing speed bonus", 2.0D, 2)).setSaved(false);
+    @Getter
     private BlockPos homePosition = BlockPos.ORIGIN;
+    @Getter
     private float maximumHomeDistance = -1.0F;
     private EntityAIBase aiBase = new EntityAIMoveTowardsRestriction(this, 1.0D);
     private boolean isMovementAITaskSet;
@@ -45,14 +48,6 @@ public abstract class EntityCreature extends EntityLiving {
     public void setHomePosAndDistance(BlockPos pos, int distance) {
         this.homePosition = pos;
         this.maximumHomeDistance = (float) distance;
-    }
-
-    public BlockPos getHomePosition() {
-        return this.homePosition;
-    }
-
-    public float getMaximumHomeDistance() {
-        return this.maximumHomeDistance;
     }
 
     public void detachHome() {

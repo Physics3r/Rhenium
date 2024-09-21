@@ -2,11 +2,13 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.potion.PotionEffect;
 
+@Getter
 public class S1EPacketRemoveEntityEffect implements Packet<INetHandlerPlayClient> {
     private int entityId;
     private int effectId;
@@ -33,11 +35,4 @@ public class S1EPacketRemoveEntityEffect implements Packet<INetHandlerPlayClient
         handler.handleRemoveEntityEffect(this);
     }
 
-    public int getEntityId() {
-        return this.entityId;
-    }
-
-    public int getEffectId() {
-        return this.effectId;
-    }
 }

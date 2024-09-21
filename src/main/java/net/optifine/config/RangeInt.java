@@ -1,5 +1,8 @@
 package net.optifine.config;
 
+import lombok.Getter;
+
+@Getter
 public class RangeInt {
     private int min;
     private int max;
@@ -11,14 +14,6 @@ public class RangeInt {
 
     public boolean isInRange(int val) {
         return val < this.min ? false : val <= this.max;
-    }
-
-    public int getMin() {
-        return this.min;
-    }
-
-    public int getMax() {
-        return this.max;
     }
 
     public String toString() {

@@ -4,6 +4,8 @@ import com.google.common.base.Objects;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.SkinManager;
@@ -14,13 +16,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldSettings;
 
 public class NetworkPlayerInfo {
+    @Getter
     private final GameProfile gameProfile;
+    @Getter
     private WorldSettings.GameType gameType;
+    @Getter
     private int responseTime;
     private boolean playerTexturesLoaded = false;
     private ResourceLocation locationSkin;
     private ResourceLocation locationCape;
     private String skinType;
+    @Setter
+    @Getter
     private IChatComponent displayName;
     private int field_178873_i = 0;
     private int field_178870_j = 0;
@@ -37,18 +44,6 @@ public class NetworkPlayerInfo {
         this.gameType = p_i46295_1_.getGameMode();
         this.responseTime = p_i46295_1_.getPing();
         this.displayName = p_i46295_1_.getDisplayName();
-    }
-
-    public GameProfile getGameProfile() {
-        return this.gameProfile;
-    }
-
-    public WorldSettings.GameType getGameType() {
-        return this.gameType;
-    }
-
-    public int getResponseTime() {
-        return this.responseTime;
     }
 
     protected void setGameType(WorldSettings.GameType p_178839_1_) {
@@ -111,14 +106,6 @@ public class NetworkPlayerInfo {
                 }, true);
             }
         }
-    }
-
-    public void setDisplayName(IChatComponent displayNameIn) {
-        this.displayName = displayNameIn;
-    }
-
-    public IChatComponent getDisplayName() {
-        return this.displayName;
     }
 
     public int func_178835_l() {

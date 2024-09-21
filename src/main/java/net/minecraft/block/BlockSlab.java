@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -114,6 +115,7 @@ public abstract class BlockSlab extends Block {
 
     public abstract Object getVariant(ItemStack stack);
 
+    @Getter
     public static enum EnumBlockHalf implements IStringSerializable {
         TOP("top"),
         BOTTOM("bottom");
@@ -128,8 +130,5 @@ public abstract class BlockSlab extends Block {
             return this.name;
         }
 
-        public String getName() {
-            return this.name;
-        }
     }
 }

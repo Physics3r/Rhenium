@@ -3,6 +3,7 @@ package net.minecraft.block;
 import java.util.List;
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -124,7 +125,9 @@ public class BlockSilverfish extends Block {
 
         private static final BlockSilverfish.EnumType[] META_LOOKUP = new BlockSilverfish.EnumType[values().length];
         private final int meta;
+        @Getter
         private final String name;
+        @Getter
         private final String unlocalizedName;
 
         private EnumType(int meta, String name) {
@@ -151,14 +154,6 @@ public class BlockSilverfish extends Block {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         public abstract IBlockState getModelBlock();

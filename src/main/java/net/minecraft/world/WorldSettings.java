@@ -1,16 +1,22 @@
 package net.minecraft.world;
 
+import lombok.Getter;
 import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.world.storage.WorldInfo;
 
 public final class WorldSettings {
+    @Getter
     private final long seed;
     private final WorldSettings.GameType theGameType;
+    @Getter
     private final boolean mapFeaturesEnabled;
     private final boolean hardcoreEnabled;
+    @Getter
     private final WorldType terrainType;
     private boolean commandsAllowed;
+    @Getter
     private boolean bonusChestEnabled;
+    @Getter
     private String worldName;
 
     public WorldSettings(long seedIn, WorldSettings.GameType gameType, boolean enableMapFeatures, boolean hardcoreMode, WorldType worldTypeIn) {
@@ -41,28 +47,12 @@ public final class WorldSettings {
         return this;
     }
 
-    public boolean isBonusChestEnabled() {
-        return this.bonusChestEnabled;
-    }
-
-    public long getSeed() {
-        return this.seed;
-    }
-
     public WorldSettings.GameType getGameType() {
         return this.theGameType;
     }
 
     public boolean getHardcoreEnabled() {
         return this.hardcoreEnabled;
-    }
-
-    public boolean isMapFeaturesEnabled() {
-        return this.mapFeaturesEnabled;
-    }
-
-    public WorldType getTerrainType() {
-        return this.terrainType;
     }
 
     public boolean areCommandsAllowed() {
@@ -73,10 +63,6 @@ public final class WorldSettings {
         return WorldSettings.GameType.getByID(id);
     }
 
-    public String getWorldName() {
-        return this.worldName;
-    }
-
     public static enum GameType {
         NOT_SET(-1, ""),
         SURVIVAL(0, "survival"),
@@ -85,6 +71,7 @@ public final class WorldSettings {
         SPECTATOR(3, "spectator");
 
         int id;
+        @Getter
         String name;
 
         private GameType(int typeId, String nameIn) {
@@ -94,10 +81,6 @@ public final class WorldSettings {
 
         public int getID() {
             return this.id;
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         public void configurePlayerCapabilities(PlayerCapabilities capabilities) {

@@ -1,11 +1,13 @@
 package net.minecraft.world.storage;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
 
 import java.util.Collections;
 import java.util.List;
 
 public class ThreadedFileIOBase implements Runnable {
+    @Getter
     private static final ThreadedFileIOBase threadedIOInstance = new ThreadedFileIOBase();
     private List<IThreadedFileIO> threadedIOQueue = Collections.<IThreadedFileIO>synchronizedList(Lists.<IThreadedFileIO>newArrayList());
     private volatile long writeQueuedCounter;
@@ -16,10 +18,6 @@ public class ThreadedFileIOBase implements Runnable {
         Thread thread = new Thread(this, "File IO Thread");
         thread.setPriority(1);
         thread.start();
-    }
-
-    public static ThreadedFileIOBase getThreadedIOInstance() {
-        return threadedIOInstance;
     }
 
     public void run() {

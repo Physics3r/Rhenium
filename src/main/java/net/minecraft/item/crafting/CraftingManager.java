@@ -2,6 +2,7 @@ package net.minecraft.item.crafting;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.Getter;
 import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -17,12 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CraftingManager {
+    @Getter
     private static final CraftingManager instance = new CraftingManager();
     private final List<IRecipe> recipes = Lists.<IRecipe>newArrayList();
-
-    public static CraftingManager getInstance() {
-        return instance;
-    }
 
     private CraftingManager() {
         (new RecipesTools()).addRecipes(this);

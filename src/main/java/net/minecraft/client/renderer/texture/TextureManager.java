@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.crash.CrashReport;
@@ -31,7 +32,9 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
     private final List<ITickable> listTickables = Lists.<ITickable>newArrayList();
     private final Map<String, Integer> mapTextureCounters = Maps.<String, Integer>newHashMap();
     private IResourceManager theResourceManager;
+    @Getter
     private ITextureObject boundTexture;
+    @Getter
     private ResourceLocation boundTextureLocation;
 
     public TextureManager(IResourceManager resourceManager) {
@@ -83,7 +86,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         try {
             textureObj.loadTexture(this.theResourceManager);
         } catch (IOException ioexception) {
-            logger.warn("Failed to load texture: " + textureLocation, ioexception);
+            logger.warn("Failed to load texture: {}", textureLocation, ioexception);
             textureObj = TextureUtil.missingTexture;
             this.mapTextureObjects.put(textureLocation, textureObj);
             flag = false;
@@ -183,11 +186,4 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         }
     }
 
-    public ITextureObject getBoundTexture() {
-        return this.boundTexture;
-    }
-
-    public ResourceLocation getBoundTextureLocation() {
-        return this.boundTextureLocation;
-    }
 }

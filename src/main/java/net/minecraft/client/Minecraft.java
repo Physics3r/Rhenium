@@ -1,6 +1,5 @@
 package net.minecraft.client;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
@@ -10,7 +9,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
@@ -37,6 +35,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -52,8 +51,6 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSleepMP;
-import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -143,7 +140,6 @@ import net.minecraft.stats.IStatStringFormat;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.FrameTimer;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.MathHelper;
@@ -191,6 +187,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode[]{new DisplayMode(2560, 1600), new DisplayMode(2880, 1800)});
     private final File fileResourcepacks;
     private final PropertyMap profileProperties;
+    @Getter
     private ServerData currentServerData;
     private TextureManager renderEngine;
     private static Minecraft theMinecraft;
@@ -205,13 +202,18 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("client", this, MinecraftServer.getCurrentTimeMillis());
     public WorldClient theWorld;
     public RenderGlobal renderGlobal;
+    @Getter
     private RenderManager renderManager;
+    @Getter
     private RenderItem renderItem;
+    @Getter
     private ItemRenderer itemRenderer;
     public EntityPlayerSP thePlayer;
+    @Getter
     private Entity renderViewEntity;
     public Entity pointedEntity;
     public EffectRenderer effectRenderer;
+    @Getter
     private final Session session;
     private boolean isGamePaused;
     public FontRenderer fontRendererObj;
@@ -232,8 +234,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     public final File mcDataDir;
     private final File fileAssets;
     private final String launchedVersion;
+    @Getter
     private final Proxy proxy;
+    @Getter
     private ISaveFormat saveLoader;
+    @Getter
     private static int debugFPS;
     private int rightClickDelayTimer;
     private String serverName;
@@ -241,6 +246,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     public boolean inGameHasFocus;
     long systemTime = getSystemTime();
     private int joinPlayerCounter;
+    @Getter
     public final FrameTimer frameTimer = new FrameTimer();
     long startNanoTime = System.nanoTime();
     private final boolean jvm64bit;
@@ -256,11 +262,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private ResourcePackRepository mcResourcePackRepository;
     private LanguageManager mcLanguageManager;
     private Framebuffer framebufferMc;
+    @Getter
     private TextureMap textureMapBlocks;
     private SoundHandler mcSoundHandler;
     private MusicTicker mcMusicTicker;
     private ResourceLocation mojangLogo;
+    @Getter
     private final MinecraftSessionService sessionService;
+    @Getter
     private SkinManager skinManager;
     private final Queue<FutureTask<?>> scheduledTasks = Queues.<FutureTask<?>>newArrayDeque();
     private long field_175615_aJ = 0L;
@@ -710,7 +719,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             this.mojangLogo = textureManagerInstance.getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(inputstream)));
             textureManagerInstance.bindTexture(this.mojangLogo);
         } catch (IOException ioexception) {
-            logger.error("Unable to load logo: " + locationMojangPng, ioexception);
+            logger.error("Unable to load logo: {}", locationMojangPng, ioexception);
         } finally {
             IOUtils.closeQuietly(inputstream);
         }
@@ -746,10 +755,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         worldrenderer.pos(posX + width, posY, 0.0D).tex((float) (texU + width) * f, (float) texV * f1).color(red, green, blue, alpha).endVertex();
         worldrenderer.pos(posX, posY, 0.0D).tex((float) texU * f, (float) texV * f1).color(red, green, blue, alpha).endVertex();
         Tessellator.getInstance().draw();
-    }
-
-    public ISaveFormat getSaveLoader() {
-        return this.saveLoader;
     }
 
     public void displayGuiScreen(GuiScreen guiScreenIn) {
@@ -2278,10 +2283,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         this.currentServerData = serverDataIn;
     }
 
-    public ServerData getCurrentServerData() {
-        return this.currentServerData;
-    }
-
     public boolean isIntegratedServerRunning() {
         return this.integratedServerIsRunning;
     }
@@ -2316,10 +2317,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         return this.fullscreen;
     }
 
-    public Session getSession() {
-        return this.session;
-    }
-
     public PropertyMap getProfileProperties() {
         if (this.profileProperties.isEmpty()) {
             GameProfile gameprofile = this.getSessionService().fillProfileProperties(this.session.getProfile(), false);
@@ -2327,10 +2324,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         }
 
         return this.profileProperties;
-    }
-
-    public Proxy getProxy() {
-        return this.proxy;
     }
 
     public TextureManager getTextureManager() {
@@ -2347,10 +2340,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
     public LanguageManager getLanguageManager() {
         return this.mcLanguageManager;
-    }
-
-    public TextureMap getTextureMapBlocks() {
-        return this.textureMapBlocks;
     }
 
     public boolean isJava64bit() {
@@ -2383,18 +2372,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
                 }
             }
         }
-    }
-
-    public MinecraftSessionService getSessionService() {
-        return this.sessionService;
-    }
-
-    public SkinManager getSkinManager() {
-        return this.skinManager;
-    }
-
-    public Entity getRenderViewEntity() {
-        return this.renderViewEntity;
     }
 
     public void setRenderViewEntity(Entity viewingEntity) {
@@ -2432,26 +2409,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
     public BlockRendererDispatcher getBlockRendererDispatcher() {
         return this.blockRenderDispatcher;
-    }
-
-    public RenderManager getRenderManager() {
-        return this.renderManager;
-    }
-
-    public RenderItem getRenderItem() {
-        return this.renderItem;
-    }
-
-    public ItemRenderer getItemRenderer() {
-        return this.itemRenderer;
-    }
-
-    public static int getDebugFPS() {
-        return debugFPS;
-    }
-
-    public FrameTimer getFrameTimer() {
-        return this.frameTimer;
     }
 
     public static Map<String, String> getSessionInfo() {

@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.ITextureObject;
@@ -12,8 +13,11 @@ import java.nio.ByteBuffer;
 import java.util.Properties;
 
 public class TextureAnimation {
+    @Getter
     private String srcTex = null;
+    @Getter
     private String dstTex = null;
+    @Getter
     ResourceLocation dstTexLoc = null;
     private int dstTextId = -1;
     private int dstX = 0;
@@ -27,6 +31,7 @@ public class TextureAnimation {
     private ByteBuffer interpolateData = null;
     byte[] srcData = null;
     private ByteBuffer imageData = null;
+    @Getter
     private boolean active = true;
     private boolean valid = true;
 
@@ -196,19 +201,4 @@ public class TextureAnimation {
         return (int) ((double) col1 * (1.0D - k) + (double) col2 * k);
     }
 
-    public String getSrcTex() {
-        return this.srcTex;
-    }
-
-    public String getDstTex() {
-        return this.dstTex;
-    }
-
-    public ResourceLocation getDstTexLoc() {
-        return this.dstTexLoc;
-    }
-
-    public boolean isActive() {
-        return this.active;
-    }
 }

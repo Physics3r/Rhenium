@@ -4,8 +4,10 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.util.IChatComponent;
 
+@Getter
 public class HoverEvent {
     private final HoverEvent.Action action;
     private final IChatComponent value;
@@ -13,14 +15,6 @@ public class HoverEvent {
     public HoverEvent(HoverEvent.Action actionIn, IChatComponent valueIn) {
         this.action = actionIn;
         this.value = valueIn;
-    }
-
-    public HoverEvent.Action getAction() {
-        return this.action;
-    }
-
-    public IChatComponent getValue() {
-        return this.value;
     }
 
     public boolean equals(Object p_equals_1_) {
@@ -65,6 +59,7 @@ public class HoverEvent {
 
         private static final Map<String, HoverEvent.Action> nameMapping = Maps.<String, HoverEvent.Action>newHashMap();
         private final boolean allowedInChat;
+        @Getter
         private final String canonicalName;
 
         private Action(String canonicalNameIn, boolean allowedInChatIn) {
@@ -74,10 +69,6 @@ public class HoverEvent {
 
         public boolean shouldAllowInChat() {
             return this.allowedInChat;
-        }
-
-        public String getCanonicalName() {
-            return this.canonicalName;
         }
 
         public static HoverEvent.Action getValueByCanonicalName(String canonicalNameIn) {

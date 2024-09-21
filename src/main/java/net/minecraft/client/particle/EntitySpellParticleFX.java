@@ -1,5 +1,6 @@
 package net.minecraft.client.particle;
 
+import lombok.Setter;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -7,6 +8,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+@Setter
 public class EntitySpellParticleFX extends EntityFX {
     private static final Random RANDOM = new Random();
     private int baseSpellTextureIndex = 128;
@@ -57,10 +59,6 @@ public class EntitySpellParticleFX extends EntityFX {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;
         }
-    }
-
-    public void setBaseSpellTextureIndex(int baseSpellTextureIndexIn) {
-        this.baseSpellTextureIndex = baseSpellTextureIndexIn;
     }
 
     public static class AmbientMobFactory implements IParticleFactory {

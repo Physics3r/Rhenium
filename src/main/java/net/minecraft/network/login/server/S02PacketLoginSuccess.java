@@ -5,10 +5,12 @@ import com.mojang.authlib.GameProfile;
 import java.io.IOException;
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.login.INetHandlerLoginClient;
 
+@Getter
 public class S02PacketLoginSuccess implements Packet<INetHandlerLoginClient> {
     private GameProfile profile;
 
@@ -36,7 +38,4 @@ public class S02PacketLoginSuccess implements Packet<INetHandlerLoginClient> {
         handler.handleLoginSuccess(this);
     }
 
-    public GameProfile getProfile() {
-        return this.profile;
-    }
 }

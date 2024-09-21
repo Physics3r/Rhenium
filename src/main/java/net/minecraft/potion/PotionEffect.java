@@ -1,5 +1,6 @@
 package net.minecraft.potion;
 
+import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;
@@ -7,8 +8,11 @@ import org.apache.logging.log4j.Logger;
 
 public class PotionEffect {
     private static final Logger LOGGER = LogManager.getLogger();
+    @Getter
     private int potionID;
+    @Getter
     private int duration;
+    @Getter
     private int amplifier;
     private boolean isSplashPotion;
     private boolean isAmbient;
@@ -54,18 +58,6 @@ public class PotionEffect {
         }
 
         this.showParticles = other.showParticles;
-    }
-
-    public int getPotionID() {
-        return this.potionID;
-    }
-
-    public int getDuration() {
-        return this.duration;
-    }
-
-    public int getAmplifier() {
-        return this.amplifier;
     }
 
     public void setSplashPotion(boolean splashPotion) {

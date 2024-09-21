@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -27,12 +28,16 @@ import net.minecraft.world.World;
 
 public class Village {
     private World worldObj;
+    @Getter
     private final List<VillageDoorInfo> villageDoorInfoList = Lists.<VillageDoorInfo>newArrayList();
     private BlockPos centerHelper = BlockPos.ORIGIN;
+    @Getter
     private BlockPos center = BlockPos.ORIGIN;
+    @Getter
     private int villageRadius;
     private int lastAddDoorTimestamp;
     private int tickCounter;
+    @Getter
     private int numVillagers;
     private int noBreedTicks;
     private TreeMap<String, Integer> playerReputation = new TreeMap();
@@ -124,14 +129,6 @@ public class Village {
         }
     }
 
-    public BlockPos getCenter() {
-        return this.center;
-    }
-
-    public int getVillageRadius() {
-        return this.villageRadius;
-    }
-
     public int getNumVillageDoors() {
         return this.villageDoorInfoList.size();
     }
@@ -140,16 +137,8 @@ public class Village {
         return this.tickCounter - this.lastAddDoorTimestamp;
     }
 
-    public int getNumVillagers() {
-        return this.numVillagers;
-    }
-
     public boolean func_179866_a(BlockPos pos) {
         return this.center.distanceSq(pos) < (double) (this.villageRadius * this.villageRadius);
-    }
-
-    public List<VillageDoorInfo> getVillageDoorInfoList() {
-        return this.villageDoorInfoList;
     }
 
     public VillageDoorInfo getNearestDoor(BlockPos pos) {
@@ -292,7 +281,7 @@ public class Village {
             if (!this.isWoodDoor(villagedoorinfo.getDoorBlockPos()) || Math.abs(this.tickCounter - villagedoorinfo.getInsidePosY()) > 1200) {
                 this.centerHelper = this.centerHelper.subtract(villagedoorinfo.getDoorBlockPos());
                 flag = true;
-                villagedoorinfo.setIsDetachedFromVillageFlag(true);
+                villagedoorinfo.setDetachedFromVillageFlag(true);
                 iterator.remove();
             }
         }

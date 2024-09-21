@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -51,6 +53,8 @@ import net.minecraft.world.WorldServer;
 public abstract class Entity implements ICommandSender {
     private static final AxisAlignedBB ZERO_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
     private static int nextEntityID;
+    @Setter
+    @Getter
     private int entityId;
     public double renderDistanceWeight;
     public boolean preventEntitySpawning;
@@ -97,10 +101,12 @@ public abstract class Entity implements ICommandSender {
     public int ticksExisted;
     public int fireResistance;
     private int fire;
+    @Getter
     protected boolean inWater;
     public int hurtResistantTime;
     protected boolean firstUpdate;
     protected boolean isImmuneToFire;
+    @Getter
     protected DataWatcher dataWatcher;
     private double entityRiderPitchDelta;
     private double entityRiderYawDelta;
@@ -119,18 +125,11 @@ public abstract class Entity implements ICommandSender {
     public int dimension;
     protected BlockPos lastPortalPos;
     protected Vec3 lastPortalVec;
+    @Getter
     protected EnumFacing teleportDirection;
     private boolean invulnerable;
     protected UUID entityUniqueID;
     private final CommandResultStats cmdResultStats;
-
-    public int getEntityId() {
-        return this.entityId;
-    }
-
-    public void setEntityId(int id) {
-        this.entityId = id;
-    }
 
     public void onKillCommand() {
         this.setDead();
@@ -165,10 +164,6 @@ public abstract class Entity implements ICommandSender {
     }
 
     protected abstract void entityInit();
-
-    public DataWatcher getDataWatcher() {
-        return this.dataWatcher;
-    }
 
     public boolean equals(Object p_equals_1_) {
         return p_equals_1_ instanceof Entity ? ((Entity) p_equals_1_).entityId == this.entityId : false;
@@ -747,10 +742,6 @@ public abstract class Entity implements ICommandSender {
 
     public boolean isWet() {
         return this.inWater || this.worldObj.isRainingAt(new BlockPos(this.posX, this.posY, this.posZ)) || this.worldObj.isRainingAt(new BlockPos(this.posX, this.posY + (double) this.height, this.posZ));
-    }
-
-    public boolean isInWater() {
-        return this.inWater;
     }
 
     public boolean handleWaterMovement() {
@@ -1716,10 +1707,6 @@ public abstract class Entity implements ICommandSender {
 
     public Vec3 func_181014_aG() {
         return this.lastPortalVec;
-    }
-
-    public EnumFacing getTeleportDirection() {
-        return this.teleportDirection;
     }
 
     public boolean doesEntityNotTriggerPressurePlate() {

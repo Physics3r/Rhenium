@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -77,8 +79,11 @@ public abstract class EntityLivingBase extends Entity {
     public float cameraPitch;
     public float randomUnused2;
     public float randomUnused1;
+    @Setter
     public float renderYawOffset;
     public float prevRenderYawOffset;
+    @Setter
+    @Getter
     public float rotationYawHead;
     public float prevRotationYawHead;
     public float jumpMovementFactor = 0.02F;
@@ -105,11 +110,15 @@ public abstract class EntityLivingBase extends Entity {
     protected double newRotationPitch;
     private boolean potionsNeedUpdate = true;
     private EntityLivingBase entityLivingToAttack;
+    @Getter
     private int revengeTimer;
+    @Getter
     private EntityLivingBase lastAttacker;
+    @Getter
     private int lastAttackerTime;
     private float landMovementFactor;
     private int jumpTicks;
+    @Getter
     private float absorptionAmount;
 
     public void onKillCommand() {
@@ -321,21 +330,9 @@ public abstract class EntityLivingBase extends Entity {
         return this.entityLivingToAttack;
     }
 
-    public int getRevengeTimer() {
-        return this.revengeTimer;
-    }
-
     public void setRevengeTarget(EntityLivingBase livingBase) {
         this.entityLivingToAttack = livingBase;
         this.revengeTimer = this.ticksExisted;
-    }
-
-    public EntityLivingBase getLastAttacker() {
-        return this.lastAttacker;
-    }
-
-    public int getLastAttackerTime() {
-        return this.lastAttackerTime;
     }
 
     public void setLastAttacker(Entity entityIn) {
@@ -1570,22 +1567,6 @@ public abstract class EntityLivingBase extends Entity {
 
     protected void setBeenAttacked() {
         this.velocityChanged = this.rand.nextDouble() >= this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue();
-    }
-
-    public float getRotationYawHead() {
-        return this.rotationYawHead;
-    }
-
-    public void setRotationYawHead(float rotation) {
-        this.rotationYawHead = rotation;
-    }
-
-    public void setRenderYawOffset(float offset) {
-        this.renderYawOffset = offset;
-    }
-
-    public float getAbsorptionAmount() {
-        return this.absorptionAmount;
     }
 
     public void setAbsorptionAmount(float amount) {

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -152,6 +153,7 @@ public abstract class BlockRailBase extends Block {
 
         private static final BlockRailBase.EnumRailDirection[] META_LOOKUP = new BlockRailBase.EnumRailDirection[values().length];
         private final int meta;
+        @Getter
         private final String name;
 
         private EnumRailDirection(int meta, String name) {
@@ -177,10 +179,6 @@ public abstract class BlockRailBase extends Block {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         static {

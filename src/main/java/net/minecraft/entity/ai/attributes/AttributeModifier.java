@@ -4,12 +4,16 @@ import io.netty.util.internal.ThreadLocalRandom;
 
 import java.util.UUID;
 
+import lombok.Getter;
 import net.minecraft.util.MathHelper;
 import org.apache.commons.lang3.Validate;
 
 public class AttributeModifier {
+    @Getter
     private final double amount;
+    @Getter
     private final int operation;
+    @Getter
     private final String name;
     private final UUID id;
     private boolean isSaved;
@@ -30,18 +34,6 @@ public class AttributeModifier {
 
     public UUID getID() {
         return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getOperation() {
-        return this.operation;
-    }
-
-    public double getAmount() {
-        return this.amount;
     }
 
     public boolean isSaved() {

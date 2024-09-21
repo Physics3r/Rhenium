@@ -1,5 +1,8 @@
 package net.minecraft.world.chunk;
 
+import lombok.Getter;
+
+@Getter
 public class NibbleArray {
     private final byte[] data;
 
@@ -50,7 +53,4 @@ public class NibbleArray {
         return index >> 1;
     }
 
-    public byte[] getData() {
-        return this.data;
-    }
 }

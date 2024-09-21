@@ -2,6 +2,7 @@ package net.minecraft.tileentity;
 
 import java.util.List;
 
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHopper;
@@ -26,7 +27,9 @@ import net.minecraft.world.World;
 
 public class TileEntityHopper extends TileEntityLockable implements IHopper, ITickable {
     private ItemStack[] inventory = new ItemStack[5];
+    @Setter
     private String customName;
+    @Setter
     private int transferCooldown = -1;
 
     public void readFromNBT(NBTTagCompound compound) {
@@ -127,10 +130,6 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
     public boolean hasCustomName() {
         return this.customName != null && this.customName.length() > 0;
-    }
-
-    public void setCustomName(String customNameIn) {
-        this.customName = customNameIn;
     }
 
     public int getInventoryStackLimit() {
@@ -490,10 +489,6 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
     public double getZPos() {
         return (double) this.pos.getZ() + 0.5D;
-    }
-
-    public void setTransferCooldown(int ticks) {
-        this.transferCooldown = ticks;
     }
 
     public boolean isOnTransferCooldown() {

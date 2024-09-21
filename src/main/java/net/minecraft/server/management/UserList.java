@@ -17,13 +17,14 @@ import com.google.gson.JsonSerializer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +34,8 @@ public class UserList<K, V extends UserListEntry<K>> {
     protected final Gson gson;
     private final File saveFile;
     private final Map<String, V> values = Maps.<String, V>newHashMap();
+    @Setter
+    @Getter
     private boolean lanServer = true;
     private static final ParameterizedType saveFileFormat = new ParameterizedType() {
         public Type[] getActualTypeArguments() {
@@ -53,14 +56,6 @@ public class UserList<K, V extends UserListEntry<K>> {
         GsonBuilder gsonbuilder = (new GsonBuilder()).setPrettyPrinting();
         gsonbuilder.registerTypeHierarchyAdapter(UserListEntry.class, new UserList.Serializer());
         this.gson = gsonbuilder.create();
-    }
-
-    public boolean isLanServer() {
-        return this.lanServer;
-    }
-
-    public void setLanServer(boolean state) {
-        this.lanServer = state;
     }
 
     public void addEntry(V entry) {

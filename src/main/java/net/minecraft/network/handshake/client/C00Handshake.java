@@ -2,15 +2,18 @@ package net.minecraft.network.handshake.client;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.handshake.INetHandlerHandshakeServer;
 
 public class C00Handshake implements Packet<INetHandlerHandshakeServer> {
+    @Getter
     private int protocolVersion;
     private String ip;
     private int port;
+    @Getter
     private EnumConnectionState requestedState;
 
     public C00Handshake() {
@@ -41,11 +44,4 @@ public class C00Handshake implements Packet<INetHandlerHandshakeServer> {
         handler.processHandshake(this);
     }
 
-    public EnumConnectionState getRequestedState() {
-        return this.requestedState;
-    }
-
-    public int getProtocolVersion() {
-        return this.protocolVersion;
-    }
 }

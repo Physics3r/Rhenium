@@ -1,6 +1,7 @@
 package net.optifine.shaders;
 
 import com.google.common.base.Charsets;
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -82,7 +83,9 @@ public class Shaders {
     private static boolean skipRenderHandMain;
     private static boolean skipRenderHandOff;
     public static boolean renderItemKeepDepthMask = false;
+    @Getter
     public static boolean itemToRenderMainTranslucent = false;
+    @Getter
     public static boolean itemToRenderOffTranslucent = false;
     static float[] sunPosition = new float[4];
     static float[] moonPosition = new float[4];
@@ -348,6 +351,7 @@ public class Shaders {
     public static final String[] texMagFilDesc = new String[]{"Nearest", "Linear"};
     public static final int[] texMinFilValue = new int[]{9728, 9984, 9986};
     public static final int[] texMagFilValue = new int[]{9728, 9729};
+    @Getter
     private static IShaderPack shaderPack = null;
     public static boolean shaderPackLoaded = false;
     public static String currentShaderName;
@@ -357,6 +361,7 @@ public class Shaders {
     public static final String OPTIONS_FILE_NAME = "optionsshaders.txt";
     public static final File shaderPacksDir;
     static File configFile;
+    @Getter
     private static ShaderOption[] shaderPackOptions = null;
     private static Set<String> shaderPackOptionSliders = null;
     static ShaderProfile[] shaderPackProfiles = null;
@@ -381,6 +386,7 @@ public class Shaders {
     public static PropertyDefaultTrueFalse shaderPackSeparateAo = new PropertyDefaultTrueFalse("separateAo", "Separate AO", 0);
     public static PropertyDefaultTrueFalse shaderPackFrustumCulling = new PropertyDefaultTrueFalse("frustum.culling", "Frustum Culling", 0);
     private static Map<String, String> shaderPackResources = new HashMap();
+    @Getter
     private static World currentWorld = null;
     private static List<Integer> shaderPackDimensions = new ArrayList();
     private static ICustomTexture[] customTexturesGbuffers = null;
@@ -818,10 +824,6 @@ public class Shaders {
                 return null;
             }
         }
-    }
-
-    public static IShaderPack getShaderPack() {
-        return shaderPack;
     }
 
     private static void loadShaderPackDimensions() {
@@ -1380,10 +1382,6 @@ public class Shaders {
 
     public static ShaderOption getShaderOption(String name) {
         return ShaderUtils.getShaderOption(name, shaderPackOptions);
-    }
-
-    public static ShaderOption[] getShaderPackOptions() {
-        return shaderPackOptions;
     }
 
     public static boolean isShaderPackOptionSlider(String name) {
@@ -4730,14 +4728,6 @@ public class Shaders {
         itemToRenderOffTranslucent = isTranslucentBlock(itemToRenderOff);
     }
 
-    public static boolean isItemToRenderMainTranslucent() {
-        return itemToRenderMainTranslucent;
-    }
-
-    public static boolean isItemToRenderOffTranslucent() {
-        return itemToRenderOffTranslucent;
-    }
-
     public static boolean isBothHandsRendered() {
         return isHandRenderedMain && isHandRenderedOff;
     }
@@ -4814,10 +4804,6 @@ public class Shaders {
         if (isRenderingWorld) {
             useProgram(ProgramBlock);
         }
-    }
-
-    public static World getCurrentWorld() {
-        return currentWorld;
     }
 
     public static BlockPos getCameraPosition() {

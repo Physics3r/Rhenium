@@ -1,5 +1,6 @@
 package net.optifine;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDoublePlant;
@@ -26,14 +27,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 
 public class BetterSnow {
+    @Getter
     private static IBakedModel modelSnowLayer = null;
 
     public static void update() {
         modelSnowLayer = Config.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(Blocks.snow_layer.getDefaultState());
-    }
-
-    public static IBakedModel getModelSnowLayer() {
-        return modelSnowLayer;
     }
 
     public static IBlockState getStateSnowLayer() {

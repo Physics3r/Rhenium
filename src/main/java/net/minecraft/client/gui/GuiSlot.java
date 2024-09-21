@@ -1,5 +1,7 @@
 package net.minecraft.client.gui;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,6 +18,7 @@ public abstract class GuiSlot {
     protected int bottom;
     protected int right;
     protected int left;
+    @Getter
     protected final int slotHeight;
     private int scrollUpButtonID;
     private int scrollDownButtonID;
@@ -28,9 +31,11 @@ public abstract class GuiSlot {
     protected int selectedElement = -1;
     protected long lastClicked;
     protected boolean field_178041_q = true;
+    @Setter
     protected boolean showSelectionBox = true;
     protected boolean hasListHeader;
     protected int headerPadding;
+    @Setter
     private boolean enabled = true;
 
     public GuiSlot(Minecraft mcIn, int width, int height, int topIn, int bottomIn, int slotHeightIn) {
@@ -51,10 +56,6 @@ public abstract class GuiSlot {
         this.bottom = bottomIn;
         this.left = 0;
         this.right = widthIn;
-    }
-
-    public void setShowSelectionBox(boolean showSelectionBoxIn) {
-        this.showSelectionBox = showSelectionBoxIn;
     }
 
     protected void setHasListHeader(boolean hasListHeaderIn, int headerPaddingIn) {
@@ -308,10 +309,6 @@ public abstract class GuiSlot {
         }
     }
 
-    public void setEnabled(boolean enabledIn) {
-        this.enabled = enabledIn;
-    }
-
     public boolean getEnabled() {
         return this.enabled;
     }
@@ -378,10 +375,6 @@ public abstract class GuiSlot {
     public void setSlotXBoundsFromLeft(int leftIn) {
         this.left = leftIn;
         this.right = leftIn + this.width;
-    }
-
-    public int getSlotHeight() {
-        return this.slotHeight;
     }
 
     protected void drawContainerBackground(Tessellator p_drawContainerBackground_1_) {

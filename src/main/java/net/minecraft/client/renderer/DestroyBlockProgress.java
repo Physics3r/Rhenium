@@ -1,9 +1,11 @@
 package net.minecraft.client.renderer;
 
+import lombok.Getter;
 import net.minecraft.util.BlockPos;
 
 public class DestroyBlockProgress {
     private final int miningPlayerEntId;
+    @Getter
     private final BlockPos position;
     private int partialBlockProgress;
     private int createdAtCloudUpdateTick;
@@ -11,10 +13,6 @@ public class DestroyBlockProgress {
     public DestroyBlockProgress(int miningPlayerEntIdIn, BlockPos positionIn) {
         this.miningPlayerEntId = miningPlayerEntIdIn;
         this.position = positionIn;
-    }
-
-    public BlockPos getPosition() {
-        return this.position;
     }
 
     public void setPartialBlockDamage(int damage) {

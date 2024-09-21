@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import lombok.Getter;
 import net.optifine.util.IteratorCache;
 
 public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
@@ -21,6 +22,7 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     private final Set<Class<?>> knownKeys = Sets.<Class<?>>newIdentityHashSet();
     private final Class<T> baseClass;
     private final List<T> values = Lists.<T>newArrayList();
+    @Getter
     public boolean empty;
 
     public ClassInheritanceMultiMap(Class<T> baseClassIn) {
@@ -130,7 +132,4 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
         return this.values.size();
     }
 
-    public boolean isEmpty() {
-        return this.empty;
-    }
 }

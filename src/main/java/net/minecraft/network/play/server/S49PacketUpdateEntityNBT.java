@@ -2,6 +2,7 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -11,6 +12,7 @@ import net.minecraft.world.World;
 
 public class S49PacketUpdateEntityNBT implements Packet<INetHandlerPlayClient> {
     private int entityId;
+    @Getter
     private NBTTagCompound tagCompound;
 
     public S49PacketUpdateEntityNBT() {
@@ -33,10 +35,6 @@ public class S49PacketUpdateEntityNBT implements Packet<INetHandlerPlayClient> {
 
     public void processPacket(INetHandlerPlayClient handler) {
         handler.handleEntityNBT(this);
-    }
-
-    public NBTTagCompound getTagCompound() {
-        return this.tagCompound;
     }
 
     public Entity getEntity(World worldIn) {

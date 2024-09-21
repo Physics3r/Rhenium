@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -218,7 +219,9 @@ public class BlockLever extends Block {
 
         private static final BlockLever.EnumOrientation[] META_LOOKUP = new BlockLever.EnumOrientation[values().length];
         private final int meta;
+        @Getter
         private final String name;
+        @Getter
         private final EnumFacing facing;
 
         private EnumOrientation(int meta, String name, EnumFacing facing) {
@@ -229,10 +232,6 @@ public class BlockLever extends Block {
 
         public int getMetadata() {
             return this.meta;
-        }
-
-        public EnumFacing getFacing() {
-            return this.facing;
         }
 
         public String toString() {
@@ -288,10 +287,6 @@ public class BlockLever extends Block {
                 default:
                     throw new IllegalArgumentException("Invalid facing: " + clickedSide);
             }
-        }
-
-        public String getName() {
-            return this.name;
         }
 
         static {

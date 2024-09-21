@@ -1,6 +1,7 @@
 package net.minecraft.item.crafting;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -8,16 +9,13 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class ShapelessRecipes implements IRecipe {
+    @Getter
     private final ItemStack recipeOutput;
     private final List<ItemStack> recipeItems;
 
     public ShapelessRecipes(ItemStack output, List<ItemStack> inputList) {
         this.recipeOutput = output;
         this.recipeItems = inputList;
-    }
-
-    public ItemStack getRecipeOutput() {
-        return this.recipeOutput;
     }
 
     public ItemStack[] getRemainingItems(InventoryCrafting inv) {

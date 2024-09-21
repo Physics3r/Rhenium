@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -48,6 +49,7 @@ public class BlockSandStone extends Block {
         return new BlockState(this, new IProperty[]{TYPE});
     }
 
+    @Getter
     public static enum EnumType implements IStringSerializable {
         DEFAULT(0, "sandstone", "default"),
         CHISELED(1, "chiseled_sandstone", "chiseled"),
@@ -64,10 +66,6 @@ public class BlockSandStone extends Block {
             this.unlocalizedName = unlocalizedName;
         }
 
-        public int getMetadata() {
-            return this.metadata;
-        }
-
         public String toString() {
             return this.name;
         }
@@ -78,14 +76,6 @@ public class BlockSandStone extends Block {
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

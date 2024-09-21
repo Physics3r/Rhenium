@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.network.handshake.client.C00Handshake;
 import net.minecraft.network.login.client.C00PacketLoginStart;
 import net.minecraft.network.login.client.C01PacketEncryptionResponse;
@@ -246,6 +247,7 @@ public enum EnumConnectionState {
     private static int field_181137_f = 2;
     private static final EnumConnectionState[] STATES_BY_ID = new EnumConnectionState[field_181137_f - field_181136_e + 1];
     private static final Map<Class<? extends Packet>, EnumConnectionState> STATES_BY_CLASS = Maps.<Class<? extends Packet>, EnumConnectionState>newHashMap();
+    @Getter
     private final int id;
     private final Map<EnumPacketDirection, BiMap<Integer, Class<? extends Packet>>> directionMaps;
 
@@ -279,10 +281,6 @@ public enum EnumConnectionState {
     public Packet getPacket(EnumPacketDirection direction, int packetId) throws InstantiationException, IllegalAccessException {
         Class<? extends Packet> oclass = (Class) ((BiMap) this.directionMaps.get(direction)).get(Integer.valueOf(packetId));
         return oclass == null ? null : oclass.newInstance();
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public static EnumConnectionState getById(int stateId) {

@@ -2,6 +2,8 @@ package net.minecraft.entity.projectile;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -38,7 +40,10 @@ public class EntityArrow extends Entity implements IProjectile {
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
+    @Setter
+    @Getter
     private double damage = 2.0D;
+    @Setter
     private int knockbackStrength;
 
     public EntityArrow(World worldIn) {
@@ -436,18 +441,6 @@ public class EntityArrow extends Entity implements IProjectile {
 
     protected boolean canTriggerWalking() {
         return false;
-    }
-
-    public void setDamage(double damageIn) {
-        this.damage = damageIn;
-    }
-
-    public double getDamage() {
-        return this.damage;
-    }
-
-    public void setKnockbackStrength(int knockbackStrengthIn) {
-        this.knockbackStrength = knockbackStrengthIn;
     }
 
     public boolean canAttackWithItem() {

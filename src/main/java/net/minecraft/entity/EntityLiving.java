@@ -2,6 +2,8 @@ package net.minecraft.entity;
 
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityJumpHelper;
@@ -44,20 +46,27 @@ import net.optifine.reflect.Reflector;
 public abstract class EntityLiving extends EntityLivingBase {
     public int livingSoundTime;
     protected int experienceValue;
+    @Getter
     private EntityLookHelper lookHelper;
+    @Getter
     protected EntityMoveHelper moveHelper;
+    @Getter
     protected EntityJumpHelper jumpHelper;
     private EntityBodyHelper bodyHelper;
+    @Getter
     protected PathNavigate navigator;
     protected final EntityAITasks tasks;
     protected final EntityAITasks targetTasks;
+    @Getter
     private EntityLivingBase attackTarget;
     private EntitySenses senses;
     private ItemStack[] equipment = new ItemStack[5];
     protected float[] equipmentDropChances = new float[5];
+    @Setter
     private boolean canPickUpLoot;
     private boolean persistenceRequired;
     private boolean isLeashed;
+    @Getter
     private Entity leashedToEntity;
     private NBTTagCompound leashNBTTag;
     private UUID teamUuid = null;
@@ -88,28 +97,8 @@ public abstract class EntityLiving extends EntityLivingBase {
         return new PathNavigateGround(this, worldIn);
     }
 
-    public EntityLookHelper getLookHelper() {
-        return this.lookHelper;
-    }
-
-    public EntityMoveHelper getMoveHelper() {
-        return this.moveHelper;
-    }
-
-    public EntityJumpHelper getJumpHelper() {
-        return this.jumpHelper;
-    }
-
-    public PathNavigate getNavigator() {
-        return this.navigator;
-    }
-
     public EntitySenses getEntitySenses() {
         return this.senses;
-    }
-
-    public EntityLivingBase getAttackTarget() {
-        return this.attackTarget;
     }
 
     public void setAttackTarget(EntityLivingBase entitylivingbaseIn) {
@@ -748,10 +737,6 @@ public abstract class EntityLiving extends EntityLivingBase {
         return this.canPickUpLoot;
     }
 
-    public void setCanPickUpLoot(boolean canPickup) {
-        this.canPickUpLoot = canPickup;
-    }
-
     public boolean isNoDespawnRequired() {
         return this.persistenceRequired;
     }
@@ -826,10 +811,6 @@ public abstract class EntityLiving extends EntityLivingBase {
 
     public boolean getLeashed() {
         return this.isLeashed;
-    }
-
-    public Entity getLeashedToEntity() {
-        return this.leashedToEntity;
     }
 
     public void setLeashedToEntity(Entity entityIn, boolean sendAttachNotification) {

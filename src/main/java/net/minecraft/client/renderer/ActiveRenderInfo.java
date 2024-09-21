@@ -3,6 +3,7 @@ package net.minecraft.client.renderer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -20,11 +21,17 @@ public class ActiveRenderInfo {
     private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
     private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
     private static final FloatBuffer OBJECTCOORDS = GLAllocation.createDirectFloatBuffer(3);
+    @Getter
     private static Vec3 position = new Vec3(0.0D, 0.0D, 0.0D);
+    @Getter
     private static float rotationX;
+    @Getter
     private static float rotationXZ;
+    @Getter
     private static float rotationZ;
+    @Getter
     private static float rotationYZ;
+    @Getter
     private static float rotationXY;
 
     public static void updateRenderInfo(EntityPlayer entityplayerIn, boolean p_74583_1_) {
@@ -78,27 +85,4 @@ public class ActiveRenderInfo {
         return block;
     }
 
-    public static Vec3 getPosition() {
-        return position;
-    }
-
-    public static float getRotationX() {
-        return rotationX;
-    }
-
-    public static float getRotationXZ() {
-        return rotationXZ;
-    }
-
-    public static float getRotationZ() {
-        return rotationZ;
-    }
-
-    public static float getRotationYZ() {
-        return rotationYZ;
-    }
-
-    public static float getRotationXY() {
-        return rotationXY;
-    }
 }

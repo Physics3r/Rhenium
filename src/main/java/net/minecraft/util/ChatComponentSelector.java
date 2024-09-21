@@ -1,14 +1,13 @@
 package net.minecraft.util;
 
+import lombok.Getter;
+
+@Getter
 public class ChatComponentSelector extends ChatComponentStyle {
     private final String selector;
 
     public ChatComponentSelector(String selectorIn) {
         this.selector = selectorIn;
-    }
-
-    public String getSelector() {
-        return this.selector;
     }
 
     public String getUnformattedTextForChat() {

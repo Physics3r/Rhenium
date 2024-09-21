@@ -1,8 +1,10 @@
 package net.minecraft.util;
 
+import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
 
 public class CombatEntry {
+    @Getter
     private final DamageSource damageSrc;
     private final int field_94567_b;
     private final float damage;
@@ -17,10 +19,6 @@ public class CombatEntry {
         this.health = healthAmount;
         this.field_94566_e = p_i1564_5_;
         this.fallDistance = fallDistanceIn;
-    }
-
-    public DamageSource getDamageSrc() {
-        return this.damageSrc;
     }
 
     public float func_94563_c() {

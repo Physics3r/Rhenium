@@ -2,6 +2,8 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -10,26 +12,35 @@ import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.MathHelper;
 
 public class GuiTextField extends Gui {
+    @Getter
     private final int id;
     private final FontRenderer fontRendererInstance;
     public int xPosition;
     public int yPosition;
     private final int width;
     private final int height;
+    @Getter
     private String text = "";
+    @Getter
     private int maxStringLength = 32;
     private int cursorCounter;
+    @Setter
     private boolean enableBackgroundDrawing = true;
+    @Setter
     private boolean canLoseFocus = true;
     private boolean isFocused;
     private boolean isEnabled = true;
     private int lineScrollOffset;
+    @Getter
     private int cursorPosition;
+    @Getter
     private int selectionEnd;
     private int enabledColor = 14737632;
     private int disabledColor = 7368816;
+    @Setter
     private boolean visible = true;
     private GuiPageButtonList.GuiResponder field_175210_x;
+    @Setter
     private Predicate<String> validator = Predicates.<String>alwaysTrue();
 
     public GuiTextField(int componentId, FontRenderer fontrendererObj, int x, int y, int par5Width, int par6Height) {
@@ -61,18 +72,10 @@ public class GuiTextField extends Gui {
         }
     }
 
-    public String getText() {
-        return this.text;
-    }
-
     public String getSelectedText() {
         int i = this.cursorPosition < this.selectionEnd ? this.cursorPosition : this.selectionEnd;
         int j = this.cursorPosition < this.selectionEnd ? this.selectionEnd : this.cursorPosition;
         return this.text.substring(i, j);
-    }
-
-    public void setValidator(Predicate<String> theValidator) {
-        this.validator = theValidator;
     }
 
     public void writeText(String p_146191_1_) {
@@ -150,10 +153,6 @@ public class GuiTextField extends Gui {
                 }
             }
         }
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public int getNthWordFromCursor(int p_146187_1_) {
@@ -443,20 +442,8 @@ public class GuiTextField extends Gui {
         }
     }
 
-    public int getMaxStringLength() {
-        return this.maxStringLength;
-    }
-
-    public int getCursorPosition() {
-        return this.cursorPosition;
-    }
-
     public boolean getEnableBackgroundDrawing() {
         return this.enableBackgroundDrawing;
-    }
-
-    public void setEnableBackgroundDrawing(boolean p_146185_1_) {
-        this.enableBackgroundDrawing = p_146185_1_;
     }
 
     public void setTextColor(int p_146193_1_) {
@@ -481,10 +468,6 @@ public class GuiTextField extends Gui {
 
     public void setEnabled(boolean p_146184_1_) {
         this.isEnabled = p_146184_1_;
-    }
-
-    public int getSelectionEnd() {
-        return this.selectionEnd;
     }
 
     public int getWidth() {
@@ -527,15 +510,8 @@ public class GuiTextField extends Gui {
         }
     }
 
-    public void setCanLoseFocus(boolean p_146205_1_) {
-        this.canLoseFocus = p_146205_1_;
-    }
-
     public boolean getVisible() {
         return this.visible;
     }
 
-    public void setVisible(boolean p_146189_1_) {
-        this.visible = p_146189_1_;
-    }
 }

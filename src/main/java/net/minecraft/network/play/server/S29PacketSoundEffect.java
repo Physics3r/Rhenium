@@ -2,6 +2,7 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -9,6 +10,7 @@ import net.minecraft.util.MathHelper;
 import org.apache.commons.lang3.Validate;
 
 public class S29PacketSoundEffect implements Packet<INetHandlerPlayClient> {
+    @Getter
     private String soundName;
     private int posX;
     private int posY = Integer.MAX_VALUE;
@@ -46,10 +48,6 @@ public class S29PacketSoundEffect implements Packet<INetHandlerPlayClient> {
         buf.writeInt(this.posZ);
         buf.writeFloat(this.soundVolume);
         buf.writeByte(this.soundPitch);
-    }
-
-    public String getSoundName() {
-        return this.soundName;
     }
 
     public double getX() {

@@ -1,6 +1,7 @@
 package net.minecraft.tileentity;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -13,8 +14,10 @@ import net.minecraft.util.ITickable;
 import java.util.List;
 
 public class TileEntityPiston extends TileEntity implements ITickable {
+    @Getter
     private IBlockState pistonState;
     private EnumFacing pistonFacing;
+    @Getter
     private boolean extending;
     private boolean shouldHeadBeRendered;
     private float progress;
@@ -31,16 +34,8 @@ public class TileEntityPiston extends TileEntity implements ITickable {
         this.shouldHeadBeRendered = shouldHeadBeRenderedIn;
     }
 
-    public IBlockState getPistonState() {
-        return this.pistonState;
-    }
-
     public int getBlockMetadata() {
         return 0;
-    }
-
-    public boolean isExtending() {
-        return this.extending;
     }
 
     public EnumFacing getFacing() {

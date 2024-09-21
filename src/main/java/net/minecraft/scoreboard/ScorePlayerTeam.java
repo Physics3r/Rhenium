@@ -1,6 +1,8 @@
 package net.minecraft.scoreboard;
 
 import com.google.common.collect.Sets;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.Collection;
@@ -8,25 +10,27 @@ import java.util.Set;
 
 public class ScorePlayerTeam extends Team {
     private final Scoreboard theScoreboard;
+    @Getter
     private final String registeredName;
     private final Set<String> membershipSet = Sets.<String>newHashSet();
     private String teamNameSPT;
     private String namePrefixSPT = "";
+    @Getter
     private String colorSuffix = "";
     private boolean allowFriendlyFire = true;
     private boolean canSeeFriendlyInvisibles = true;
+    @Getter
     private Team.EnumVisible nameTagVisibility = Team.EnumVisible.ALWAYS;
+    @Getter
     private Team.EnumVisible deathMessageVisibility = Team.EnumVisible.ALWAYS;
+    @Setter
+    @Getter
     private EnumChatFormatting chatFormat = EnumChatFormatting.RESET;
 
     public ScorePlayerTeam(Scoreboard theScoreboardIn, String name) {
         this.theScoreboard = theScoreboardIn;
         this.registeredName = name;
         this.teamNameSPT = name;
-    }
-
-    public String getRegisteredName() {
-        return this.registeredName;
     }
 
     public String getTeamName() {
@@ -57,10 +61,6 @@ public class ScorePlayerTeam extends Team {
             this.namePrefixSPT = prefix;
             this.theScoreboard.sendTeamUpdate(this);
         }
-    }
-
-    public String getColorSuffix() {
-        return this.colorSuffix;
     }
 
     public void setNameSuffix(String suffix) {
@@ -94,14 +94,6 @@ public class ScorePlayerTeam extends Team {
         this.theScoreboard.sendTeamUpdate(this);
     }
 
-    public Team.EnumVisible getNameTagVisibility() {
-        return this.nameTagVisibility;
-    }
-
-    public Team.EnumVisible getDeathMessageVisibility() {
-        return this.deathMessageVisibility;
-    }
-
     public void setNameTagVisibility(Team.EnumVisible p_178772_1_) {
         this.nameTagVisibility = p_178772_1_;
         this.theScoreboard.sendTeamUpdate(this);
@@ -131,11 +123,4 @@ public class ScorePlayerTeam extends Team {
         this.setSeeFriendlyInvisiblesEnabled((p_98298_1_ & 2) > 0);
     }
 
-    public void setChatFormat(EnumChatFormatting p_178774_1_) {
-        this.chatFormat = p_178774_1_;
-    }
-
-    public EnumChatFormatting getChatFormat() {
-        return this.chatFormat;
-    }
 }

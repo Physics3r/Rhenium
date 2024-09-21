@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.ITextureObject;
@@ -37,6 +38,7 @@ public class ShaderManager {
     private final List<ShaderUniform> shaderUniforms = Lists.<ShaderUniform>newArrayList();
     private final List<Integer> shaderUniformLocations = Lists.<Integer>newArrayList();
     private final Map<String, ShaderUniform> mappedShaderUniforms = Maps.<String, ShaderUniform>newHashMap();
+    @Getter
     private final int program;
     private final String programFilename;
     private final boolean useFaceCulling;
@@ -44,7 +46,9 @@ public class ShaderManager {
     private final JsonBlendingMode field_148016_p;
     private final List<Integer> attribLocations;
     private final List<String> attributes;
+    @Getter
     private final ShaderLoader vertexShaderLoader;
+    @Getter
     private final ShaderLoader fragmentShaderLoader;
 
     public ShaderManager(IResourceManager resourceManager, String programName) throws JsonException, IOException {
@@ -316,15 +320,4 @@ public class ShaderManager {
         }
     }
 
-    public ShaderLoader getVertexShaderLoader() {
-        return this.vertexShaderLoader;
-    }
-
-    public ShaderLoader getFragmentShaderLoader() {
-        return this.fragmentShaderLoader;
-    }
-
-    public int getProgram() {
-        return this.program;
-    }
 }

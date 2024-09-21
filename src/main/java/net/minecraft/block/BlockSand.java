@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import lombok.Getter;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -51,8 +52,11 @@ public class BlockSand extends BlockFalling {
 
         private static final BlockSand.EnumType[] META_LOOKUP = new BlockSand.EnumType[values().length];
         private final int meta;
+        @Getter
         private final String name;
+        @Getter
         private final MapColor mapColor;
+        @Getter
         private final String unlocalizedName;
 
         private EnumType(int meta, String name, String unlocalizedName, MapColor mapColor) {
@@ -70,24 +74,12 @@ public class BlockSand extends BlockFalling {
             return this.name;
         }
 
-        public MapColor getMapColor() {
-            return this.mapColor;
-        }
-
         public static BlockSand.EnumType byMetadata(int meta) {
             if (meta < 0 || meta >= META_LOOKUP.length) {
                 meta = 0;
             }
 
             return META_LOOKUP[meta];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getUnlocalizedName() {
-            return this.unlocalizedName;
         }
 
         static {

@@ -1,5 +1,7 @@
 package net.minecraft.block.material;
 
+import lombok.Getter;
+
 public class Material {
     public static final Material air = new MaterialTransparent(MapColor.airColor);
     public static final Material grass = new Material(MapColor.grassColor);
@@ -41,8 +43,10 @@ public class Material {
     public static final Material piston = (new Material(MapColor.stoneColor)).setImmovableMobility();
     public static final Material barrier = (new Material(MapColor.airColor)).setRequiresTool().setImmovableMobility();
     private boolean canBurn;
+    @Getter
     private boolean replaceable;
     private boolean isTranslucent;
+    @Getter
     private final MapColor materialMapColor;
     private boolean requiresNoTool = true;
     private int mobilityFlag;
@@ -92,10 +96,6 @@ public class Material {
         return this;
     }
 
-    public boolean isReplaceable() {
-        return this.replaceable;
-    }
-
     public boolean isOpaque() {
         return this.isTranslucent ? false : this.blocksMovement();
     }
@@ -123,7 +123,4 @@ public class Material {
         return this;
     }
 
-    public MapColor getMaterialMapColor() {
-        return this.materialMapColor;
-    }
 }
