@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'net.minecraft'
@@ -7,6 +8,16 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+shadowJar {
+    archiveClassifier.set('all')
+
+    configurations = [project.configurations.runtimeClasspath]
+}
+
+tasks.build {
+    dependsOn shadowJar
 }
 
 tasks.register('runClient', JavaExec) {
