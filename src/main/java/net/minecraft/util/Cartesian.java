@@ -58,7 +58,17 @@ public class Cartesian {
         }
 
         public Iterator<T[]> iterator() {
-            return (Iterator<T[]>) (this.iterables.length <= 0 ? Collections.singletonList((Object[]) Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables));
+//            return (Iterator<T[]>) (this.iterables.length <= 0 ? Collections.singletonList((Object[]) Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables));
+
+            if (this.iterables.length == 0) {
+                // 创建一个空的数组并将其转换为T[]类型
+                T[] emptyArray = Cartesian.createArray(this.clazz, 0);
+                // 将这个单例列表的迭代器返回
+                return Collections.singletonList(emptyArray).iterator();
+            } else {
+                // 返回Cartesian.Product.ProductIterator的实例
+                return (Iterator<T[]>) new ProductIterator<>(this.clazz, this.iterables);
+            }
         }
 
         static class ProductIterator<T> extends UnmodifiableIterator<T[]> {
