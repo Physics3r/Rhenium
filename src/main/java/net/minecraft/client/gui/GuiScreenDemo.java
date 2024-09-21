@@ -28,7 +28,7 @@ public class GuiScreenDemo extends GuiScreen {
 
                 try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
                     oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{new URI("http://www.minecraft.net/store?source=demo")});
                 } catch (Throwable throwable) {
                     logger.error("Couldn\'t open link", throwable);
@@ -37,7 +37,7 @@ public class GuiScreenDemo extends GuiScreen {
                 break;
 
             case 2:
-                this.mc.displayGuiScreen((GuiScreen) null);
+                this.mc.displayGuiScreen(null);
                 this.mc.setIngameFocus();
         }
     }

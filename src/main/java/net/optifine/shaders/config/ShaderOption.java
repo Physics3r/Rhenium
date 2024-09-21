@@ -115,7 +115,7 @@ public abstract class ShaderOption {
             String s = newPaths[i];
 
             if (!list.contains(s)) {
-                this.paths = (String[]) ((String[]) Config.addObjectToArray(this.paths, s));
+                this.paths = (String[]) Config.addObjectToArray(this.paths, s);
             }
         }
     }
@@ -173,7 +173,7 @@ public abstract class ShaderOption {
     }
 
     public String[] getValues() {
-        return (String[]) this.values.clone();
+        return this.values.clone();
     }
 
     public float getIndexNormalized() {
@@ -185,7 +185,7 @@ public abstract class ShaderOption {
             if (i < 0) {
                 return 0.0F;
             } else {
-                float f = 1.0F * (float) i / ((float) this.values.length - 1.0F);
+                float f = (float) i / ((float) this.values.length - 1.0F);
                 return f;
             }
         }
@@ -200,6 +200,6 @@ public abstract class ShaderOption {
     }
 
     public String toString() {
-        return "" + this.name + ", value: " + this.value + ", valueDefault: " + this.valueDefault + ", paths: " + Config.arrayToString((Object[]) this.paths);
+        return "" + this.name + ", value: " + this.value + ", valueDefault: " + this.valueDefault + ", paths: " + Config.arrayToString(this.paths);
     }
 }

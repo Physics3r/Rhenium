@@ -216,7 +216,7 @@ public class Config {
             }
 
             if (astring.length > 2) {
-                i += 1 * parseInt(astring[2], 0);
+                i += parseInt(astring[2], 0);
             }
 
             minecraftVersionInt = i;
@@ -238,7 +238,7 @@ public class Config {
     public static GlVersion getGlVersion() {
         if (glVersion == null) {
             String s = GL11.glGetString(GL11.GL_VERSION);
-            glVersion = parseGlVersion(s, (GlVersion) null);
+            glVersion = parseGlVersion(s, null);
 
             if (glVersion == null) {
                 glVersion = getGlVersionLwjgl();
@@ -255,7 +255,7 @@ public class Config {
     public static GlVersion getGlslVersion() {
         if (glslVersion == null) {
             String s = GL11.glGetString(GL20.GL_SHADING_LANGUAGE_VERSION);
-            glslVersion = parseGlVersion(s, (GlVersion) null);
+            glslVersion = parseGlVersion(s, null);
 
             if (glslVersion == null) {
                 glslVersion = new GlVersion(1, 10);
@@ -787,7 +787,7 @@ public class Config {
             list1.add(resourcepackrepository.getResourcePackInstance());
         }
 
-        IResourcePack[] airesourcepack = (IResourcePack[]) ((IResourcePack[]) list1.toArray(new IResourcePack[list1.size()]));
+        IResourcePack[] airesourcepack = (IResourcePack[]) list1.toArray(new IResourcePack[list1.size()]);
         return airesourcepack;
     }
 
@@ -806,7 +806,7 @@ public class Config {
                     astring[i] = airesourcepack[i].getPackName();
                 }
 
-                String s = arrayToString((Object[]) astring);
+                String s = arrayToString(astring);
                 return s;
             }
         }
@@ -844,7 +844,7 @@ public class Config {
             List<ResourcePackRepository.Entry> list = resourcepackrepository.repositoryEntries;
 
             for (int i = list.size() - 1; i >= 0; --i) {
-                ResourcePackRepository.Entry resourcepackrepository$entry = (ResourcePackRepository.Entry) list.get(i);
+                ResourcePackRepository.Entry resourcepackrepository$entry = list.get(i);
                 IResourcePack iresourcepack1 = resourcepackrepository$entry.getResourcePack();
 
                 if (iresourcepack1.resourceExists(p_getDefiningResourcePack_0_)) {
@@ -1042,7 +1042,7 @@ public class Config {
             list.add(s);
         }
 
-        String[] astring = (String[]) ((String[]) list.toArray(new String[list.size()]));
+        String[] astring = (String[]) list.toArray(new String[list.size()]);
         return astring;
     }
 
@@ -1066,7 +1066,7 @@ public class Config {
                     }
                 }
 
-                DisplayMode[] adisplaymode2 = (DisplayMode[]) ((DisplayMode[]) list.toArray(new DisplayMode[list.size()]));
+                DisplayMode[] adisplaymode2 = (DisplayMode[]) list.toArray(new DisplayMode[list.size()]);
                 Arrays.sort(adisplaymode2, new DisplayModeComparator());
                 return adisplaymode2;
             } catch (Exception exception) {
@@ -1112,7 +1112,7 @@ public class Config {
             }
         }
 
-        DisplayMode[] adisplaymode = (DisplayMode[]) ((DisplayMode[]) list.toArray(new DisplayMode[list.size()]));
+        DisplayMode[] adisplaymode = (DisplayMode[]) list.toArray(new DisplayMode[list.size()]);
         return adisplaymode;
     }
 
@@ -1243,7 +1243,7 @@ public class Config {
 
     public static String[] readLines(File p_readLines_0_) throws IOException {
         FileInputStream fileinputstream = new FileInputStream(p_readLines_0_);
-        return readLines((InputStream) fileinputstream);
+        return readLines(fileinputstream);
     }
 
     public static String[] readLines(InputStream p_readLines_0_) throws IOException {
@@ -1255,7 +1255,7 @@ public class Config {
             String s = bufferedreader.readLine();
 
             if (s == null) {
-                String[] astring = (String[]) ((String[]) list.toArray(new String[list.size()]));
+                String[] astring = (String[]) list.toArray(new String[list.size()]);
                 return astring;
             }
 
@@ -1541,7 +1541,7 @@ public class Config {
 
     private static ByteBuffer readIconImage(InputStream p_readIconImage_0_) throws IOException {
         BufferedImage bufferedimage = ImageIO.read(p_readIconImage_0_);
-        int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), (int[]) null, 0, bufferedimage.getWidth());
+        int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), null, 0, bufferedimage.getWidth());
         ByteBuffer bytebuffer = ByteBuffer.allocate(4 * aint.length);
 
         for (int i : aint) {
@@ -1640,7 +1640,7 @@ public class Config {
         } else {
             int i = p_addObjectToArray_0_.length;
             int j = i + 1;
-            Object[] aobject = (Object[]) ((Object[]) Array.newInstance(p_addObjectToArray_0_.getClass().getComponentType(), j));
+            Object[] aobject = (Object[]) Array.newInstance(p_addObjectToArray_0_.getClass().getComponentType(), j);
             System.arraycopy(p_addObjectToArray_0_, 0, aobject, 0, i);
             aobject[i] = p_addObjectToArray_1_;
             return aobject;
@@ -1650,7 +1650,7 @@ public class Config {
     public static Object[] addObjectToArray(Object[] p_addObjectToArray_0_, Object p_addObjectToArray_1_, int p_addObjectToArray_2_) {
         List list = new ArrayList(Arrays.asList(p_addObjectToArray_0_));
         list.add(p_addObjectToArray_2_, p_addObjectToArray_1_);
-        Object[] aobject = (Object[]) ((Object[]) Array.newInstance(p_addObjectToArray_0_.getClass().getComponentType(), list.size()));
+        Object[] aobject = (Object[]) Array.newInstance(p_addObjectToArray_0_.getClass().getComponentType(), list.size());
         return list.toArray(aobject);
     }
 
@@ -1662,7 +1662,7 @@ public class Config {
         } else {
             int i = p_addObjectsToArray_0_.length;
             int j = i + p_addObjectsToArray_1_.length;
-            Object[] aobject = (Object[]) ((Object[]) Array.newInstance(p_addObjectsToArray_0_.getClass().getComponentType(), j));
+            Object[] aobject = (Object[]) Array.newInstance(p_addObjectsToArray_0_.getClass().getComponentType(), j);
             System.arraycopy(p_addObjectsToArray_0_, 0, aobject, 0, i);
             System.arraycopy(p_addObjectsToArray_1_, 0, aobject, i, p_addObjectsToArray_1_.length);
             return aobject;
@@ -1684,7 +1684,7 @@ public class Config {
         } else if (p_collectionToArray_1_.isPrimitive()) {
             throw new IllegalArgumentException("Can not make arrays with primitive elements (int, double), element class: " + p_collectionToArray_1_);
         } else {
-            Object[] aobject = (Object[]) ((Object[]) Array.newInstance(p_collectionToArray_1_, p_collectionToArray_0_.size()));
+            Object[] aobject = (Object[]) Array.newInstance(p_collectionToArray_1_, p_collectionToArray_0_.size());
             return p_collectionToArray_0_.toArray(aobject);
         }
     }

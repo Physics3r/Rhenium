@@ -85,10 +85,10 @@ public class ModelSpider extends ModelBase {
         float f2 = 0.3926991F;
         this.spiderLeg1.rotateAngleY = f2 * 2.0F + f1;
         this.spiderLeg2.rotateAngleY = -f2 * 2.0F - f1;
-        this.spiderLeg3.rotateAngleY = f2 * 1.0F + f1;
-        this.spiderLeg4.rotateAngleY = -f2 * 1.0F - f1;
-        this.spiderLeg5.rotateAngleY = -f2 * 1.0F + f1;
-        this.spiderLeg6.rotateAngleY = f2 * 1.0F - f1;
+        this.spiderLeg3.rotateAngleY = f2 + f1;
+        this.spiderLeg4.rotateAngleY = -f2 - f1;
+        this.spiderLeg5.rotateAngleY = -f2 + f1;
+        this.spiderLeg6.rotateAngleY = f2 - f1;
         this.spiderLeg7.rotateAngleY = -f2 * 2.0F + f1;
         this.spiderLeg8.rotateAngleY = f2 * 2.0F - f1;
         float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
@@ -100,20 +100,20 @@ public class ModelSpider extends ModelBase {
         float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
         float f10 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
         this.spiderLeg1.rotateAngleY += f3;
-        this.spiderLeg2.rotateAngleY += -f3;
+        this.spiderLeg2.rotateAngleY -= f3;
         this.spiderLeg3.rotateAngleY += f4;
-        this.spiderLeg4.rotateAngleY += -f4;
+        this.spiderLeg4.rotateAngleY -= f4;
         this.spiderLeg5.rotateAngleY += f5;
-        this.spiderLeg6.rotateAngleY += -f5;
+        this.spiderLeg6.rotateAngleY -= f5;
         this.spiderLeg7.rotateAngleY += f6;
-        this.spiderLeg8.rotateAngleY += -f6;
+        this.spiderLeg8.rotateAngleY -= f6;
         this.spiderLeg1.rotateAngleZ += f7;
-        this.spiderLeg2.rotateAngleZ += -f7;
+        this.spiderLeg2.rotateAngleZ -= f7;
         this.spiderLeg3.rotateAngleZ += f8;
-        this.spiderLeg4.rotateAngleZ += -f8;
+        this.spiderLeg4.rotateAngleZ -= f8;
         this.spiderLeg5.rotateAngleZ += f9;
-        this.spiderLeg6.rotateAngleZ += -f9;
+        this.spiderLeg6.rotateAngleZ -= f9;
         this.spiderLeg7.rotateAngleZ += f10;
-        this.spiderLeg8.rotateAngleZ += -f10;
+        this.spiderLeg8.rotateAngleZ -= f10;
     }
 }

@@ -193,7 +193,7 @@ public class Items {
     public static final Item banner;
 
     private static Item getRegisteredItem(String name) {
-        return (Item) Item.itemRegistry.getObject(new ResourceLocation(name));
+        return Item.itemRegistry.getObject(new ResourceLocation(name));
     }
 
     static {

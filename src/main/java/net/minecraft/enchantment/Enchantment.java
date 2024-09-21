@@ -66,7 +66,7 @@ public abstract class Enchantment {
     }
 
     public static Enchantment getEnchantmentByLocation(String location) {
-        return (Enchantment) locationEnchantments.get(new ResourceLocation(location));
+        return locationEnchantments.get(new ResourceLocation(location));
     }
 
     public static Set<ResourceLocation> func_181077_c() {
@@ -138,6 +138,6 @@ public abstract class Enchantment {
             }
         }
 
-        enchantmentsBookList = (Enchantment[]) list.toArray(new Enchantment[list.size()]);
+        enchantmentsBookList = list.toArray(new Enchantment[list.size()]);
     }
 }

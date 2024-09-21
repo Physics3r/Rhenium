@@ -24,7 +24,7 @@ public class MapStorage {
     }
 
     public WorldSavedData loadData(Class<? extends WorldSavedData> clazz, String dataIdentifier) {
-        WorldSavedData worldsaveddata = (WorldSavedData) this.loadedDataMap.get(dataIdentifier);
+        WorldSavedData worldsaveddata = this.loadedDataMap.get(dataIdentifier);
 
         if (worldsaveddata != null) {
             return worldsaveddata;
@@ -35,7 +35,7 @@ public class MapStorage {
 
                     if (file1 != null && file1.exists()) {
                         try {
-                            worldsaveddata = (WorldSavedData) clazz.getConstructor(new Class[]{String.class}).newInstance(new Object[]{dataIdentifier});
+                            worldsaveddata = clazz.getConstructor(new Class[]{String.class}).newInstance(new Object[]{dataIdentifier});
                         } catch (Exception exception) {
                             throw new RuntimeException("Failed to instantiate " + clazz.toString(), exception);
                         }
@@ -70,7 +70,7 @@ public class MapStorage {
 
     public void saveAllData() {
         for (int i = 0; i < this.loadedDataList.size(); ++i) {
-            WorldSavedData worldsaveddata = (WorldSavedData) this.loadedDataList.get(i);
+            WorldSavedData worldsaveddata = this.loadedDataList.get(i);
 
             if (worldsaveddata.isDirty()) {
                 this.saveData(worldsaveddata);
@@ -130,7 +130,7 @@ public class MapStorage {
     }
 
     public int getUniqueDataId(String key) {
-        Short oshort = (Short) this.idCounts.get(key);
+        Short oshort = this.idCounts.get(key);
 
         if (oshort == null) {
             oshort = Short.valueOf((short) 0);
@@ -150,7 +150,7 @@ public class MapStorage {
                     NBTTagCompound nbttagcompound = new NBTTagCompound();
 
                     for (String s : this.idCounts.keySet()) {
-                        short short1 = ((Short) this.idCounts.get(s)).shortValue();
+                        short short1 = this.idCounts.get(s).shortValue();
                         nbttagcompound.setShort(s, short1);
                     }
 

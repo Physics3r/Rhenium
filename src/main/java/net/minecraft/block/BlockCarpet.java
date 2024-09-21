@@ -30,7 +30,7 @@ public class BlockCarpet extends Block {
     }
 
     public MapColor getMapColor(IBlockState state) {
-        return ((EnumDyeColor) state.getValue(COLOR)).getMapColor();
+        return state.getValue(COLOR).getMapColor();
     }
 
     public boolean isOpaqueCube() {
@@ -51,7 +51,7 @@ public class BlockCarpet extends Block {
 
     protected void setBlockBoundsFromMeta(int meta) {
         int i = 0;
-        float f = (float) (1 * (1 + i)) / 16.0F;
+        float f = (float) ((1 + i)) / 16.0F;
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
     }
 
@@ -82,7 +82,7 @@ public class BlockCarpet extends Block {
     }
 
     public int damageDropped(IBlockState state) {
-        return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+        return state.getValue(COLOR).getMetadata();
     }
 
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
@@ -96,7 +96,7 @@ public class BlockCarpet extends Block {
     }
 
     public int getMetaFromState(IBlockState state) {
-        return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+        return state.getValue(COLOR).getMetadata();
     }
 
     protected BlockState createBlockState() {

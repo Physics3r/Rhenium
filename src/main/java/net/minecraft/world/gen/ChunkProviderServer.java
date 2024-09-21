@@ -71,7 +71,7 @@ public class ChunkProviderServer implements IChunkProvider {
     public Chunk loadChunk(int chunkX, int chunkZ) {
         long i = ChunkCoordIntPair.chunkXZ2Int(chunkX, chunkZ);
         this.droppedChunksSet.remove(Long.valueOf(i));
-        Chunk chunk = (Chunk) this.id2ChunkMap.getValueByKey(i);
+        Chunk chunk = this.id2ChunkMap.getValueByKey(i);
 
         if (chunk == null) {
             chunk = this.loadChunkFromFile(chunkX, chunkZ);
@@ -103,7 +103,7 @@ public class ChunkProviderServer implements IChunkProvider {
     }
 
     public Chunk provideChunk(int x, int z) {
-        Chunk chunk = (Chunk) this.id2ChunkMap.getValueByKey(ChunkCoordIntPair.chunkXZ2Int(x, z));
+        Chunk chunk = this.id2ChunkMap.getValueByKey(ChunkCoordIntPair.chunkXZ2Int(x, z));
         return chunk == null ? (!this.worldObj.isFindingSpawnPoint() && !this.chunkLoadOverride ? this.dummyChunk : this.loadChunk(x, z)) : chunk;
     }
 
@@ -124,7 +124,7 @@ public class ChunkProviderServer implements IChunkProvider {
 
                 return chunk;
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t load chunk", (Throwable) exception);
+                logger.error("Couldn\'t load chunk", exception);
                 return null;
             }
         }
@@ -135,7 +135,7 @@ public class ChunkProviderServer implements IChunkProvider {
             try {
                 this.chunkLoader.saveExtraChunkData(this.worldObj, chunkIn);
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t save entities", (Throwable) exception);
+                logger.error("Couldn\'t save entities", exception);
             }
         }
     }
@@ -146,9 +146,9 @@ public class ChunkProviderServer implements IChunkProvider {
                 chunkIn.setLastSaveTime(this.worldObj.getTotalWorldTime());
                 this.chunkLoader.saveChunk(this.worldObj, chunkIn);
             } catch (IOException ioexception) {
-                logger.error((String) "Couldn\'t save chunk", (Throwable) ioexception);
+                logger.error("Couldn\'t save chunk", ioexception);
             } catch (MinecraftException minecraftexception) {
-                logger.error((String) "Couldn\'t save chunk; already in use by another instance of Minecraft?", (Throwable) minecraftexception);
+                logger.error("Couldn\'t save chunk; already in use by another instance of Minecraft?", minecraftexception);
             }
         }
     }
@@ -180,8 +180,8 @@ public class ChunkProviderServer implements IChunkProvider {
         int i = 0;
         List<Chunk> list = Lists.newArrayList(this.loadedChunks);
 
-        for (int j = 0; j < ((List) list).size(); ++j) {
-            Chunk chunk = (Chunk) list.get(j);
+        for (int j = 0; j < list.size(); ++j) {
+            Chunk chunk = list.get(j);
 
             if (saveAllChunks) {
                 this.saveChunkExtraData(chunk);
@@ -211,8 +211,8 @@ public class ChunkProviderServer implements IChunkProvider {
         if (!this.worldObj.disableLevelSaving) {
             for (int i = 0; i < 100; ++i) {
                 if (!this.droppedChunksSet.isEmpty()) {
-                    Long olong = (Long) this.droppedChunksSet.iterator().next();
-                    Chunk chunk = (Chunk) this.id2ChunkMap.getValueByKey(olong.longValue());
+                    Long olong = this.droppedChunksSet.iterator().next();
+                    Chunk chunk = this.id2ChunkMap.getValueByKey(olong.longValue());
 
                     if (chunk != null) {
                         chunk.onChunkUnload();

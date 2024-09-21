@@ -431,9 +431,9 @@ public class ComponentScatteredFeaturePieces {
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(l), 7, 4, 5, structureBoundingBoxIn);
 
                 for (int l1 = 0; l1 < 4; ++l1) {
-                    this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 5, 0 - l1, 6 + l1, structureBoundingBoxIn);
-                    this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 6, 0 - l1, 6 + l1, structureBoundingBoxIn);
-                    this.fillWithAir(worldIn, structureBoundingBoxIn, 5, 0 - l1, 7 + l1, 6, 0 - l1, 9 + l1);
+                    this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 5, -l1, 6 + l1, structureBoundingBoxIn);
+                    this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 6, -l1, 6 + l1, structureBoundingBoxIn);
+                    this.fillWithAir(worldIn, structureBoundingBoxIn, 5, -l1, 7 + l1, 6, -l1, 9 + l1);
                 }
 
                 this.fillWithAir(worldIn, structureBoundingBoxIn, 1, -3, 12, 10, -1, 13);
@@ -611,8 +611,8 @@ public class ComponentScatteredFeaturePieces {
                     if (structureBoundingBoxIn.isVecInside(new BlockPos(l1, i2, k1))) {
                         this.hasWitch = true;
                         EntityWitch entitywitch = new EntityWitch(worldIn);
-                        entitywitch.setLocationAndAngles((double) l1 + 0.5D, (double) i2, (double) k1 + 0.5D, 0.0F, 0.0F);
-                        entitywitch.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(l1, i2, k1)), (IEntityLivingData) null);
+                        entitywitch.setLocationAndAngles((double) l1 + 0.5D, i2, (double) k1 + 0.5D, 0.0F, 0.0F);
+                        entitywitch.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(l1, i2, k1)), null);
                         worldIn.spawnEntityInWorld(entitywitch);
                     }
                 }

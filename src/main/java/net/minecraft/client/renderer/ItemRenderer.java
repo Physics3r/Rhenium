@@ -228,7 +228,7 @@ public class ItemRenderer {
         }
 
         GlStateManager.translate(0.0F, f2, 0.0F);
-        float f3 = 1.0F - (float) Math.pow((double) f1, 27.0D);
+        float f3 = 1.0F - (float) Math.pow(f1, 27.0D);
         GlStateManager.translate(f3 * 0.6F, f3 * -0.5F, f3 * 0.0F);
         GlStateManager.rotate(f3 * 90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(f3 * 10.0F, 1.0F, 0.0F, 0.0F);
@@ -342,7 +342,7 @@ public class ItemRenderer {
             EntityPlayer entityplayer = this.mc.thePlayer;
 
             for (int i = 0; i < 8; ++i) {
-                double d0 = entityplayer.posX + (double) (((float) ((i >> 0) % 2) - 0.5F) * entityplayer.width * 0.8F);
+                double d0 = entityplayer.posX + (double) (((float) ((i) % 2) - 0.5F) * entityplayer.width * 0.8F);
                 double d1 = entityplayer.posY + (double) (((float) ((i >> 1) % 2) - 0.5F) * 0.1F);
                 double d2 = entityplayer.posZ + (double) (((float) ((i >> 2) % 2) - 0.5F) * entityplayer.width * 0.8F);
                 BlockPos blockpos1 = new BlockPos(d0, d1 + (double) entityplayer.getEyeHeight(), d2);
@@ -393,10 +393,10 @@ public class ItemRenderer {
         float f8 = atlas.getMinV();
         float f9 = atlas.getMaxV();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-1.0D, -1.0D, -0.5D).tex((double) f7, (double) f9).endVertex();
-        worldrenderer.pos(1.0D, -1.0D, -0.5D).tex((double) f6, (double) f9).endVertex();
-        worldrenderer.pos(1.0D, 1.0D, -0.5D).tex((double) f6, (double) f8).endVertex();
-        worldrenderer.pos(-1.0D, 1.0D, -0.5D).tex((double) f7, (double) f8).endVertex();
+        worldrenderer.pos(-1.0D, -1.0D, -0.5D).tex(f7, f9).endVertex();
+        worldrenderer.pos(1.0D, -1.0D, -0.5D).tex(f6, f9).endVertex();
+        worldrenderer.pos(1.0D, 1.0D, -0.5D).tex(f6, f8).endVertex();
+        worldrenderer.pos(-1.0D, 1.0D, -0.5D).tex(f7, f8).endVertex();
         tessellator.draw();
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -421,10 +421,10 @@ public class ItemRenderer {
             float f7 = -this.mc.thePlayer.rotationYaw / 64.0F;
             float f8 = this.mc.thePlayer.rotationPitch / 64.0F;
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            worldrenderer.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
-            worldrenderer.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();
-            worldrenderer.pos(1.0D, 1.0D, -0.5D).tex((double) (0.0F + f7), (double) (0.0F + f8)).endVertex();
-            worldrenderer.pos(-1.0D, 1.0D, -0.5D).tex((double) (4.0F + f7), (double) (0.0F + f8)).endVertex();
+            worldrenderer.pos(-1.0D, -1.0D, -0.5D).tex(4.0F + f7, 4.0F + f8).endVertex();
+            worldrenderer.pos(1.0D, -1.0D, -0.5D).tex(0.0F + f7, 4.0F + f8).endVertex();
+            worldrenderer.pos(1.0D, 1.0D, -0.5D).tex(0.0F + f7, 0.0F + f8).endVertex();
+            worldrenderer.pos(-1.0D, 1.0D, -0.5D).tex(4.0F + f7, 0.0F + f8).endVertex();
             tessellator.draw();
             GlStateManager.popMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -459,10 +459,10 @@ public class ItemRenderer {
             GlStateManager.rotate((float) (i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
             worldrenderer.setSprite(textureatlassprite);
-            worldrenderer.pos((double) f5, (double) f7, (double) f9).tex((double) f2, (double) f4).endVertex();
-            worldrenderer.pos((double) f6, (double) f7, (double) f9).tex((double) f1, (double) f4).endVertex();
-            worldrenderer.pos((double) f6, (double) f8, (double) f9).tex((double) f1, (double) f3).endVertex();
-            worldrenderer.pos((double) f5, (double) f8, (double) f9).tex((double) f2, (double) f3).endVertex();
+            worldrenderer.pos(f5, f7, f9).tex(f2, f4).endVertex();
+            worldrenderer.pos(f6, f7, f9).tex(f1, f4).endVertex();
+            worldrenderer.pos(f6, f8, f9).tex(f1, f3).endVertex();
+            worldrenderer.pos(f5, f8, f9).tex(f2, f3).endVertex();
             tessellator.draw();
             GlStateManager.popMatrix();
         }

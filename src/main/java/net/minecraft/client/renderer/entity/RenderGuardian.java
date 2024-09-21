@@ -34,7 +34,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian> {
 
                 if (entitylivingbase != null) {
                     Vec3 vec3 = this.func_177110_a(entitylivingbase, (double) entitylivingbase.height * 0.5D, 1.0F);
-                    Vec3 vec31 = this.func_177110_a(livingEntity, (double) livingEntity.getEyeHeight(), 1.0F);
+                    Vec3 vec31 = this.func_177110_a(livingEntity, livingEntity.getEyeHeight(), 1.0F);
 
                     if (camera.isBoundingBoxInFrustum(AxisAlignedBB.fromBounds(vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord, vec3.zCoord))) {
                         return true;
@@ -82,13 +82,13 @@ public class RenderGuardian extends RenderLiving<EntityGuardian> {
             GlStateManager.pushMatrix();
             GlStateManager.translate((float) x, (float) y + f4, (float) z);
             Vec3 vec3 = this.func_177110_a(entitylivingbase, (double) entitylivingbase.height * 0.5D, partialTicks);
-            Vec3 vec31 = this.func_177110_a(entity, (double) f4, partialTicks);
+            Vec3 vec31 = this.func_177110_a(entity, f4, partialTicks);
             Vec3 vec32 = vec3.subtract(vec31);
             double d0 = vec32.lengthVector() + 1.0D;
             vec32 = vec32.normalize();
             float f5 = (float) Math.acos(vec32.yCoord);
             float f6 = (float) Math.atan2(vec32.zCoord, vec32.xCoord);
-            GlStateManager.rotate((((float) Math.PI / 2F) + -f6) * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate((((float) Math.PI / 2F) - f6) * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(f5 * (180F / (float) Math.PI), 1.0F, 0.0F, 0.0F);
             int i = 1;
             double d1 = (double) f2 * 0.05D * (1.0D - (double) (i & 1) * 2.5D);
@@ -117,7 +117,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian> {
             double d19 = 0.0D + Math.sin(d1 + (Math.PI * 3D / 2D)) * d2;
             double d20 = 0.0D;
             double d21 = 0.4999D;
-            double d22 = (double) (-1.0F + f3);
+            double d22 = -1.0F + f3;
             double d23 = d0 * (0.5D / d2) + d22;
             worldrenderer.pos(d12, d0, d13).tex(0.4999D, d23).color(j, k, l, 255).endVertex();
             worldrenderer.pos(d12, 0.0D, d13).tex(0.4999D, d22).color(j, k, l, 255).endVertex();

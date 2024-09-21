@@ -47,18 +47,18 @@ public class StructureVillagePieces {
     public static List<StructureVillagePieces.PieceWeight> getStructureVillageWeightedPieceList(Random random, int size) {
         List<StructureVillagePieces.PieceWeight> list = Lists.<StructureVillagePieces.PieceWeight>newArrayList();
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House4Garden.class, 4, MathHelper.getRandomIntegerInRange(random, 2 + size, 4 + size * 2)));
-        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Church.class, 20, MathHelper.getRandomIntegerInRange(random, 0 + size, 1 + size)));
-        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House1.class, 20, MathHelper.getRandomIntegerInRange(random, 0 + size, 2 + size)));
+        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Church.class, 20, MathHelper.getRandomIntegerInRange(random, size, 1 + size)));
+        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House1.class, 20, MathHelper.getRandomIntegerInRange(random, size, 2 + size)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.WoodHut.class, 3, MathHelper.getRandomIntegerInRange(random, 2 + size, 5 + size * 3)));
-        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Hall.class, 15, MathHelper.getRandomIntegerInRange(random, 0 + size, 2 + size)));
+        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Hall.class, 15, MathHelper.getRandomIntegerInRange(random, size, 2 + size)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Field1.class, 3, MathHelper.getRandomIntegerInRange(random, 1 + size, 4 + size)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Field2.class, 3, MathHelper.getRandomIntegerInRange(random, 2 + size, 4 + size * 2)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House2.class, 15, MathHelper.getRandomIntegerInRange(random, 0, 1 + size)));
-        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House3.class, 8, MathHelper.getRandomIntegerInRange(random, 0 + size, 3 + size * 2)));
+        list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House3.class, 8, MathHelper.getRandomIntegerInRange(random, size, 3 + size * 2)));
         Iterator<StructureVillagePieces.PieceWeight> iterator = list.iterator();
 
         while (iterator.hasNext()) {
-            if (((StructureVillagePieces.PieceWeight) iterator.next()).villagePiecesLimit == 0) {
+            if (iterator.next().villagePiecesLimit == 0) {
                 iterator.remove();
             }
         }
@@ -1221,7 +1221,7 @@ public class StructureVillagePieces {
         }
 
         public Start(WorldChunkManager chunkManagerIn, int p_i2104_2_, Random rand, int p_i2104_4_, int p_i2104_5_, List<StructureVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_) {
-            super((StructureVillagePieces.Start) null, 0, rand, p_i2104_4_, p_i2104_5_);
+            super(null, 0, rand, p_i2104_4_, p_i2104_5_);
             this.worldChunkMngr = chunkManagerIn;
             this.structureVillageWeightedPieceList = p_i2104_6_;
             this.terrainType = p_i2104_7_;
@@ -1383,8 +1383,8 @@ public class StructureVillagePieces {
 
                     ++this.villagersSpawned;
                     EntityVillager entityvillager = new EntityVillager(worldIn);
-                    entityvillager.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
-                    entityvillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData) null);
+                    entityvillager.setLocationAndAngles((double) j + 0.5D, k, (double) l + 0.5D, 0.0F, 0.0F);
+                    entityvillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), null);
                     entityvillager.setProfession(this.func_180779_c(i, entityvillager.getProfession()));
                     worldIn.spawnEntityInWorld(entityvillager);
                 }
